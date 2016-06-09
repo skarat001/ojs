@@ -1,0 +1,15 @@
+<?php return array (
+  'plugins.importexport.METSExport.displayName' => 'Plugin Ekspor METS XML',
+  'plugins.importexport.METSExport.description' => 'Ekspor Jurnal dalam METS XML',
+  'plugins.importexport.METSExport.settings' => 'Pengaturan',
+  'plugins.importexport.METSExport.export' => 'Ekspor Data',
+  'plugins.importexport.METSExport.export.issues' => 'Ekspor Isu',
+  'plugins.importexport.METSExport.export.selectIssue' => 'Pilih isu untuk di ekspor.',
+  'plugins.importexport.METSExport.export.error.IssuesNotFound' => 'Tidakn ada isu yang cocok dengan ID isu yang di spesifikasikan "{$issueId}".',
+  'plugins.importexport.METSExport.export.error.unknownIssue' => 'Path jurnal tidak diketahui {$journalPath}',
+  'plugins.importexport.METSExport.settings.FContent' => 'Gunakan pengkodean base64 encoding untuk pembungkus konten',
+  'plugins.importexport.METSExport.settings.FLocat' => 'Gunakan URL bitstream untuk pembungkus konten',
+  'plugins.importexport.METSExport.settings.organization' => 'METS:agent element organization attribute',
+  'plugins.importexport.METSExport.settings.preservationLevel' => 'PREMIS preservation Level',
+  'plugins.importexport.METSExport.settings.exportSuppFiles' => 'Ekspor file tambahan',
+); ?>

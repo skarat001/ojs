@@ -1,0 +1,17 @@
+<?php return array (
+  'plugins.importexport.quickSubmit.addToExisting' => 'Tambah pada isu yang sudah ada:',
+  'plugins.importexport.quickSubmit.chooseDestination' => 'Tujuan Penyerahan',
+  'plugins.importexport.quickSubmit.chooseDestinationDescription' => 'Pilih apakah akan menambah penyerahan baru untuk isu yang sudah ada atau biarkan dalam antrian edit.',
+  'plugins.importexport.quickSubmit.displayName' => 'Plugin QuickSubmit',
+  'plugins.importexport.quickSubmit.description' => 'Satu langkah Plugin Penyerahan',
+  'plugins.importexport.quickSubmit.descriptionLong' => 'Plugin ini mengizinkan Anda untuk menambah penyerahan secara cepat kedalam antrian edit atau secara langsung kedalam terbitan.',
+  'plugins.importexport.quickSubmit.issueRequired' => 'Anda harus memilih isu untuk menambah artikel.',
+  'plugins.importexport.quickSubmit.leaveUnpublished' => 'Biarkan Tidak Diterbitkan',
+  'plugins.importexport.quickSubmit.saveAndCreateAnother' => 'Simpan dan Buat yang Lain',
+  'plugins.importexport.quickSubmit.submissionData' => 'Data Penyerahan',
+  'plugins.importexport.quickSubmit.submissionDescription' => 'Pilih file yang akan digunakan sebagai file galley akhir untuk penyerahan ini.',
+  'plugins.importexport.quickSubmit.submissionRequired' => 'Anda harus mengunggah file untuk penyerahan ini.',
+  'plugins.importexport.quickSubmit.success' => 'Artikel Ditambahkan',
+  'plugins.importexport.quickSubmit.successDescription' => 'Pembuatan Artikel telah berhasil.',
+  'plugins.importexport.quickSubmit.successReturn' => 'Kembali ke plugin QuickSubmit.',
+); ?>

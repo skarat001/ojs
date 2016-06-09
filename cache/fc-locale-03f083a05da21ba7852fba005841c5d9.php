@@ -1,0 +1,17 @@
+<?php return array (
+  'plugins.generic.customBlockManager.displayName' => 'Blok Manager Umum',
+  'plugins.generic.customBlockManager.description' => 'Plugin ini memungkinan Anda mengatur custom sidebar blok. Anda dapat mengedit blocks di pengaturan tiap plugin yang Anda buat di sini.',
+  'plugin.generic.customBlockManager.introduction' => 'Anda dapat menggunakan plugin ini untuk menambah atau menghapus plugin custom blok.  Anda kemudian dapat mengedit kontennya melalui halaman  <a href="{$systemPluginsUrl}">Plugin Sistem</a>  (di bagian Blok Plugin).  Untuk meletakkan plugin Anda di lokasi yang diinginkan di sidebar, pergi ke <a href="{$setupStep56}">Setup langkah 5.6</a>',
+  'plugins.generic.customBlockManager.settings' => 'Pengaturan',
+  'plugins.generic.customBlockManager.blockName' => 'Nama Blok',
+  'plugins.generic.customBlockManager.action' => 'Tindakan',
+  'plugins.generic.customBlockManager.delete' => 'Hapus',
+  'plugins.generic.customBlockManager.addBlock' => 'Tambah Blok',
+  'plugins.generic.customBlock.content' => 'Konten',
+  'plugins.generic.customBlock.saved' => 'Konten Blok telah disimpan.',
+  'plugins.generic.customBlock.nameSuffix' => '(Plugin Custom Block)',
+  'plugins.generic.customBlock.description' => 'Ini adalah user-generated block.',
+  'plugins.generic.customBlock.editContent' => 'Edit konten sidebar',
+  'plugins.generic.customBlock.contentRequired' => 'Beberapa konten diperlukan. Jika Anda ingin menghapus block ini, Anda dapat melakukannya dengan Plugin Block Manager atau dengan memindahkan block ini di langkah 5 setup jurnal.',
+  'plugins.generic.customBlock.edit' => 'Edit',
+); ?>
