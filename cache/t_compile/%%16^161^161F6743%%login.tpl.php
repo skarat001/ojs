@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:01:48
+<?php /* Smarty version 2.6.26, created on 2016-06-13 14:38:14
          compiled from core:user/login.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:user/login.tpl', 24, false),array('function', 'url', 'core:user/login.tpl', 33, false),array('modifier', 'strip_unsafe_html', 'core:user/login.tpl', 48, false),array('modifier', 'escape', 'core:user/login.tpl', 48, false),)), $this); ?>
@@ -99,4 +99,4 @@ unset($_smarty_tpl_vars);
 $this->_smarty_include(array('smarty_include_tpl_file' => "common/footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
- ?>
+ ?>

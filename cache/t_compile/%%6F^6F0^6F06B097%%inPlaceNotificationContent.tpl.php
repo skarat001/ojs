@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:03:47
+<?php /* Smarty version 2.6.26, created on 2016-06-12 07:46:43
          compiled from controllers/notification/inPlaceNotificationContent.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'controllers/notification/inPlaceNotificationContent.tpl', 11, false),)), $this); ?>
@@ -14,4 +14,4 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'c
 </p>
 		<?php endif; ?>
 	</span>
-</div>
+</div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:40:31
+<?php /* Smarty version 2.6.26, created on 2016-06-12 05:10:32
          compiled from common/minifiedScripts.tpl */ ?>
 
 
@@ -54,3 +54,4 @@
 <script type="text/javascript" src="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
 
+

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:32:17
+<?php /* Smarty version 2.6.26, created on 2016-06-12 05:36:35
          compiled from controllers/extrasOnDemand.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'controllers/extrasOnDemand.tpl', 26, false),)), $this); ?>
@@ -41,4 +41,4 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 
 	</div>
 </div>
-<div style="clear:both"></div>
+<div style="clear:both"></div>

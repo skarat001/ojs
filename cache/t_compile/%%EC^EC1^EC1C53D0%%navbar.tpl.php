@@ -1,9 +1,9 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:59:07
+<?php /* Smarty version 2.6.26, created on 2016-06-12 07:30:21
          compiled from common/navbar.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'common/navbar.tpl', 25, false),array('function', 'translate', 'common/navbar.tpl', 25, false),array('function', 'call_hook', 'common/navbar.tpl', 54, false),array('modifier', 'escape', 'common/navbar.tpl', 58, false),)), $this); ?>
       <!-- Static navbar -->
-      <nav class="navbar navbar-default ">
+      <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

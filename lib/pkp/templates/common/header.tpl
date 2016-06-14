@@ -28,15 +28,16 @@
 		{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/app.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-			<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	
 
-		<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/pkp.css" type="text/css" />
-		<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
-		<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
-		<link rel="stylesheet" href="{$baseUrl}/styles/compiled.css" type="text/css" />
+
+<!-- 		<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/pkp.css" type="text/css" />
+	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" /> -->
+		<!-- <link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
+		<link rel="stylesheet" href="{$baseUrl}/styles/compiled.css" type="text/css" /> -->
 
 		<!-- Base Jquery -->
 		{if $allowCDN}<script type="text/javascript" src="//www.google.com/jsapi"></script>
@@ -128,11 +129,17 @@
 	{$additionalHeadData}
 </head>
 <body id="pkp-{$pageTitle|replace:'.':'-'}">
-	<div id="container">
+	{include file="common/navbar.tpl"}
 
-		<div id="header">
-			<div id="headerTitle">
-				<h1>
+
+
+	<div  class=" header background-color">
+		<div >
+			<div class="container">
+				<div class="row vertical-align"> 
+				<div class="col-md-4" style="padding:15px;">
+
+				{$displayPageHeaderTitleAltText}
 					{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 					<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
 					{/if}
@@ -147,9 +154,36 @@
 					{else}
 					{$applicationName}
 					{/if}
-				</h1>
+					</div>
+					<div class="col-md-8">
+					<form action="#" method="get" id="searchForm" class="input-group">
+
+						<div class="input-group-btn search-panel">
+							<select name="search_param" id="search_param" class="btn btn-default dropdown-toggle form-search" data-toggle="dropdown">
+								<option value="all">All</option>
+								<option value="username">Username</option>
+								<option value="email">Email</option>
+								<option value="studentcode">Student Code</option>
+							</select>
+						</div>
+						<input type="text" class="form-control form-search" name="x" placeholder="Search term...">
+						<span class="input-group-btn">
+							<button class="btn btn-default form-search" type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</form><!-- end form -->     
+					</div>
+					<div class="col-md-4"></div>
+				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="container">
+
+
+
 
 		<div id="body">
 
@@ -169,7 +203,7 @@
 			{/if}
 
 			<div id="main">
-				{include file="common/navbar.tpl"}
+
 
 				{include file="common/breadcrumbs.tpl"}
 

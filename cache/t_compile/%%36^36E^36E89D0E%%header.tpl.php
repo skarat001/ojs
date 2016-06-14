@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:59:42
+<?php /* Smarty version 2.6.26, created on 2016-06-14 04:37:23
          compiled from core:common/header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/header.tpl', 11, false),array('function', 'call_hook', 'core:common/header.tpl', 60, false),array('function', 'url', 'core:common/header.tpl', 109, false),array('modifier', 'assign', 'core:common/header.tpl', 11, false),array('modifier', 'replace', 'core:common/header.tpl', 20, false),array('modifier', 'escape', 'core:common/header.tpl', 22, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/header.tpl', 11, false),array('function', 'call_hook', 'core:common/header.tpl', 61, false),array('function', 'url', 'core:common/header.tpl', 110, false),array('modifier', 'assign', 'core:common/header.tpl', 11, false),array('modifier', 'replace', 'core:common/header.tpl', 20, false),array('modifier', 'escape', 'core:common/header.tpl', 22, false),)), $this); ?>
 	<?php echo ''; ?><?php if (! $this->_tpl_vars['pageTitleTranslated']): ?><?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['pageTitle']), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageTitleTranslated'));?><?php echo ''; ?><?php endif; ?><?php echo ''; ?><?php if ($this->_tpl_vars['pageCrumbTitle']): ?><?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['pageCrumbTitle']), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageCrumbTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageCrumbTitleTranslated'));?><?php echo ''; ?><?php elseif (! $this->_tpl_vars['pageCrumbTitleTranslated']): ?><?php echo ''; ?><?php $this->assign('pageCrumbTitleTranslated', $this->_tpl_vars['pageTitleTranslated']); ?><?php echo ''; ?><?php endif; ?><?php echo ''; ?>
 
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -31,21 +31,23 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+/bower_components/app.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-			<script type="text/javascript" src="<?php echo $this->_tpl_vars['baseUrl']; ?>
+		<script type="text/javascript" src="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	
 
-		<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+
+<!-- 		<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /lib/pkp/styles/pkp.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
-/lib/pkp/styles/common.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+	<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+/lib/pkp/styles/common.css" type="text/css" /> -->
+		<!-- <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /styles/common.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
-/styles/compiled.css" type="text/css" />
+/styles/compiled.css" type="text/css" /> -->
 
 		<!-- Base Jquery -->
 		<?php if ($this->_tpl_vars['allowCDN']): ?><script type="text/javascript" src="//www.google.com/jsapi"></script>
@@ -179,11 +181,22 @@ unset($_smarty_tpl_vars);
 </head>
 <body id="pkp-<?php echo ((is_array($_tmp=$this->_tpl_vars['pageTitle'])) ? $this->_run_mod_handler('replace', true, $_tmp, '.', '-') : smarty_modifier_replace($_tmp, '.', '-')); ?>
 ">
-	<div id="container">
+	<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "common/navbar.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 
-		<div id="header">
-			<div id="headerTitle">
-				<h1>
+
+
+	<div  class=" header background-color">
+		<div >
+			<div class="container">
+				<div class="row vertical-align"> 
+				<div class="col-md-4" style="padding:15px;">
+
+				<?php echo $this->_tpl_vars['displayPageHeaderTitleAltText']; ?>
+
 					<?php if ($this->_tpl_vars['displayPageHeaderLogo'] && is_array ( $this->_tpl_vars['displayPageHeaderLogo'] )): ?>
 					<img src="<?php echo $this->_tpl_vars['publicFilesDir']; ?>
 /<?php echo ((is_array($_tmp=$this->_tpl_vars['displayPageHeaderLogo']['uploadName'])) ? $this->_run_mod_handler('escape', true, $_tmp, 'url') : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp, 'url')); ?>
@@ -214,9 +227,36 @@ unset($_smarty_tpl_vars);
 					<?php echo $this->_tpl_vars['applicationName']; ?>
 
 					<?php endif; ?>
-				</h1>
+					</div>
+					<div class="col-md-8">
+					<form action="#" method="get" id="searchForm" class="input-group">
+
+						<div class="input-group-btn search-panel">
+							<select name="search_param" id="search_param" class="btn btn-default dropdown-toggle form-search" data-toggle="dropdown">
+								<option value="all">All</option>
+								<option value="username">Username</option>
+								<option value="email">Email</option>
+								<option value="studentcode">Student Code</option>
+							</select>
+						</div>
+						<input type="text" class="form-control form-search" name="x" placeholder="Search term...">
+						<span class="input-group-btn">
+							<button class="btn btn-default form-search" type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</form><!-- end form -->     
+					</div>
+					<div class="col-md-4"></div>
+				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="container">
+
+
+
 
 		<div id="body">
 
@@ -238,11 +278,7 @@ unset($_smarty_tpl_vars);
 			<?php endif; ?>
 
 			<div id="main">
-				<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "common/navbar.tpl", 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
+
 
 				<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "common/breadcrumbs.tpl", 'smarty_include_vars' => array()));
@@ -261,3 +297,4 @@ unset($_smarty_tpl_vars);
 				<?php endif; ?>
 
 				<div id="content">
+
