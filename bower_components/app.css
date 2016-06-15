@@ -1,0 +1,61 @@
+.navbar {
+    margin-bottom: 0;
+}
+.background-color{
+background: #485563; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #485563 , #29323c); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #485563 , #29323c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.jumbotron {
+    ...
+    min-height: 100px;
+}
+
+
+#imaginary_container{
+    margin-top:20%; /* Don't copy this */
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.vertical-align{
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:row;
+
+}
+.form-search {
+  height: 35px;
+  font-size: 16px;
+}
+
+#form-input {
+  height: 50px;
+}
+
+.browse{
+    color: white;
+}
+
+.browseli {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.btn-group{
+  white-space:nowrap;
+ }    
+
+
