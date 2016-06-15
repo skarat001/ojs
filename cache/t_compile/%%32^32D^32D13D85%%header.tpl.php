@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-12 05:10:32
+<?php /* Smarty version 2.6.26, created on 2016-06-14 04:51:28
          compiled from common/header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'common/header.tpl', 12, false),array('modifier', 'assign', 'common/header.tpl', 12, false),)), $this); ?>
@@ -7,5 +7,5 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 $this->_smarty_include(array('smarty_include_tpl_file' => "core:common/header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
- ?><?php echo '123'; ?>
+ ?><?php echo ''; ?>
 

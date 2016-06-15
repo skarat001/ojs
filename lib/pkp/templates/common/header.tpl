@@ -15,8 +15,7 @@
 	{assign var="pageCrumbTitleTranslated" value=$pageTitleTranslated}
 	{/if}
 	{/strip}
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
@@ -28,11 +27,15 @@
 		{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/app.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-		<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+
+	
+	<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 <!-- 		<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/pkp.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" /> -->
@@ -132,80 +135,111 @@
 	{include file="common/navbar.tpl"}
 
 
-
 	<div  class=" header background-color">
 		<div >
 			<div class="container">
 				<div class="row vertical-align"> 
-				<div class="col-md-4" style="padding:15px;">
+		
+					<div class="col-md-4" style="padding:15px;">
 
-				{$displayPageHeaderTitleAltText}
-					{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-					<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-					{/if}
-					{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-					<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-					{elseif $displayPageHeaderTitle}
-					{$displayPageHeaderTitle}
-					{elseif $alternatePageHeader}
-					{$alternatePageHeader}
-					{elseif $siteTitle}
-					{$siteTitle}
-					{else}
-					{$applicationName}
-					{/if}
+						{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+						
+						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+						{/if}
+						{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+						
+						<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+						{elseif $displayPageHeaderTitle}
+						{$displayPageHeaderTitle}
+						{elseif $alternatePageHeader}
+						{$alternatePageHeader}
+						{elseif $siteTitle}
+
+						{$siteTitle}
+						{else}
+						{$applicationName}
+						{/if}
 					</div>
 					<div class="col-md-8">
-					<form action="#" method="get" id="searchForm" class="input-group">
+						<div class="row">
 
-						<div class="input-group-btn search-panel">
-							<select name="search_param" id="search_param" class="btn btn-default dropdown-toggle form-search" data-toggle="dropdown">
-								<option value="all">All</option>
-								<option value="username">Username</option>
-								<option value="email">Email</option>
-								<option value="studentcode">Student Code</option>
-							</select>
-						</div>
-						<input type="text" class="form-control form-search" name="x" placeholder="Search term...">
-						<span class="input-group-btn">
-							<button class="btn btn-default form-search" type="submit">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-					</form><!-- end form -->     
-					</div>
+
+
+							<form id="simpleSearchForm"  class="input-group" action="{url page="search" op="search"}">
+
+								<div class="input-group-btn search-panel">
+									{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
+
+									<select id="searchField" name="searchField" class="selectpicker form-search form-control">
+										{html_options_translate options=$articleSearchByOptions}
+									</select>
+
+								</div>
+								{if empty($filterInput)}
+								<input type="text" class="form-control form-search" placeholder="Search" id="simpleQuery" name="simpleQuery">
+
+								{else}
+								{$filterInput}
+								{/if}
+								<span class="input-group-btn">
+									<button class="btn btn-default form-search" type="submit">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+
+							</form>	
+
+</div>
+<div class="row">
+							<h3 style="display:inline;"><small>{translate key="navigation.browse"}</small></h3>
+							<ul class="list-inline " style="display:inline;">
+								<li><a href="{url page="issue" op="archive"}" class="btn browse">{translate key="navigation.browseByIssue"}</a></li>
+								<li><a href="{url page="search" op="authors"}" class="btn browse">{translate key="navigation.browseByAuthor"}</a></li>
+								<li><a href="{url page="search" op="titles"}" class="btn browse">{translate key="navigation.browseByTitle"}</a></li>
+								{call_hook name="Plugins::Blocks::Navigation::BrowseBy"}
+								
+							</ul>
+
+</div>	
+
+
+					</div>	
 					<div class="col-md-4"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="container">
+
+
+		
 
 
 
-
-		<div id="body">
+		<div id="body" class="container">
+<div class="row">
 
 			{if $leftSidebarCode || $rightSidebarCode}
 			<div id="sidebar">
 				{if $leftSidebarCode}
-				<div id="leftSidebar">
+				<div  class="col-md-2">
 					{$leftSidebarCode}
 				</div>
 				{/if}
 				{if $rightSidebarCode}
-				<div id="rightSidebar">
+				<div class="col-md-2 pull-right">
 					{$rightSidebarCode}
 				</div>
 				{/if}
 			</div>
 			{/if}
 
-			<div id="main">
+			<div   class="col-md-8">
 
-
+<div class="row">
 				{include file="common/breadcrumbs.tpl"}
+</div>
+<div class="row">
 
 				<h2>{$pageTitleTranslated}</h2>
 
@@ -213,6 +247,7 @@
 				{if $pageSubtitleTranslated}
 				<h3>{$pageSubtitleTranslated}</h3>
 				{/if}
+</div>
+				<div class="row">
 
-				<div id="content">
 

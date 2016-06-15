@@ -1,22 +1,26 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-12 07:30:21
+<?php /* Smarty version 2.6.26, created on 2016-06-15 09:40:46
          compiled from common/navbar.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'common/navbar.tpl', 25, false),array('function', 'translate', 'common/navbar.tpl', 25, false),array('function', 'call_hook', 'common/navbar.tpl', 54, false),array('modifier', 'escape', 'common/navbar.tpl', 58, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'common/navbar.tpl', 29, false),array('function', 'translate', 'common/navbar.tpl', 29, false),array('function', 'call_hook', 'common/navbar.tpl', 58, false),array('function', 'html_options', 'common/navbar.tpl', 70, false),array('modifier', 'escape', 'common/navbar.tpl', 62, false),)), $this); ?>
       <!-- Static navbar -->
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-     <li id="home"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'index'), $this);?>
+     <nav class="navbar navbar-default navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">UI Journal</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+    
+   <li id="home"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'index'), $this);?>
 "><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.home"), $this);?>
 </a></li>
 		<li id="about"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'about'), $this);?>
@@ -78,12 +82,21 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'comm
 <?php endif; ?></a></li>
 			<?php endif; ?>
 		<?php endforeach; endif; unset($_from); ?>
-	</ul>
-           
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
+      </ul>
+  
+      <ul class=" navbar-form navbar-right">
+        <li>
+         <select class="selectpicker form-control" data-style="btn-primary" id="languageSelect" <?php if ($this->_tpl_vars['isPostRequest']): ?>disabled="disabled" <?php endif; ?>size="1" name="locale" onchange ="changeLanguage()">
+ <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['languageToggleLocales'],'selected' => $this->_tpl_vars['currentLocale']), $this);?>
 
+</select>
+
+         </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <!-- <div id="navbar">
 	<ul class="menu">
 		<li id="home"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'index'), $this);?>
@@ -157,3 +170,5 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'comm
 
 
  -->
+
+ 

@@ -1,4 +1,4 @@
-{**
+<!-- {**
 	* plugins/blocks/navigation/block.tpl
 	*
 	* Copyright (c) 2013-2016 Simon Fraser University Library
@@ -16,14 +16,18 @@
 
 			<div class="input-group-btn search-panel">
 				{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
-				{if empty($filterInput)}
+				
 				<select id="searchField" name="searchField" class="btn btn-default dropdown-toggle form-search">
 					{html_options_translate options=$articleSearchByOptions}
 				</select>
 				
 			</div>
+			{if empty($filterInput)}
 			<input type="text" class="form-control form-search" placeholder="Search" id="simpleQuery" name="simpleQuery">
 			
+				{else}
+					{$filterInput}
+				{/if}
 			<span class="input-group-btn">
 				<button class="btn btn-default form-search" type="submit">
 					<span class="glyphicon glyphicon-search"></span>
@@ -32,21 +36,9 @@
 			
 		</form>
 		
-					<!-- <label for="simpleQuery">{translate key="navigation.search"} <br />
-					<input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" value="" class="textField" /></label>
-				{else}
-					{$filterInput}
-				{/if}
-		
-				by
-			
 				
-			
-				<input type="submit" value="{translate key="common.search"}" class="button" /> -->
 
-
-				<br />
-
+				
 				{if $currentJournal}
 				<span class="blockSubtitle">{translate key="navigation.browse"}</span>
 				<ul>
@@ -62,3 +54,4 @@
 				{/if}
 			</div>
 			{/if}
+ -->

@@ -9,11 +9,17 @@
  *
  *}
 
+<!-- Split button -->
+
 {if $enableLanguageToggle}
+
+
+
 <div class="block" id="sidebarLanguageToggle">
 	<script type="text/javascript">
 		<!--
 		function changeLanguage() {ldelim}
+	
 			var e = document.getElementById('languageSelect');
 			var new_locale = e.options[e.selectedIndex].value;
 
@@ -24,11 +30,14 @@
 		{rdelim}
 		//-->
 	</script>
-	<span class="blockTitle">{translate key="common.language"}</span>
+
+
+	<!-- <span class="blockTitle">{translate key="common.language"}</span>
 	<form action="#">
+
 		<label for="languageSelect">{translate key="plugins.block.languageToggle.selectLabel"}</label>
 		<select id="languageSelect" {if $isPostRequest}disabled="disabled" {/if}size="1" name="locale" class="selectMenu">{html_options options=$languageToggleLocales selected=$currentLocale}</select>
 		<input type="submit" class="button" value="{translate key='form.submit'}" onclick="changeLanguage(); return false;" />
 	</form>
 </div>
-{/if}
+{/if} -->
