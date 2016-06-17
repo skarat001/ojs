@@ -8,44 +8,40 @@
  * Display list of announcements without site header or footer.
  *
  *}
-<table class="announcements">
-	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
-	</tr>
+
+
+
+
+ 
 
 {counter start=1 skip=1 assign="count"}
 {iterate from=announcements item=announcement}
 	{if !$numAnnouncementsHomepage || $count <= $numAnnouncementsHomepage}
-		<tr class="title">
+		 <div class="col-md-6">
 		{if $announcement->getTypeId()}
-			<td class="title"><h4>{$announcement->getAnnouncementTypeName()|escape}: {$announcement->getLocalizedTitle()|escape}</h4></td>
+			<h4 class="text-capitalize">{$announcement->getAnnouncementTypeName()|escape}: {$announcement->getLocalizedTitle()|escape}</h4>
 		{else}
-			<td class="title"><h4>{$announcement->getLocalizedTitle()|escape}</h4></td>
+			 <h4 class="text-capitalize">{$announcement->getLocalizedTitle()|escape}</h4>
 		{/if}
-			<td class="more">&nbsp;</td>
-		</tr>
-		<tr class="description">
-			<td class="description">{$announcement->getLocalizedDescriptionShort()|nl2br}</td>
-			<td class="more">&nbsp;</td>
-		</tr>
-		<tr class="details">
-			<td class="posted">{translate key="announcement.posted"}: {$announcement->getDatePosted()}</td>
+			
+	
+		
+			<p>{$announcement->getLocalizedDescriptionShort()|nl2br}</p>
+	
+			<em>{translate key="announcement.posted"}: {$announcement->getDatePosted()}</em>
 			{if $announcement->getLocalizedDescription() != null}
-				<td class="more"><a href="{url page="announcement" op="view" path=$announcement->getId()}">{translate key="announcement.viewLink"}</a></td>
+	
+				<a href="{url page="announcement" op="view" path=$announcement->getId()}" class="btn btn-link">{translate key="announcement.viewLink"}</a>
 			{/if}
-		</tr>
+		</div>
 	{/if}
-	<tr>
-		<td colspan="2" class="{if $announcements->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
+		
 	{counter}
 {/iterate}
 {if $announcements->wasEmpty()}
-	<tr>
-		<td colspan="2" class="nodata">{translate key="announcement.noneExist"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="endseparator">&nbsp;</td>
-	</tr>
+	 <div class="col-md-6">
+		{translate key="announcement.noneExist"}
+</div>
 {/if}
-</table>
+

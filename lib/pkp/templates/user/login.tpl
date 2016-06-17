@@ -35,46 +35,64 @@
 {if $implicitAuth === $smarty.const.IMPLICIT_AUTH_OPTIONAL}
 	<h3>{translate key="user.login.localAuth"}</h3>
 {/if}
+<form class="form-horizontal">
+
+ 
+</form>
+
 {if !$implicitAuth || $implicitAuth === $smarty.const.IMPLICIT_AUTH_OPTIONAL}
-	<form id="signinForm" method="post" action="{$loginUrl}">
+	<form id="signinForm" method="post" action="{$loginUrl}" class="form-horizontal">
 {/if}
 
 {if $error}
-	<span class="pkp_form_error">{translate key="$error" reason=$reason}</span>
+<div class="alert alert-danger">
+   {translate key="$error" reason=$reason}
+</div>
+	<!-- <span class="pkp_form_error"></span>
 	<br />
-	<br />
+	<br /> -->
 {/if}
 
 <input type="hidden" name="source" value="{$source|strip_unsafe_html|escape}" />
 
 {if !$implicitAuth || $implicitAuth === $smarty.const.IMPLICIT_AUTH_OPTIONAL}
-	<table id="signinTable" class="data">
-	<tr>
-		<td class="label"><label for="loginUsername">{translate key="user.username"}</label></td>
-		<td class="value"><input type="text" id="loginUsername" name="username" value="{$username|escape}" size="20" maxlength="32" class="textField" /></td>
-	</tr>
-	<tr>
-		<td class="label"><label for="loginPassword">{translate key="user.password"}</label></td>
-		<td class="value"><input type="password" id="loginPassword" name="password" value="{$password|escape}" size="20" class="textField" /></td>
-	</tr>
+
+<div class="form-group">
+	
+		<label for="loginUsername" class="col-sm-3 control-label">{translate key="user.username"}</label>
+		 <div class="col-sm-4">
+		<input type="text" id="loginUsername" name="username" value="{$username|escape}" size="20" maxlength="32" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="loginPassword" class="col-sm-3 control-label">{translate key="user.password"}</label>
+		<div class="col-sm-4">
+		<input type="password" id="loginPassword" name="password" value="{$password|escape}" size="20" class="form-control" />
+		</div>
+	</div>
 	{if $showRemember}
-	<tr valign="middle">
-		<td></td>
-		<td class="value"><input type="checkbox" id="loginRemember" name="remember" value="1"{if $remember} checked="checked"{/if} /> <label for="loginRemember">{translate key="user.login.rememberUsernameAndPassword"}</label></td>
-	</tr>
+	
+	<div class="checkbox form-group">
+	 <div class="col-sm-offset-3 col-sm-5">
+	<label for="loginRemember"><input type="checkbox" id="loginRemember" name="remember" value="1"{if $remember} checked="checked"{/if} /> {translate key="user.login.rememberUsernameAndPassword"}</label>
+	</div>
+</div>
 	{/if}{* $showRemember *}
 
-	<tr>
-		<td></td>
-		<td><input type="submit" value="{translate key="user.login"}" class="button" /></td>
-	</tr>
-	</table>
 
-	<ul>
-		{if !$hideRegisterLink}<li><a href="{url page="user" op=$registerOp}">{translate key=$registerLocaleKey}</a></li>{/if}
-		<li><a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a></li>
-	</ul>
+ <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-10">
+      <input type="submit" value="{translate key="user.login"}" class="btn btn-default" />
+    </div>
+  </div>
 
+	 <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-10">
+		{if !$hideRegisterLink}	<a href="{url page="user" op=$registerOp}" class="btn btn-link">{translate key=$registerLocaleKey}</a> {/if}
+		<br>
+		<a href="{url page="login" op="lostPassword"}" class="btn btn-link">{translate key="user.login.forgotPassword"}</a>
+</div>
+</div>
 <script type="text/javascript">
 <!--
 	document.getElementById('{if $username}loginPassword{else}loginUsername{/if}').focus();

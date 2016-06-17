@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-12 05:40:52
+<?php /* Smarty version 2.6.26, created on 2016-06-16 09:22:33
          compiled from issue/issue.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'issue/issue.tpl', 12, false),array('modifier', 'strip_unsafe_html', 'issue/issue.tpl', 53, false),array('modifier', 'to_array', 'issue/issue.tpl', 73, false),array('function', 'url', 'issue/issue.tpl', 41, false),array('function', 'translate', 'issue/issue.tpl', 42, false),array('function', 'call_hook', 'issue/issue.tpl', 48, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'issue/issue.tpl', 12, false),array('modifier', 'strip_unsafe_html', 'issue/issue.tpl', 53, false),array('modifier', 'to_array', 'issue/issue.tpl', 75, false),array('function', 'url', 'issue/issue.tpl', 40, false),array('function', 'translate', 'issue/issue.tpl', 41, false),array('function', 'call_hook', 'issue/issue.tpl', 47, false),)), $this); ?>
 <?php $_from = $this->_tpl_vars['publishedArticles']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['sections'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['sections']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['sectionId'] => $this->_tpl_vars['section']):
@@ -34,9 +34,8 @@ if ($this->_foreach['sections']['total'] > 0):
 		<?php $this->assign('hasAccess', 0); ?>
 	<?php endif; ?>
 
-<table class="tocArticle">
-<tr valign="top">
-	<td class="tocArticleCoverImage<?php if ($this->_tpl_vars['showCoverPage']): ?> showCoverImage<?php endif; ?>">
+<div class="col-md-6">
+
 		<?php if ($this->_tpl_vars['showCoverPage']): ?>
 			<div class="tocCoverImage">
 				<?php if (! $this->_tpl_vars['hasAccess'] || $this->_tpl_vars['hasAbstract']): ?><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'article','op' => 'view','path' => $this->_tpl_vars['articlePath']), $this);?>
@@ -49,39 +48,40 @@ if ($this->_foreach['sections']['total'] > 0):
 				<?php if (! $this->_tpl_vars['hasAccess'] || $this->_tpl_vars['hasAbstract']): ?></a><?php endif; ?>
 			</div>
 		<?php endif; ?>
-	</td>
+
 
 	<?php echo $this->_plugins['function']['call_hook'][0][0]->smartyCallHook(array('name' => "Templates::Issue::Issue::ArticleCoverImage"), $this);?>
 
 
-	<td class="tocArticleTitleAuthors<?php if ($this->_tpl_vars['showCoverPage']): ?> showCoverImage<?php endif; ?>">
-		<div class="tocTitle">
+<div class="panel panel-default">
+<div class="panel-heading">
+		<div  class="row">
 			<?php if (! $this->_tpl_vars['hasAccess'] || $this->_tpl_vars['hasAbstract']): ?>
 				<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'article','op' => 'view','path' => $this->_tpl_vars['articlePath']), $this);?>
-"><?php echo ((is_array($_tmp=$this->_tpl_vars['article']->getLocalizedTitle())) ? $this->_run_mod_handler('strip_unsafe_html', true, $_tmp) : String::stripUnsafeHtml($_tmp)); ?>
-</a>
+" class="btn btn-link"><h4 class="text-capitalize"><strong><?php echo ((is_array($_tmp=$this->_tpl_vars['article']->getLocalizedTitle())) ? $this->_run_mod_handler('strip_unsafe_html', true, $_tmp) : String::stripUnsafeHtml($_tmp)); ?>
+</strong></h4></a>
 			<?php else: ?>
 				<?php echo ((is_array($_tmp=$this->_tpl_vars['article']->getLocalizedTitle())) ? $this->_run_mod_handler('strip_unsafe_html', true, $_tmp) : String::stripUnsafeHtml($_tmp)); ?>
 
 			<?php endif; ?>
 		</div>
-		<div class="tocAuthors">
+		<div class="tocAuthors" class="row">
 			<?php if (( ! $this->_tpl_vars['section']['hideAuthor'] && $this->_tpl_vars['article']->getHideAuthor() == @AUTHOR_TOC_DEFAULT ) || $this->_tpl_vars['article']->getHideAuthor() == @AUTHOR_TOC_SHOW): ?>
 				<?php $_from = $this->_tpl_vars['article']->getAuthors(); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['authorList'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['authorList']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['author']):
         $this->_foreach['authorList']['iteration']++;
 ?>
-					<?php echo ((is_array($_tmp=$this->_tpl_vars['author']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
-<?php if (! ($this->_foreach['authorList']['iteration'] == $this->_foreach['authorList']['total'])): ?>,<?php endif; ?>
+					<p class="text-capitalize"><?php echo ((is_array($_tmp=$this->_tpl_vars['author']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+<?php if (! ($this->_foreach['authorList']['iteration'] == $this->_foreach['authorList']['total'])): ?>,<?php endif; ?></p>
 				<?php endforeach; endif; unset($_from); ?>
 			<?php else: ?>
 				&nbsp;
 			<?php endif; ?>
 		</div>
-	</td>
 
-	<td class="tocArticleGalleysPages<?php if ($this->_tpl_vars['showCoverPage']): ?> showCoverImage<?php endif; ?>">
+
+
 		<div class="tocGalleys">
 			<?php if ($this->_tpl_vars['hasAccess'] || ( $this->_tpl_vars['subscriptionRequired'] && $this->_tpl_vars['showGalleyLinks'] )): ?>
 				<?php $_from = $this->_tpl_vars['article']->getGalleys(); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['galleyList'] = array('total' => count($_from), 'iteration' => 0);
@@ -89,6 +89,8 @@ if ($this->_foreach['galleyList']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['galley']):
         $this->_foreach['galleyList']['iteration']++;
 ?>
+				<br>
+				<i class="fa fa-download" ></i>
 					<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'article','op' => 'view','path' => ((is_array($_tmp=$this->_tpl_vars['articlePath'])) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['galley']->getBestGalleyId($this->_tpl_vars['currentJournal'])) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['galley']->getBestGalleyId($this->_tpl_vars['currentJournal'])))), $this);?>
 " <?php if ($this->_tpl_vars['galley']->getRemoteURL()): ?>target="_blank" <?php endif; ?>class="file"><?php echo ((is_array($_tmp=$this->_tpl_vars['galley']->getGalleyLabel())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </a>
@@ -118,12 +120,13 @@ if ($this->_foreach['galleyList']['total'] > 0):
 			<?php endif; ?>
 		</div>
 		<div class="tocPages">
-			<?php echo ((is_array($_tmp=$this->_tpl_vars['article']->getPages())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+			<!-- <?php echo ((is_array($_tmp=$this->_tpl_vars['article']->getPages())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+ -->
+		</div>
 
 		</div>
-	</td>
-</tr>
-</table>
+		</div>
+</div>
 <?php echo $this->_plugins['function']['call_hook'][0][0]->smartyCallHook(array('name' => "Templates::Issue::Issue::Article"), $this);?>
 
 <?php endforeach; endif; unset($_from); ?>

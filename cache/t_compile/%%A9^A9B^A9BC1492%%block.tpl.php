@@ -1,11 +1,14 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-12 05:35:35
+<?php /* Smarty version 2.6.26, created on 2016-06-15 20:20:55
          compiled from file:C:%5Cxampp%5Chtdocs%5Cojs2%5Cojs/plugins/blocks/notification/block.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/notification/block.tpl', 13, false),array('function', 'url', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/notification/block.tpl', 16, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/notification/block.tpl', 14, false),array('function', 'url', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/notification/block.tpl', 19, false),)), $this); ?>
  <?php if ($this->_tpl_vars['currentJournal']): ?>
-<div class="block" id="notification">
-	<span class="blockTitle"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "notification.notifications"), $this);?>
+<div class="panel panel-default" id="notification">
+<div class="panel-heading">
+<span class="blockTitle"><i class="fa fa-exclamation-circle fa-1x" ></i>	<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "notification.notifications"), $this);?>
 </span>
+	</div>
+	<div class="panel-body">
 	<ul>
 		<?php if ($this->_tpl_vars['isUserLoggedIn']): ?>
 			<li><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'notification'), $this);?>
@@ -26,4 +29,5 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 		<?php endif; ?>
 	</ul>
 </div>
-<?php endif; ?>
+<?php endif; ?>
+</div>

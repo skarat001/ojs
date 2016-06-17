@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-15 09:34:55
+<?php /* Smarty version 2.6.26, created on 2016-06-17 01:39:28
          compiled from core:common/header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/header.tpl', 11, false),array('function', 'call_hook', 'core:common/header.tpl', 64, false),array('function', 'url', 'core:common/header.tpl', 113, false),array('function', 'html_options_translate', 'core:common/header.tpl', 174, false),array('modifier', 'assign', 'core:common/header.tpl', 11, false),array('modifier', 'replace', 'core:common/header.tpl', 19, false),array('modifier', 'escape', 'core:common/header.tpl', 21, false),)), $this); ?>
@@ -30,12 +30,12 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+/bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /bower_components/app.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
-/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-
+	
 
 	
 	<script type="text/javascript" src="<?php echo $this->_tpl_vars['baseUrl']; ?>
@@ -246,7 +246,7 @@ unset($_smarty_tpl_vars);
 									<?php ob_start(); ?><?php echo $this->_plugins['function']['call_hook'][0][0]->smartyCallHook(array('name' => "Templates::Search::SearchResults::FilterInput",'filterName' => 'simpleQuery','filterValue' => "",'size' => 15), $this);?>
 <?php $this->_smarty_vars['capture']['default'] = ob_get_contents();  $this->assign('filterInput', ob_get_contents());ob_end_clean(); ?>
 
-									<select id="searchField" name="searchField" class="selectpicker form-search form-control">
+									<select id="searchField" name="searchField" class="selectpicker form-search	 form-control">
 										<?php echo $this->_plugins['function']['html_options_translate'][0][0]->smartyHtmlOptionsTranslate(array('options' => $this->_tpl_vars['articleSearchByOptions']), $this);?>
 
 									</select>
@@ -299,30 +299,30 @@ unset($_smarty_tpl_vars);
 
 
 		
+<br>
 
-
-
-		<div id="body" class="container">
+		<div  class="container">
 <div class="row">
 
 			<?php if ($this->_tpl_vars['leftSidebarCode'] || $this->_tpl_vars['rightSidebarCode']): ?>
 			<div id="sidebar">
-				<?php if ($this->_tpl_vars['leftSidebarCode']): ?>
-				<div  class="col-md-2">
-					<?php echo $this->_tpl_vars['leftSidebarCode']; ?>
+				
+				<?php if ($this->_tpl_vars['rightSidebarCode']): ?>
+				<div class="col-md-3">
+					<?php echo $this->_tpl_vars['rightSidebarCode']; ?>
 
 				</div>
 				<?php endif; ?>
-				<?php if ($this->_tpl_vars['rightSidebarCode']): ?>
-				<div class="col-md-2 pull-right">
-					<?php echo $this->_tpl_vars['rightSidebarCode']; ?>
+				<?php if ($this->_tpl_vars['leftSidebarCode']): ?>
+				<div  class="col-md-2 ">
+					<?php echo $this->_tpl_vars['leftSidebarCode']; ?>
 
 				</div>
 				<?php endif; ?>
 			</div>
 			<?php endif; ?>
 
-			<div   class="col-md-8">
+			<div   class="col-md-8 ">
 
 <div class="row">
 				<?php $_smarty_tpl_vars = $this->_tpl_vars;

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-09 06:03:47
+<?php /* Smarty version 2.6.26, created on 2016-06-17 01:24:19
          compiled from controllers/notification/formErrorNotificationContent.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'controllers/notification/formErrorNotificationContent.tpl', 11, false),)), $this); ?>
@@ -8,4 +8,4 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'c
 	<a href="#<?php echo ((is_array($_tmp=$this->_tpl_vars['field'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 "><?php echo $this->_tpl_vars['message']; ?>
 </a><br />
-<?php endforeach; endif; unset($_from); ?>
+<?php endforeach; endif; unset($_from); ?>

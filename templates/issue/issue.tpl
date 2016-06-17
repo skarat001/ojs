@@ -33,9 +33,8 @@
 		{assign var=hasAccess value=0}
 	{/if}
 
-<table class="tocArticle">
-<tr valign="top">
-	<td class="tocArticleCoverImage{if $showCoverPage} showCoverImage{/if}">
+<div class="col-md-6">
+
 		{if $showCoverPage}
 			<div class="tocCoverImage">
 				{if !$hasAccess || $hasAbstract}<a href="{url page="article" op="view" path=$articlePath}" class="file">{/if}
@@ -43,33 +42,36 @@
 				{if !$hasAccess || $hasAbstract}</a>{/if}
 			</div>
 		{/if}
-	</td>
+
 
 	{call_hook name="Templates::Issue::Issue::ArticleCoverImage"}
 
-	<td class="tocArticleTitleAuthors{if $showCoverPage} showCoverImage{/if}">
-		<div class="tocTitle">
+<div class="panel panel-default">
+<div class="panel-heading">
+		<div  class="row">
 			{if !$hasAccess || $hasAbstract}
-				<a href="{url page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a>
+				<a href="{url page="article" op="view" path=$articlePath}" class="btn btn-link"><h4 class="text-capitalize"><strong>{$article->getLocalizedTitle()|strip_unsafe_html}</strong></h4></a>
 			{else}
 				{$article->getLocalizedTitle()|strip_unsafe_html}
 			{/if}
 		</div>
-		<div class="tocAuthors">
+		<div class="tocAuthors" class="row">
 			{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
 				{foreach from=$article->getAuthors() item=author name=authorList}
-					{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+					<p class="text-capitalize">{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}</p>
 				{/foreach}
 			{else}
 				&nbsp;
 			{/if}
 		</div>
-	</td>
 
-	<td class="tocArticleGalleysPages{if $showCoverPage} showCoverImage{/if}">
+
+
 		<div class="tocGalleys">
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
 				{foreach from=$article->getGalleys() item=galley name=galleyList}
+				<br>
+				<i class="fa fa-download" ></i>
 					<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
 					{if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
 						{if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
@@ -89,11 +91,12 @@
 			{/if}
 		</div>
 		<div class="tocPages">
-			{$article->getPages()|escape}
+			<!-- {$article->getPages()|escape} -->
 		</div>
-	</td>
-</tr>
-</table>
+
+		</div>
+		</div>
+</div>
 {call_hook name="Templates::Issue::Issue::Article"}
 {/foreach}
 

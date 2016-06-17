@@ -22,11 +22,12 @@
 	{assign var="isEmptyFilter" value=0}
 {/if}
 {if ($displayIf == "emptyFilter" && $isEmptyFilter) || ($displayIf == "activeFilter" && !$isEmptyFilter)}
-	<tr>
-		<td class="label">
+<div class="form-group">
+			<label class="col-md-3 control-label">
 			<label for="{$filterName}">{translate key=$key}</label>
-		</td>
-		<td class="value">
+		</label>
+			<div class="col-md-5">
+		
 			{if $filterType == "date"}
 				{html_select_date prefix=$filterName time=$filterValue all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="$startYear" end_year="$endYear"}
 				{if $filterName == "dateTo"}
@@ -37,11 +38,14 @@
 			{else}
 				{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName=$filterName filterValue=$filterValue}{/capture}
 				{if empty($filterInput)}
-					<input type="text" name="{$filterName}" id="{$filterName}" size="40" maxlength="255" value="{$filterValue|escape}" class="textField" />
+					
+					<input type="text" name="{$filterName}" id="{$filterName}" size="40" maxlength="255" value="{$filterValue|escape}" class="form-control" />
+				
 				{else}
 					{$filterInput}
 				{/if}
 			{/if}
+			</div>
 			{if $displayIf == "activeFilter"}
 				&nbsp;
 				{* Temporarily remove the filter *}
@@ -59,6 +63,7 @@
 					{assign var=$filterName value=""}
 				{/if}
 				{* Display a link to the same search query without this filter *}
+				
 				<a href="{url query=$query searchJournal=$searchJournal abstract=$abstract authors=$authors title=$title
 							galleyFullText=$galleyFullText suppFiles=$suppFiles discipline=$discipline subject=$subject
 							type=$type coverage=$coverage indexTerms=$indexTerms
@@ -67,6 +72,7 @@
 							orderBy=$orderBy orderDir=$orderDir}">
 					{translate key="search.deleteFilter"}
 				</a>
+
 				{* Restore the filter *}
 				{if $filterType == "date"}
 					{assign var=$monthVar value=$originalMonth}
@@ -76,6 +82,5 @@
 					{assign var=$filterName value=$filterValue}
 				{/if}
 			{/if}
-		</td>
-	</tr>
+	</div>
 {/if}

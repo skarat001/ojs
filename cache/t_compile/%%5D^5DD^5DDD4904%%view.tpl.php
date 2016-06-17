@@ -1,8 +1,11 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-12 05:40:52
+<?php /* Smarty version 2.6.26, created on 2016-06-16 09:08:36
          compiled from issue/view.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'issue/view.tpl', 13, false),array('function', 'url', 'issue/view.tpl', 25, false),array('modifier', 'to_array', 'issue/view.tpl', 25, false),array('modifier', 'assign', 'issue/view.tpl', 25, false),array('modifier', 'escape', 'issue/view.tpl', 33, false),array('modifier', 'strip_unsafe_html', 'issue/view.tpl', 34, false),array('modifier', 'nl2br', 'issue/view.tpl', 34, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'issue/view.tpl', 16, false),array('function', 'url', 'issue/view.tpl', 28, false),array('modifier', 'to_array', 'issue/view.tpl', 28, false),array('modifier', 'assign', 'issue/view.tpl', 28, false),array('modifier', 'escape', 'issue/view.tpl', 36, false),array('modifier', 'strip_unsafe_html', 'issue/view.tpl', 37, false),array('modifier', 'nl2br', 'issue/view.tpl', 37, false),)), $this); ?>
+
+
 <?php if ($this->_tpl_vars['subscriptionRequired'] && $this->_tpl_vars['showGalleyLinks'] && $this->_tpl_vars['showToc']): ?>
+
 	<div id="accessKey">
 		<img src="<?php echo $this->_tpl_vars['baseUrl']; ?>
 /lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "article.accessLogoOpen.altText"), $this);?>
@@ -56,15 +59,17 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 		<?php else: ?>
 			<?php $this->assign('hasAccess', 0); ?>
 		<?php endif; ?>
-		<table class="tocArticle" width="100%">
-		<tr valign="top">
-			<td class="tocTitle"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "issue.viewIssueDescription"), $this);?>
-</td>
-			<td class="tocGalleys">
+
+
+		<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "issue.viewIssueDescription"), $this);?>
+
+		
 			<?php if ($this->_tpl_vars['hasAccess'] || ( $this->_tpl_vars['subscriptionRequired'] && $this->_tpl_vars['showGalleyLinks'] )): ?>
 				<?php $_from = $this->_tpl_vars['issueGalleys']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['issueGalley']):
 ?>
+			
+				<div class="col-md-6">
 					<?php if ($this->_tpl_vars['issueGalley']->isPdfGalley()): ?>
 						<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'issue','op' => 'viewIssue','path' => ((is_array($_tmp=$this->_tpl_vars['issue']->getBestIssueId())) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['issueGalley']->getBestGalleyId($this->_tpl_vars['currentJournal'])) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['issueGalley']->getBestGalleyId($this->_tpl_vars['currentJournal'])))), $this);?>
 " class="file"><?php echo ((is_array($_tmp=$this->_tpl_vars['issueGalley']->getGalleyLabel())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
@@ -85,6 +90,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 " />
 						<?php endif; ?>
 					<?php endif; ?>
+					</div>
 				<?php endforeach; endif; unset($_from); ?>
 				<?php if ($this->_tpl_vars['subscriptionRequired'] && $this->_tpl_vars['showGalleyLinks'] && ! $this->_tpl_vars['restrictOnlyPdf']): ?>
 					<?php if ($this->_tpl_vars['issue']->getAccessStatus() == @ISSUE_ACCESS_OPEN): ?>
@@ -98,10 +104,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 					<?php endif; ?>
 				<?php endif; ?>
 			<?php endif; ?>
-			</td>
-		</tr>
-		</table>
-		<br />
+		
 	<?php endif; ?>
 	<h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "issue.toc"), $this);?>
 </h3>

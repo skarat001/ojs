@@ -8,7 +8,10 @@
  * View issue -- This displays the issue TOC or title page, as appropriate,
  * *without* header or footer HTML (see viewPage.tpl)
  *}
+
+
 {if $subscriptionRequired && $showGalleyLinks && $showToc}
+
 	<div id="accessKey">
 		<img src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />
 		{translate key="reader.openAccess"}&nbsp;
@@ -41,12 +44,14 @@
 		{else}
 			{assign var=hasAccess value=0}
 		{/if}
-		<table class="tocArticle" width="100%">
-		<tr valign="top">
-			<td class="tocTitle">{translate key="issue.viewIssueDescription"}</td>
-			<td class="tocGalleys">
+
+
+		{translate key="issue.viewIssueDescription"}
+		
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
 				{foreach from=$issueGalleys item=issueGalley}
+			
+				<div class="col-md-6">
 					{if $issueGalley->isPdfGalley()}
 						<a href="{url page="issue" op="viewIssue" path=$issue->getBestIssueId()|to_array:$issueGalley->getBestGalleyId($currentJournal)}" class="file">{$issueGalley->getGalleyLabel()|escape}</a>
 					{else}
@@ -59,6 +64,7 @@
 							<img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_restricted_medium.gif" alt="{translate key="article.accessLogoRestricted.altText"}" />
 						{/if}
 					{/if}
+					</div>
 				{/foreach}
 				{if $subscriptionRequired && $showGalleyLinks && !$restrictOnlyPdf}
 					{if $issue->getAccessStatus() == $smarty.const.ISSUE_ACCESS_OPEN}
@@ -68,10 +74,7 @@
 					{/if}
 				{/if}
 			{/if}
-			</td>
-		</tr>
-		</table>
-		<br />
+		
 	{/if}
 	<h3>{translate key="issue.toc"}</h3>
 	{include file="issue/issue.tpl"}

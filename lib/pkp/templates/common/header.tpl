@@ -27,10 +27,10 @@
 		{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/app.css">
-		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-
+	
 
 	
 	<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
@@ -170,7 +170,7 @@
 								<div class="input-group-btn search-panel">
 									{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
 
-									<select id="searchField" name="searchField" class="selectpicker form-search form-control">
+									<select id="searchField" name="searchField" class="selectpicker form-search	 form-control">
 										{html_options_translate options=$articleSearchByOptions}
 									</select>
 
@@ -213,28 +213,28 @@
 
 
 		
+<br>
 
-
-
-		<div id="body" class="container">
+		<div  class="container">
 <div class="row">
 
 			{if $leftSidebarCode || $rightSidebarCode}
 			<div id="sidebar">
-				{if $leftSidebarCode}
-				<div  class="col-md-2">
-					{$leftSidebarCode}
+				
+				{if $rightSidebarCode}
+				<div class="col-md-3">
+					{$rightSidebarCode}
 				</div>
 				{/if}
-				{if $rightSidebarCode}
-				<div class="col-md-2 pull-right">
-					{$rightSidebarCode}
+				{if $leftSidebarCode}
+				<div  class="col-md-2 ">
+					{$leftSidebarCode}
 				</div>
 				{/if}
 			</div>
 			{/if}
 
-			<div   class="col-md-8">
+			<div   class="col-md-8 ">
 
 <div class="row">
 				{include file="common/breadcrumbs.tpl"}

@@ -9,8 +9,11 @@
  *
  *}
  {if $currentJournal}
-<div class="block" id="notification">
-	<span class="blockTitle">{translate key="notification.notifications"}</span>
+<div class="panel panel-default" id="notification">
+<div class="panel-heading">
+<span class="blockTitle"><i class="fa fa-exclamation-circle fa-1x" ></i>	{translate key="notification.notifications"}</span>
+	</div>
+	<div class="panel-body">
 	<ul>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="notification"}">{translate key="common.view"}</a>
@@ -23,3 +26,4 @@
 	</ul>
 </div>
 {/if}
+</div>
