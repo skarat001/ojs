@@ -8,15 +8,15 @@
  * List errors that occurred during form processing.
  *}
 {if $isError}
-	<div id="formErrors">
+
+	<div  class="alert alert-danger">
 		<p>
-		<span class="pkp_form_error">{translate key="form.errorsOccurred"}:</span>
-		<ul class="pkp_form_error_list">
+		<span >{translate key="form.errorsOccurred"}:</span>
+		<ul class="list-unstyled">
 		{foreach key=field item=message from=$errors}
 			<li><a href="#{$field|escape}">{$message}</a></li>
 		{/foreach}
-		</ul>
-		</p>
+	
 	</div>
 	<script type="text/javascript">{literal}
 		<!--

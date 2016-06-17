@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="author.submit.step2"}
 {include file="author/submit/submitHeader.tpl"}
 
-<form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
+<form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data" class="form-horizontal">
 <input type="hidden" name="articleId" value="{$articleId|escape}" />
 {include file="common/formErrors.tpl"}
 
@@ -32,19 +32,19 @@
 <table class="data" width="100%">
 {if $submissionFile}
 <tr valign="top">
-	<td width="20%" class="label">{translate key="common.fileName"}</td>
+	<td width="20%" class="">{translate key="common.fileName"}</td>
 	<td width="80%" class="value"><a href="{url op="download" path=$articleId|to_array:$submissionFile->getFileId()}">{$submissionFile->getFileName()|escape}</a></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{translate key="common.originalFileName"}</td>
+	<td width="20%" class="">{translate key="common.originalFileName"}</td>
 	<td width="80%" class="value">{$submissionFile->getOriginalFileName()|escape}</td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{translate key="common.fileSize"}</td>
+	<td width="20%" class="">{translate key="common.fileSize"}</td>
 	<td width="80%" class="value">{$submissionFile->getNiceFileSize()}</td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{translate key="common.dateUploaded"}</td>
+	<td width="20%" class="">{translate key="common.dateUploaded"}</td>
 	<td width="80%" class="value">{$submissionFile->getDateUploaded()|date_format:$datetimeFormatShort}</td>
 </tr>
 {else}
@@ -54,31 +54,29 @@
 {/if}
 </table>
 </div>
-
+<br>
 <div class="separator"></div>
 
-<div id="addSubmissionFile">
-<table class="data" width="100%">
-<tr>
-	<td width="30%" class="label">
+<div class="form-group">
+<div class="col-md-3 control-label">
+
 		{if $submissionFile}
 			{fieldLabel name="submissionFile" key="author.submit.replaceSubmissionFile"}
 		{else}
 			{fieldLabel name="submissionFile" key="author.submit.uploadSubmissionFile"}
 		{/if}
-	</td>
-	<td width="70%" class="value">
-		<input type="file" class="uploadField" name="submissionFile" id="submissionFile" /> <input name="uploadSubmissionFile" type="submit" class="button" value="{translate key="common.upload"}" />
-		{if $currentJournal->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>{/if}
-	</td>
-</tr>
-</table>
+</div>
+<div class="col-md-5">
+		<input type="file" class="form-control" name="submissionFile" id="submissionFile" /> <input name="uploadSubmissionFile" type="submit" class="button" value="{translate key="common.upload"}" />
+		{if $currentJournal->getSetting('showEnsuringLink')}<a class="action" class="btn btn-primary" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>{/if}
+</div>
 </div>
 
-<div class="separator"></div>
-
-<p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="author.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
-
+<div class="form-group">
+<div class="col-md-5 col-md-offset-3">
+<input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="author.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" />
+</div>
+</div>
 </form>
 
 {include file="common/footer.tpl"}

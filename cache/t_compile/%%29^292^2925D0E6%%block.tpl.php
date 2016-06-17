@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-17 01:38:10
+<?php /* Smarty version 2.6.26, created on 2016-06-17 03:55:50
          compiled from file:C:%5Cxampp%5Chtdocs%5Cojs2%5Cojs/plugins/blocks/fontSize/block.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/fontSize/block.tpl', 16, false),array('function', 'translate', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/fontSize/block.tpl', 22, false),)), $this); ?>
@@ -15,9 +15,9 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'f
 '; ?>
 </script>
 
-<div class="block" id="sidebarFontSize" style="margin-bottom: 4px;">
+<!-- <div class="block" id="sidebarFontSize" style="margin-bottom: 4px;">
 	<span class="blockTitle"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "plugins.block.fontSize.title"), $this);?>
 </span>
 	<div id="sizer"></div>
 </div>
-<br />
+<br /> -->

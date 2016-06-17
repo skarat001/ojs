@@ -1,13 +1,14 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-12 07:33:04
+<?php /* Smarty version 2.6.26, created on 2016-06-17 06:10:30
          compiled from common/formErrors.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'common/formErrors.tpl', 13, false),array('modifier', 'escape', 'common/formErrors.tpl', 16, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'common/formErrors.tpl', 14, false),array('modifier', 'escape', 'common/formErrors.tpl', 17, false),)), $this); ?>
 <?php if ($this->_tpl_vars['isError']): ?>
-	<div id="formErrors">
+
+	<div  class="alert alert-danger">
 		<p>
-		<span class="pkp_form_error"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "form.errorsOccurred"), $this);?>
+		<span ><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "form.errorsOccurred"), $this);?>
 :</span>
-		<ul class="pkp_form_error_list">
+		<ul class="list-unstyled">
 		<?php $_from = $this->_tpl_vars['errors']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['field'] => $this->_tpl_vars['message']):
 ?>
@@ -15,8 +16,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 "><?php echo $this->_tpl_vars['message']; ?>
 </a></li>
 		<?php endforeach; endif; unset($_from); ?>
-		</ul>
-		</p>
+	
 	</div>
 	<script type="text/javascript"><?php echo '
 		<!--

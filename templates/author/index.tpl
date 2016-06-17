@@ -13,9 +13,9 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li{if ($pageToDisplay == "active")} class="current"{/if}><a href="{url op="index" path="active"}">{translate key="common.queue.short.active"}</a></li>
-	<li{if ($pageToDisplay == "completed")} class="current"{/if}><a href="{url op="index" path="completed"}">{translate key="common.queue.short.completed"}</a></li>
+<ul class="nav nav-pills">
+	<li class="nav-item {if ($pageToDisplay == "active")} active{/if}" ><a href="{url op="index" path="active"}" class="nav-link">{translate key="common.queue.short.active"}</a></li>
+	<li class="nav-item {if ($pageToDisplay == "completed")} active{/if}"><a href="{url op="index" path="completed"}" class="nav-link">{translate key="common.queue.short.completed"}</a></li>
 </ul>
 
 <br />

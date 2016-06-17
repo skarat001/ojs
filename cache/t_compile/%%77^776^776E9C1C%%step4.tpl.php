@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 08:16:08
+<?php /* Smarty version 2.6.26, created on 2016-06-17 08:53:24
          compiled from author/submit/step4.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'author/submit/step4.tpl', 20, false),array('function', 'url', 'author/submit/step4.tpl', 28, false),array('function', 'fieldLabel', 'author/submit/step4.tpl', 67, false),array('function', 'get_help_id', 'author/submit/step4.tpl', 70, false),array('modifier', 'escape', 'author/submit/step4.tpl', 29, false),array('modifier', 'date_format', 'author/submit/step4.tpl', 53, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'author/submit/step4.tpl', 20, false),array('function', 'url', 'author/submit/step4.tpl', 28, false),array('function', 'fieldLabel', 'author/submit/step4.tpl', 66, false),array('function', 'get_help_id', 'author/submit/step4.tpl', 72, false),array('modifier', 'escape', 'author/submit/step4.tpl', 29, false),array('modifier', 'date_format', 'author/submit/step4.tpl', 50, false),)), $this); ?>
 <?php $this->assign('pageTitle', "author.submit.step4"); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "author/submit/submitHeader.tpl", 'smarty_include_vars' => array()));
@@ -27,7 +27,7 @@ function confirmForgottenUpload() {
 </script>
 
 <form id="submitForm" method="post" action="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'saveSubmit','path' => $this->_tpl_vars['submitStep']), $this);?>
-" enctype="multipart/form-data">
+" enctype="multipart/form-data" class="form-horizontal">
 <input type="hidden" name="articleId" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['articleId'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " />
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
@@ -39,25 +39,22 @@ unset($_smarty_tpl_vars);
 <p><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.supplementaryFilesInstructions"), $this);?>
 </p>
 
-<table class="listing" width="100%">
-<tr>
-	<td colspan="5" class="headseparator">&nbsp;</td>
-</tr>
+<table class="table table-striped" width="100%">
+<thead>
 <tr class="heading" valign="bottom">
-	<td width="5%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.id"), $this);?>
-</td>
-	<td width="40%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.title"), $this);?>
-</td>
-	<td width="25%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.originalFileName"), $this);?>
-</td>
-	<td width="15%" class="nowrap"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.dateUploaded"), $this);?>
-</td>
-	<td width="15%" align="right"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
-</td>
+	<th width="5%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.id"), $this);?>
+</th>
+	<th width="40%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.title"), $this);?>
+</th>
+	<th width="25%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.originalFileName"), $this);?>
+</th>
+	<th width="15%" class="nowrap"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.dateUploaded"), $this);?>
+</th>
+	<th width="15%" align="right"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
+</th>
 </tr>
-<tr>
-	<td colspan="6" class="headseparator">&nbsp;</td>
-</tr>
+</thead>
+<tbody>
 <?php $_from = $this->_tpl_vars['suppFiles']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['file']):
 ?>
@@ -83,32 +80,39 @@ unset($_smarty_tpl_vars);
 </td>
 </tr>
 <?php endif; unset($_from); ?>
+</tbody>
 </table>
 
 <div class="separator"></div>
 
-<table class="data" width="100%">
-<tr>
-	<td width="30%" class="label"><?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'uploadSuppFile','key' => "author.submit.uploadSuppFile"), $this);?>
-</td>
-	<td width="70%" class="value">
-		<input type="file" name="uploadSuppFile" id="uploadSuppFile"  class="uploadField" /> <input name="submitUploadSuppFile" type="submit" class="button" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.upload"), $this);?>
+<div class="form-group">
+			<div class="col-md-4 control-label">
+
+	<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'uploadSuppFile','key' => "author.submit.uploadSuppFile"), $this);?>
+
+</div>
+			<div class="col-md-6">
+		<input type="file" name="uploadSuppFile" id="uploadSuppFile"  class="form-control" /> 
+
+		<input name="submitUploadSuppFile" type="submit" class="btn btn-success" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.upload"), $this);?>
 " />
 		<?php if ($this->_tpl_vars['currentJournal']->getSetting('showEnsuringLink')): ?><a class="action" href="javascript:openHelp('<?php echo $this->_plugins['function']['get_help_id'][0][0]->smartyGetHelpId(array('key' => "editorial.sectionEditorsRole.review.blindPeerReview",'url' => 'true'), $this);?>
 ')"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "reviewer.article.ensuringBlindReview"), $this);?>
 </a><?php endif; ?>
-	</td>
-</tr>
-</table>
+	</div>
+	</div>
+
 
 <div class="separator"></div>
-
+<div class="form-group ">
+<div class="col-md-5 col-md-offset-3">
 <p><input type="submit" onclick="return confirmForgottenUpload()" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.saveAndContinue"), $this);?>
-" class="button defaultButton" /> <input type="button" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.cancel"), $this);?>
-" class="button" onclick="confirmAction('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'author'), $this);?>
+" class="btn btn-primary" /> <input type="button" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.cancel"), $this);?>
+" class="btn btn-default" onclick="confirmAction('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'author'), $this);?>
 ', '<?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.cancelSubmission"), $this))) ? $this->_run_mod_handler('escape', true, $_tmp, 'jsparam') : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp, 'jsparam'));?>
 ')" /></p>
-
+</div>
+</div>
 </form>
 
 <?php $_smarty_tpl_vars = $this->_tpl_vars;

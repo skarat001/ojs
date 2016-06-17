@@ -13,6 +13,31 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<div class="stepwizard ">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+      <a href="{url op="submit" path="1" articleId=$articleId}" type="button" class="btn {if $submissionProgress >= 1} btn-primary {else} btn-default {/if}  btn-circle" >1</a>
+        <p>{if $submitStep == 1}<strong>{/if}{translate key="author.submit.start"}{if $submitStep == 1}</strong>{/if}</p>
+      </div>
+      <div class="stepwizard-step">
+       <a href="{url op="submit" path="2" articleId=$articleId}" type="button" class="btn {if $submissionProgress >= 2} btn-primary {else} btn-default {/if}  btn-circle" >2</a>
+        <p>{if $submitStep == 2} <strong>{/if}{translate key="author.submit.upload"} {if $submitStep == 2} </strong>{/if}</p>
+      </div>
+      <div class="stepwizard-step">
+     <a href="{url op="submit" path="3" articleId=$articleId}" type="button" class="btn {if $submissionProgress >= 3} btn-primary {else} btn-default {/if}  btn-circle" >3</a>
+        <p>{if $submitStep == 3} <strong>{/if}{translate key="author.submit.metadata"}{if $submitStep == 3} </strong>{/if}</p>
+      </div>
+       <div class="stepwizard-step">
+       <a href="{url op="submit" path="4" articleId=$articleId}" type="button" class="btn {if $submissionProgress >= 4} btn-primary {else} btn-default {/if}  btn-circle" >4</a>
+        <p>{if $submitStep == 4} <strong>{/if}{translate key="author.submit.supplementaryFiles"} {if $submitStep == 4} </strong>{/if}</p>
+      </div>
+      <div class="stepwizard-step">
+       <a href="{url op="submit" path="5" articleId=$articleId}" type="button" class="btn {if $submissionProgress >= 5} btn-primary {else} btn-default {/if}  btn-circle" >5</a>
+        <p>{if $submitStep == 5} <strong>{/if}{translate key="author.submit.confirmation"}{if $submitStep == 5} </strong>{/if}</p>
+      </div>
+    </div>
+  </div>
+
 <ul class="steplist">
 <li id="step1" {if $submitStep == 1} class="current"{/if}>{if $submitStep != 1 && $submissionProgress >= 1}<a href="{url op="submit" path="1" articleId=$articleId}">{/if}
 {translate key="author.submit.start"}{if $submitStep != 1 && $submissionProgress >= 1}</a>{/if}</li>

@@ -9,6 +9,7 @@
  *
  *}
 <div id="submission">
+123
 <h3>{translate key="article.submission"}</h3>
 <table width="100%" class="data">
 	<tr valign="top">
