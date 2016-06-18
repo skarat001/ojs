@@ -16,18 +16,19 @@
 <ul class="nav nav-pills">
 	<li class="nav-item {if ($pageToDisplay == "active")} active{/if}" ><a href="{url op="index" path="active"}" class="nav-link">{translate key="common.queue.short.active"}</a></li>
 	<li class="nav-item {if ($pageToDisplay == "completed")} active{/if}"><a href="{url op="index" path="completed"}" class="nav-link">{translate key="common.queue.short.completed"}</a></li>
+	<div class="nav-item pull-right"><a href="{url op="index" path="completed"}" class="btn btn-success">{translate key="author.submit.startHereTitle"}</a></div>
 </ul>
 
 <br />
 
 {include file="author/$pageToDisplay.tpl"}
 <div id="submitStart">
-<h4>{translate key="author.submit.startHereTitle"}</h4>
+<!-- <h4>{translate key="author.submit.startHereTitle"}</h4>
 {url|assign:"submitUrl" op="submit"}
-{translate submitUrl=$submitUrl key="author.submit.startHereLink"}<br />
+{translate submitUrl=$submitUrl key="author.submit.startHereLink"}<br /> -->
 </div>
 
-{call_hook name="Templates::Author::Index::AdditionalItems"}
+<!-- {call_hook name="Templates::Author::Index::AdditionalItems"} -->
 
 {include file="common/footer.tpl"}
 

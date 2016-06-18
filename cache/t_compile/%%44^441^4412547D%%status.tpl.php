@@ -1,17 +1,26 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 06:05:30
+<?php /* Smarty version 2.6.26, created on 2016-06-18 21:24:20
          compiled from author/submission/status.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'author/submission/status.tpl', 12, false),array('modifier', 'escape', 'author/submission/status.tpl', 23, false),array('modifier', 'date_format', 'author/submission/status.tpl', 30, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'author/submission/status.tpl', 12, false),array('modifier', 'escape', 'author/submission/status.tpl', 32, false),array('modifier', 'date_format', 'author/submission/status.tpl', 50, false),)), $this); ?>
 <div id="status">
 <h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.status"), $this);?>
 </h3>
 
-<table width="100%" class="data">
-	<tr>
+
+
 		<?php $this->assign('status', $this->_tpl_vars['submission']->getSubmissionStatus()); ?>
-		<td width="20%" class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.status"), $this);?>
-</td>
-		<td width="80%" class="value">
+			<div class="row" >
+
+			<div class="col-md-3 ">
+				<h5>
+
+		<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.status"), $this);?>
+
+		</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+					<strong>
 			<?php if ($this->_tpl_vars['status'] == STATUS_ARCHIVED): ?><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submissions.archived"), $this);?>
 
 			<?php elseif ($this->_tpl_vars['status'] == STATUS_QUEUED_UNASSIGNED): ?><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submissions.queuedUnassigned"), $this);?>
@@ -26,20 +35,46 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php elseif ($this->_tpl_vars['status'] == STATUS_DECLINED): ?><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submissions.declined"), $this);?>
 
 			<?php endif; ?>
-		</td>
-	</tr>
-	<tr>
-		<td class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.initiated"), $this);?>
-</td>
-		<td colspan="2" class="value"><?php echo ((is_array($_tmp=$this->_tpl_vars['submission']->getDateStatusModified())) ? $this->_run_mod_handler('date_format', true, $_tmp, $this->_tpl_vars['dateFormatShort']) : smarty_modifier_date_format($_tmp, $this->_tpl_vars['dateFormatShort'])); ?>
-</td>
-	</tr>
-	<tr>
-		<td class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.lastModified"), $this);?>
-</td>
-		<td colspan="2" class="value"><?php echo ((is_array($_tmp=$this->_tpl_vars['submission']->getLastModified())) ? $this->_run_mod_handler('date_format', true, $_tmp, $this->_tpl_vars['dateFormatShort']) : smarty_modifier_date_format($_tmp, $this->_tpl_vars['dateFormatShort'])); ?>
-</td>
-	</tr>
-</table>
+				</strong>
+				</h5>
+			</div>
+		</div>
+			<div class="row" >
+
+			<div class="col-md-3 ">
+				<h5>
+
+		<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.initiated"), $this);?>
+
+		</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+					<strong>
+		<?php echo ((is_array($_tmp=$this->_tpl_vars['submission']->getDateStatusModified())) ? $this->_run_mod_handler('date_format', true, $_tmp, $this->_tpl_vars['dateFormatShort']) : smarty_modifier_date_format($_tmp, $this->_tpl_vars['dateFormatShort'])); ?>
+
+		</strong>
+				</h5>
+			</div>
+		</div>
+
+	<div class="row" >
+
+			<div class="col-md-3 ">
+				<h5>
+
+		<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.lastModified"), $this);?>
+
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+					<strong>
+		<?php echo ((is_array($_tmp=$this->_tpl_vars['submission']->getLastModified())) ? $this->_run_mod_handler('date_format', true, $_tmp, $this->_tpl_vars['dateFormatShort']) : smarty_modifier_date_format($_tmp, $this->_tpl_vars['dateFormatShort'])); ?>
+
+				</strong>
+				</h5>
+			</div>
+		</div>
 </div>
 

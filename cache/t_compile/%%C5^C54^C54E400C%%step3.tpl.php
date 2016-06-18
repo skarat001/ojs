@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-17 09:10:08
+<?php /* Smarty version 2.6.26, created on 2016-06-18 10:30:01
          compiled from author/submit/step3.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'author/submit/step3.tpl', 14, false),array('function', 'fieldLabel', 'author/submit/step3.tpl', 40, false),array('function', 'form_language_chooser', 'author/submit/step3.tpl', 60, false),array('function', 'translate', 'author/submit/step3.tpl', 61, false),array('function', 'html_options', 'author/submit/step3.tpl', 152, false),array('function', 'call_hook', 'author/submit/step3.tpl', 176, false),array('modifier', 'assign', 'author/submit/step3.tpl', 14, false),array('modifier', 'escape', 'author/submit/step3.tpl', 19, false),)), $this); ?>
@@ -443,21 +443,21 @@ if ($this->_foreach['authors']['total'] > 0):
 </p><?php endif; ?>
 
 		<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaDiscipline')): ?>
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'discipline','key' => "article.discipline"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'discipline','key' => "article.discipline"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="discipline[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="discipline[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="discipline" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['discipline'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
-	</div>
+			</div>
 		</div>
 
 
-<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaDisciplineExamples')): ?>
-	
+		<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaDisciplineExamples')): ?>
+		
 		<span class="instruct"><?php echo ((is_array($_tmp=$this->_tpl_vars['currentJournal']->getLocalizedSetting('metaDisciplineExamples'))) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </span>
 
@@ -469,16 +469,16 @@ if ($this->_foreach['authors']['total'] > 0):
 		<?php endif; ?>
 
 		<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaSubjectClass')): ?>
-			<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'subjectClass','key' => "article.subjectClassification"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'subjectClass','key' => "article.subjectClassification"), $this);?>
 
-		</div>
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="subjectClass[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="subjectClass[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="subjectClass" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['subjectClass'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
-	</div>
+			</div>
 		</div>
 
 		<a href="<?php echo ((is_array($_tmp=$this->_tpl_vars['currentJournal']->getLocalizedSetting('metaSubjectClassUrl'))) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
@@ -488,16 +488,16 @@ if ($this->_foreach['authors']['total'] > 0):
 		<?php endif; ?>
 
 		<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaSubject')): ?>
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'subject','key' => "article.subject"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'subject','key' => "article.subject"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="subject[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="subject[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="subject" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['subject'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
-	</div>
+			</div>
 		</div>
 
 		<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaSubjectExamples') != ''): ?>
@@ -511,17 +511,17 @@ if ($this->_foreach['authors']['total'] > 0):
 		<?php endif; ?>
 
 		<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaCoverage')): ?>
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'coverageGeo','key' => "article.coverageGeo"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'coverageGeo','key' => "article.coverageGeo"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="coverageGeo[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="coverageGeo[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="coverageGeo" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['coverageGeo'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
 
-	</div>
+			</div>
 		</div>
 		<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaCoverageGeoExamples')): ?>
 
@@ -530,17 +530,17 @@ if ($this->_foreach['authors']['total'] > 0):
 
 		<?php endif; ?>
 
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'coverageChron','key' => "article.coverageChron"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'coverageChron','key' => "article.coverageChron"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="coverageChron[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="coverageChron[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="coverageChron" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['coverageChron'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
 
-	</div>
+			</div>
 		</div>
 		<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaCoverageChronExamples') != ''): ?>
 
@@ -548,126 +548,126 @@ if ($this->_foreach['authors']['total'] > 0):
 </span>
 
 		<?php endif; ?>
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'coverageSample','key' => "article.coverageSample"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'coverageSample','key' => "article.coverageSample"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="coverageSample[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="coverageSample[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="coverageSample" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['coverageSample'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
-	</div>
+			</div>
 		</div>
-	<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''): ?>
-	
-	<span class="instruct"><?php echo ((is_array($_tmp=$this->_tpl_vars['currentJournal']->getLocalizedSetting('metaCoverageResearchSampleExamples'))) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+		<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''): ?>
+		
+		<span class="instruct"><?php echo ((is_array($_tmp=$this->_tpl_vars['currentJournal']->getLocalizedSetting('metaCoverageResearchSampleExamples'))) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </span>
 
-	<?php endif; ?>
-	
+		<?php endif; ?>
+		
 
-	<?php endif; ?>
+		<?php endif; ?>
 
-	<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaType')): ?>
-	
+		<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaType')): ?>
+		
 		<div class="form-group">
 			<div class="col-md-3 control-label">
-	<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'type','key' => "article.type"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'type','key' => "article.type"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-	<input type="text" class="form-control" name="type[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="type[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="type" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['type'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="40" maxlength="255" />
-	</div>
+			</div>
 		</div>
 
-	<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaTypeExamples') != ''): ?>
-	
-	<span class="instruct"><?php echo ((is_array($_tmp=$this->_tpl_vars['currentJournal']->getLocalizedSetting('metaTypeExamples'))) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+		<?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('metaTypeExamples') != ''): ?>
+		
+		<span class="instruct"><?php echo ((is_array($_tmp=$this->_tpl_vars['currentJournal']->getLocalizedSetting('metaTypeExamples'))) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </span>
 
-	<?php endif; ?>
-	
+		<?php endif; ?>
+		
 
-	<?php endif; ?>
+		<?php endif; ?>
 
 		<div class="form-group">
 			<div class="col-md-3 control-label">
-	<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'language','key' => "article.language"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'language','key' => "article.language"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-	<input type="text" class="form-control" name="language" id="language" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['language'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<input type="text" class="form-control" name="language" id="language" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['language'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="5" maxlength="10" />
-	</div>
+			</div>
 		</div>
-	<span class="instruct"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.languageInstructions"), $this);?>
+		<span class="instruct"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.languageInstructions"), $this);?>
 </span>
 
-</div>
-<div class="separator"></div>
-<?php endif; ?>
+	</div>
+	<div class="separator"></div>
+	<?php endif; ?>
 
-<div id="submissionSupportingAgencies">
-	<h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.submissionSupportingAgencies"), $this);?>
+	<div id="submissionSupportingAgencies">
+		<h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.submissionSupportingAgencies"), $this);?>
 </h3>
-	<p><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.submissionSupportingAgenciesDescription"), $this);?>
+		<p><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.submissionSupportingAgenciesDescription"), $this);?>
 </p>
 
 
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-	<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'sponsor','key' => "submission.agencies"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'sponsor','key' => "submission.agencies"), $this);?>
 
-		</div>
-					<div class="col-md-6">
-	<input type="text" class="form-control" name="sponsor[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" name="sponsor[<?php echo ((is_array($_tmp=$this->_tpl_vars['formLocale'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 ]" id="sponsor" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['sponsor'][$this->_tpl_vars['formLocale']])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 " size="60" maxlength="255" />
-	</div>
+			</div>
 		</div>
 
-</div>
-<div class="separator"></div>
+	</div>
+	<div class="separator"></div>
 
-<?php echo $this->_plugins['function']['call_hook'][0][0]->smartyCallHook(array('name' => "Templates::Author::Submit::AdditionalMetadata"), $this);?>
+	<?php echo $this->_plugins['function']['call_hook'][0][0]->smartyCallHook(array('name' => "Templates::Author::Submit::AdditionalMetadata"), $this);?>
 
 
-<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaCitations')): ?>
-<div id="metaCitations">
-	<h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.citations"), $this);?>
+	<?php if ($this->_tpl_vars['currentJournal']->getSetting('metaCitations')): ?>
+	<div id="metaCitations">
+		<h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.citations"), $this);?>
 </h3>
 
-	<p><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.submissionCitations"), $this);?>
+		<p><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.submissionCitations"), $this);?>
 </p>
 
 		<div class="form-group">
 			<div class="col-md-3 control-label">
-	<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'citations','key' => "submission.citations"), $this);?>
+				<?php echo $this->_plugins['function']['fieldLabel'][0][0]->smartyFieldLabel(array('name' => 'citations','key' => "submission.citations"), $this);?>
 
-</div>
+			</div>
 			<div class="col-md-6">
-	<textarea name="citations" id="citations" class="form-control" rows="15" cols="60"><?php echo ((is_array($_tmp=$this->_tpl_vars['citations'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+				<textarea name="citations" id="citations" class="form-control" rows="15" cols="60"><?php echo ((is_array($_tmp=$this->_tpl_vars['citations'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </textarea>
-	</div>
+			</div>
 		</div>
-	<div class="separator"></div>
-</div>
-<?php endif; ?>
+		<div class="separator"></div>
+	</div>
+	<?php endif; ?>
 
-<div class="form-group ">
-<div class="col-md-5 col-md-offset-3">
-<p><input type="submit" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.saveAndContinue"), $this);?>
+	<div class="form-group ">
+		<div class="col-md-5 col-md-offset-3">
+			<p><input type="submit" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.saveAndContinue"), $this);?>
 " class="btn btn-primary" /> <input type="button" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.cancel"), $this);?>
 " class="btn btn-default" onclick="confirmAction('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'author'), $this);?>
 ', '<?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.submit.cancelSubmission"), $this))) ? $this->_run_mod_handler('escape', true, $_tmp, 'jsparam') : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp, 'jsparam'));?>
 ')" /></p>
-</div>
-</div>
+		</div>
+	</div>
 
-<p><span class="formRequired"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.requiredField"), $this);?>
+	<p><span class="formRequired"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.requiredField"), $this);?>
 </span></p>
 
 </form>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-17 01:38:10
+<?php /* Smarty version 2.6.26, created on 2016-06-17 21:32:11
          compiled from file:C:%5Cxampp%5Chtdocs%5Cojs2%5Cojs/plugins/blocks/user/block.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/user/block.tpl', 15, false),array('function', 'url', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/user/block.tpl', 24, false),array('modifier', 'escape', 'file:C:\\xampp\\htdocs\\ojs2\\ojs/plugins/blocks/user/block.tpl', 21, false),)), $this); ?>
@@ -24,6 +24,9 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php endif; ?>
 			<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'user','op' => 'profile'), $this);?>
  " class="btn btn-primary btn-block"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "plugins.block.user.myProfile"), $this);?>
+</a>
+			<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'user','op' => 'changePassword'), $this);?>
+" class="btn btn-primary btn-block"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.changeMyPassword"), $this);?>
 </a>
 			<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'login','op' => 'signOut'), $this);?>
 "  class="btn btn-primary btn-block"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "plugins.block.user.logout"), $this);?>

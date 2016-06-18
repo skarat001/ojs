@@ -13,12 +13,14 @@
 {assign var="pageCrumbTitle" value="submission.summary"}
 {include file="common/header.tpl"}
 {/strip}
+{assign var="pageTitle" value="common.queue.long.$pageToDisplay"}
 
-<ul class="menu">
-	<li class="current"><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
-	<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
-	<li><a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a></li>
+<ul class="nav nav-pills">
+	<li class="nav-item active" ><a href="{url op="submission" path=$submission->getId()}" class="nav-link">{translate key="submission.summary"}</a></li>
+	<li class="nav-item"><a href="{url op="submissionReview" path=$submission->getId()}" class="nav-link">{translate key="submission.review"}</a></li>
+	<li class="nav-item"><a href="{url op="submissionEditing" path=$submission->getId()}" class="nav-link">{translate key="submission.editing"}</a></li>
 </ul>
+
 
 {include file="author/submission/management.tpl"}
 

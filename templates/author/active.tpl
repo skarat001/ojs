@@ -9,22 +9,23 @@
  *
  *}
 <div id="submissions">
-<table class="listing" width="100%">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
-	<tr class="heading" valign="bottom">
-		<td width="5%">{sort_heading key="common.id" sort="id" sortOrder="ASC"}</td>
-		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="submissions.submit" sort="submitDate"}</td>
-		<td width="5%">{sort_heading key="submissions.sec" sort="section"}</td>
-		<td width="25%">{sort_heading key="article.authors" sort="authors"}</td>
-		<td width="35%">{sort_heading key="article.title" sort="title"}</td>
-		<td width="25%" align="right">{sort_heading key="common.status" sort="status"}</td>
+<table class="table table-striped" width="100%">
+<thead>
+	
+	<tr>
+		<th width="5%">{sort_heading key="common.id" sort="id" sortOrder="ASC"}</th>
+		<th width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span> {sort_heading key="submissions.submit" sort="submitDate"}</td>
+		<th width="5%">{sort_heading key="submissions.sec" sort="section"}</th>
+		<th width="25%">{sort_heading key="article.authors" sort="authors"}</th>
+		<th width="35%">{sort_heading key="article.title" sort="title"}</th>
+		<th width="25%" align="center">{sort_heading key="common.status" sort="status"}</th>
 	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+	</thead>
 
 {iterate from=submissions item=submission}
 	{assign var="articleId" value=$submission->getId()}
 	{assign var="progress" value=$submission->getSubmissionProgress()}
-
+<tbody>
 	<tr valign="top">
 		<td>{$articleId|escape}</td>
 		<td>{if $submission->getDateSubmitted()}{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
@@ -84,23 +85,20 @@
 
 	</tr>
 
-	<tr>
-		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
 		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
+	
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
 		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 

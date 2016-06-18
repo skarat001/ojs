@@ -327,18 +327,18 @@ function moveAuthor(dir, authorIndex) {
 		{if $currentJournal->getSetting('metaDiscipline') || $currentJournal->getSetting('metaSubjectClass') || $currentJournal->getSetting('metaSubject') || $currentJournal->getSetting('metaCoverage') || $currentJournal->getSetting('metaType')}<p>{translate key="author.submit.submissionIndexingDescription"}</p>{/if}
 
 		{if $currentJournal->getSetting('metaDiscipline')}
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-{fieldLabel name="discipline" key="article.discipline"}
-</div>
+				{fieldLabel name="discipline" key="article.discipline"}
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" />
-	</div>
+				<input type="text" class="form-control" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" />
+			</div>
 		</div>
 
 
-{if $currentJournal->getLocalizedSetting('metaDisciplineExamples')}
-	
+		{if $currentJournal->getLocalizedSetting('metaDisciplineExamples')}
+		
 		<span class="instruct">{$currentJournal->getLocalizedSetting('metaDisciplineExamples')|escape}</span>
 
 
@@ -349,13 +349,13 @@ function moveAuthor(dir, authorIndex) {
 		{/if}
 
 		{if $currentJournal->getSetting('metaSubjectClass')}
-			<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		{fieldLabel name="subjectClass" key="article.subjectClassification"}
-		</div>
+				{fieldLabel name="subjectClass" key="article.subjectClassification"}
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="subjectClass[{$formLocale|escape}]" id="subjectClass" value="{$subjectClass[$formLocale]|escape}" size="40" maxlength="255" />
-	</div>
+				<input type="text" class="form-control" name="subjectClass[{$formLocale|escape}]" id="subjectClass" value="{$subjectClass[$formLocale]|escape}" size="40" maxlength="255" />
+			</div>
 		</div>
 
 		<a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a>
@@ -363,13 +363,13 @@ function moveAuthor(dir, authorIndex) {
 		{/if}
 
 		{if $currentJournal->getSetting('metaSubject')}
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		{fieldLabel name="subject" key="article.subject"}
-</div>
+				{fieldLabel name="subject" key="article.subject"}
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" />
-	</div>
+				<input type="text" class="form-control" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" />
+			</div>
 		</div>
 
 		{if $currentJournal->getLocalizedSetting('metaSubjectExamples') != ''}
@@ -382,14 +382,14 @@ function moveAuthor(dir, authorIndex) {
 		{/if}
 
 		{if $currentJournal->getSetting('metaCoverage')}
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		{fieldLabel name="coverageGeo" key="article.coverageGeo"}
-</div>
+				{fieldLabel name="coverageGeo" key="article.coverageGeo"}
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" />
+				<input type="text" class="form-control" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" />
 
-	</div>
+			</div>
 		</div>
 		{if $currentJournal->getLocalizedSetting('metaCoverageGeoExamples')}
 
@@ -397,115 +397,115 @@ function moveAuthor(dir, authorIndex) {
 
 		{/if}
 
-	<div class="form-group">
+		<div class="form-group">
 			<div class="col-md-3 control-label">
-		{fieldLabel name="coverageChron" key="article.coverageChron"}
-</div>
+				{fieldLabel name="coverageChron" key="article.coverageChron"}
+			</div>
 			<div class="col-md-6">
-		<input type="text" class="form-control" name="coverageChron[{$formLocale|escape}]" id="coverageChron" value="{$coverageChron[$formLocale]|escape}" size="40" maxlength="255" />
+				<input type="text" class="form-control" name="coverageChron[{$formLocale|escape}]" id="coverageChron" value="{$coverageChron[$formLocale]|escape}" size="40" maxlength="255" />
 
-	</div>
+			</div>
 		</div>
 		{if $currentJournal->getLocalizedSetting('metaCoverageChronExamples') != ''}
 
 		<span class="instruct">{$currentJournal->getLocalizedSetting('metaCoverageChronExamples')|escape}</span>
 
 		{/if}
-	<div class="form-group">
-			<div class="col-md-3 control-label">
-		{fieldLabel name="coverageSample" key="article.coverageSample"}
-</div>
-			<div class="col-md-6">
-		<input type="text" class="form-control" name="coverageSample[{$formLocale|escape}]" id="coverageSample" value="{$coverageSample[$formLocale]|escape}" size="40" maxlength="255" />
-	</div>
-		</div>
-	{if $currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
-	
-	<span class="instruct">{$currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples')|escape}</span>
-
-	{/if}
-	
-
-	{/if}
-
-	{if $currentJournal->getSetting('metaType')}
-	
 		<div class="form-group">
 			<div class="col-md-3 control-label">
-	{fieldLabel name="type" key="article.type"}
-</div>
+				{fieldLabel name="coverageSample" key="article.coverageSample"}
+			</div>
 			<div class="col-md-6">
-	<input type="text" class="form-control" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" />
-	</div>
+				<input type="text" class="form-control" name="coverageSample[{$formLocale|escape}]" id="coverageSample" value="{$coverageSample[$formLocale]|escape}" size="40" maxlength="255" />
+			</div>
 		</div>
+		{if $currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
+		
+		<span class="instruct">{$currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples')|escape}</span>
 
-	{if $currentJournal->getLocalizedSetting('metaTypeExamples') != ''}
-	
-	<span class="instruct">{$currentJournal->getLocalizedSetting('metaTypeExamples')|escape}</span>
+		{/if}
+		
 
-	{/if}
-	
+		{/if}
 
-	{/if}
-
+		{if $currentJournal->getSetting('metaType')}
+		
 		<div class="form-group">
 			<div class="col-md-3 control-label">
-	{fieldLabel name="language" key="article.language"}
-</div>
+				{fieldLabel name="type" key="article.type"}
+			</div>
 			<div class="col-md-6">
-	<input type="text" class="form-control" name="language" id="language" value="{$language|escape}" size="5" maxlength="10" />
-	</div>
-		</div>
-	<span class="instruct">{translate key="author.submit.languageInstructions"}</span>
-
-</div>
-<div class="separator"></div>
-{/if}
-
-<div id="submissionSupportingAgencies">
-	<h3>{translate key="author.submit.submissionSupportingAgencies"}</h3>
-	<p>{translate key="author.submit.submissionSupportingAgenciesDescription"}</p>
-
-
-	<div class="form-group">
-			<div class="col-md-3 control-label">
-	{fieldLabel name="sponsor" key="submission.agencies"}
-		</div>
-					<div class="col-md-6">
-	<input type="text" class="form-control" name="sponsor[{$formLocale|escape}]" id="sponsor" value="{$sponsor[$formLocale]|escape}" size="60" maxlength="255" />
-	</div>
+				<input type="text" class="form-control" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" />
+			</div>
 		</div>
 
-</div>
-<div class="separator"></div>
+		{if $currentJournal->getLocalizedSetting('metaTypeExamples') != ''}
+		
+		<span class="instruct">{$currentJournal->getLocalizedSetting('metaTypeExamples')|escape}</span>
 
-{call_hook name="Templates::Author::Submit::AdditionalMetadata"}
+		{/if}
+		
 
-{if $currentJournal->getSetting('metaCitations')}
-<div id="metaCitations">
-	<h3>{translate key="submission.citations"}</h3>
-
-	<p>{translate key="author.submit.submissionCitations"}</p>
+		{/if}
 
 		<div class="form-group">
 			<div class="col-md-3 control-label">
-	{fieldLabel name="citations" key="submission.citations"}
-</div>
+				{fieldLabel name="language" key="article.language"}
+			</div>
 			<div class="col-md-6">
-	<textarea name="citations" id="citations" class="form-control" rows="15" cols="60">{$citations|escape}</textarea>
-	</div>
+				<input type="text" class="form-control" name="language" id="language" value="{$language|escape}" size="5" maxlength="10" />
+			</div>
 		</div>
+		<span class="instruct">{translate key="author.submit.languageInstructions"}</span>
+
+	</div>
 	<div class="separator"></div>
-</div>
-{/if}
+	{/if}
 
-<div class="form-group ">
-<div class="col-md-5 col-md-offset-3">
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
-</div>
-</div>
+	<div id="submissionSupportingAgencies">
+		<h3>{translate key="author.submit.submissionSupportingAgencies"}</h3>
+		<p>{translate key="author.submit.submissionSupportingAgenciesDescription"}</p>
 
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+
+		<div class="form-group">
+			<div class="col-md-3 control-label">
+				{fieldLabel name="sponsor" key="submission.agencies"}
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" name="sponsor[{$formLocale|escape}]" id="sponsor" value="{$sponsor[$formLocale]|escape}" size="60" maxlength="255" />
+			</div>
+		</div>
+
+	</div>
+	<div class="separator"></div>
+
+	{call_hook name="Templates::Author::Submit::AdditionalMetadata"}
+
+	{if $currentJournal->getSetting('metaCitations')}
+	<div id="metaCitations">
+		<h3>{translate key="submission.citations"}</h3>
+
+		<p>{translate key="author.submit.submissionCitations"}</p>
+
+		<div class="form-group">
+			<div class="col-md-3 control-label">
+				{fieldLabel name="citations" key="submission.citations"}
+			</div>
+			<div class="col-md-6">
+				<textarea name="citations" id="citations" class="form-control" rows="15" cols="60">{$citations|escape}</textarea>
+			</div>
+		</div>
+		<div class="separator"></div>
+	</div>
+	{/if}
+
+	<div class="form-group ">
+		<div class="col-md-5 col-md-offset-3">
+			<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
+		</div>
+	</div>
+
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 </form>
 

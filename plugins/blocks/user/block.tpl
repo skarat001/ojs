@@ -24,6 +24,7 @@
 			<a href="{url journal="index" page="user"}" class="btn btn-primary btn-block ">{translate key="plugins.block.user.myJournals"}</a>
 			{/if}
 			<a href="{url page="user" op="profile"} " class="btn btn-primary btn-block">{translate key="plugins.block.user.myProfile"}</a>
+			<a href="{url page="user" op="changePassword"}" class="btn btn-primary btn-block">{translate key="user.changeMyPassword"}</a>
 			<a href="{url page="login" op="signOut"}"  class="btn btn-primary btn-block">{translate key="plugins.block.user.logout"}</a>
 			{if $userSession->getSessionVar('signedInAs')}
 			<a href="{url page="login" op="signOutAsUser"}" class="btn btn-primary btn-block">{translate key="plugins.block.user.signOutAsUser"}</a>
