@@ -1,16 +1,18 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-20 06:49:00
+<?php /* Smarty version 2.6.26, created on 2016-06-20 12:08:45
          compiled from sectionEditor/submission/copyedit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/copyedit.tpl', 12, false),array('function', 'url', 'sectionEditor/submission/copyedit.tpl', 12, false),array('function', 'icon', 'sectionEditor/submission/copyedit.tpl', 48, false),array('modifier', 'escape', 'sectionEditor/submission/copyedit.tpl', 24, false),array('modifier', 'assign', 'sectionEditor/submission/copyedit.tpl', 45, false),array('modifier', 'date_format', 'sectionEditor/submission/copyedit.tpl', 60, false),array('modifier', 'default', 'sectionEditor/submission/copyedit.tpl', 60, false),array('modifier', 'to_array', 'sectionEditor/submission/copyedit.tpl', 97, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'url', 'sectionEditor/submission/copyedit.tpl', 14, false),array('function', 'translate', 'sectionEditor/submission/copyedit.tpl', 14, false),array('function', 'icon', 'sectionEditor/submission/copyedit.tpl', 53, false),array('modifier', 'escape', 'sectionEditor/submission/copyedit.tpl', 26, false),array('modifier', 'assign', 'sectionEditor/submission/copyedit.tpl', 50, false),array('modifier', 'date_format', 'sectionEditor/submission/copyedit.tpl', 65, false),array('modifier', 'default', 'sectionEditor/submission/copyedit.tpl', 65, false),array('modifier', 'to_array', 'sectionEditor/submission/copyedit.tpl', 102, false),)), $this); ?>
+
+
 <div id="copyedit">
-<h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.copyediting"), $this);?>
- <a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'copy'), $this);?>
-')" class="btn btn-info btn-circle"> <i class="fa fa-question "/></a></h3>
+<p><h3><button onclick="openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'copy'), $this);?>
+')" class="btn btn-info btn-circle btn-sm"> <i class="fa fa-question "></i> </button> <?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.copyediting"), $this);?>
+  </h3></p>
 
 <?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('copyeditInstructions')): ?>
-<p><a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'copy'), $this);?>
+<!-- <p><a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'copy'), $this);?>
 ')" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.copyedit.instructions"), $this);?>
-</a></p>
+</a></p> -->
 <?php endif; ?>
 
 <?php if ($this->_tpl_vars['useCopyeditors']): ?>
@@ -29,20 +31,23 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 </a>
 <?php endif; ?>
 
-<table width="100%" class="info">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr>
-		<td width="28%" colspan="2"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'viewMetadata','path' => $this->_tpl_vars['submission']->getId()), $this);?>
+		<th width="28%" colspan="2"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'viewMetadata','path' => $this->_tpl_vars['submission']->getId()), $this);?>
 " class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.reviewMetadata"), $this);?>
-</a></td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
-</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.underway"), $this);?>
-</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.complete"), $this);?>
-</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.acknowledge"), $this);?>
-</td>
+</a></th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
+</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.underway"), $this);?>
+</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.complete"), $this);?>
+</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.acknowledge"), $this);?>
+</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td width="2%">1.</td>
 		<?php $this->assign('initialCopyeditSignoff', $this->_tpl_vars['submission']->getSignoff('SIGNOFF_COPYEDITING_INITIAL')); ?>
@@ -132,9 +137,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php endif; ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+
 	<tr>
 		<td>2.</td>
 		<?php $this->assign('authorCopyeditSignoff', $this->_tpl_vars['submission']->getSignoff('SIGNOFF_COPYEDITING_AUTHOR')); ?>
@@ -195,9 +198,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php endif; ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+
 	<tr>
 		<td>3.</td>
 		<?php $this->assign('finalCopyeditSignoff', $this->_tpl_vars['submission']->getSignoff('SIGNOFF_COPYEDITING_FINAL')); ?>
@@ -278,9 +279,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php endif; ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+	</tbody>
 </table>
 
 <?php if ($this->_tpl_vars['authorCopyeditSignoff']->getDateCompleted()): ?>
@@ -290,26 +289,45 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 <?php elseif (! $this->_tpl_vars['initialCopyeditSignoff']->getDateCompleted()): ?>
 <?php $this->assign('canUploadCopyedit', '1'); ?>
 <?php endif; ?>
+<div class="row">
 <form method="post" action="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'uploadCopyeditVersion'), $this);?>
-"  enctype="multipart/form-data">
+"  enctype="multipart/form-data" class="form-inline">
 	<input type="hidden" name="articleId" value="<?php echo $this->_tpl_vars['submission']->getId(); ?>
 " />
+	<div class="col-md-3">
+<strong>
 	<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.uploadFileTo"), $this);?>
 
-	<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" checked="checked" /><label for="copyeditStageInitial"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.stepNumber",'step' => 1), $this);?>
+	</strong>
+	</div>
+	<div class="col-md-6">
+	<div class=" form-group">
+	<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" checked="checked" class="form-control" /><label for="copyeditStageInitial"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.stepNumber",'step' => 1), $this);?>
 </label>,
-	<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author"<?php if ($this->_tpl_vars['canUploadCopyedit'] == 1): ?> disabled="disabled"<?php else: ?> checked="checked"<?php endif; ?> /><label for="copyeditStageAuthor"<?php if ($this->_tpl_vars['canUploadCopyedit'] == 1): ?> class="disabled"<?php endif; ?>><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.stepNumber",'step' => 2), $this);?>
+	<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author"<?php if ($this->_tpl_vars['canUploadCopyedit'] == 1): ?> disabled="disabled"<?php else: ?> checked="checked"<?php endif; ?> class="form-control"/><label for="copyeditStageAuthor"<?php if ($this->_tpl_vars['canUploadCopyedit'] == 1): ?> class="disabled"<?php endif; ?>><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.stepNumber",'step' => 2), $this);?>
 </label>, <?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.or"), $this);?>
 
-	<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final"<?php if ($this->_tpl_vars['canUploadCopyedit'] != 3): ?> disabled="disabled"<?php else: ?> checked="checked"<?php endif; ?> /><label for="copyeditStageFinal"<?php if ($this->_tpl_vars['canUploadCopyedit'] != 3): ?> class="disabled"<?php endif; ?>><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.stepNumber",'step' => 3), $this);?>
+	<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final"<?php if ($this->_tpl_vars['canUploadCopyedit'] != 3): ?> disabled="disabled"<?php else: ?> checked="checked"<?php endif; ?>class="form-control" /><label for="copyeditStageFinal"<?php if ($this->_tpl_vars['canUploadCopyedit'] != 3): ?> class="disabled"<?php endif; ?>><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "navigation.stepNumber",'step' => 3), $this);?>
 </label>
-	<input type="file" name="upload" size="10" class="uploadField"<?php if (! $this->_tpl_vars['canUploadCopyedit']): ?> disabled="disabled"<?php endif; ?> />
+	</div>
+	<br/>
+	<div class="form-group">
+	<input type="file" name="upload" size="10" class="form-control"<?php if (! $this->_tpl_vars['canUploadCopyedit']): ?> disabled="disabled"<?php endif; ?> />
 	<input type="submit" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.upload"), $this);?>
-" class="button"<?php if (! $this->_tpl_vars['canUploadCopyedit']): ?> disabled="disabled"<?php endif; ?> />
+" class="btn btn-primary"<?php if (! $this->_tpl_vars['canUploadCopyedit']): ?> disabled="disabled"<?php endif; ?> />
+	</div>
+	</div>
 </form>
+</div>
 
+<div class="row">
+<div class="col-md-3" >
+<strong>
 <?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.copyedit.copyeditComments"), $this);?>
 
+</strong>
+</div>
+<div class="col-md-5"> 
 <?php if ($this->_tpl_vars['submission']->getMostRecentCopyeditComment()): ?>
 	<?php $this->assign('comment', $this->_tpl_vars['submission']->getMostRecentCopyeditComment()); ?>
 	<a href="javascript:openComments('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'viewCopyeditComments','path' => $this->_tpl_vars['submission']->getId(),'anchor' => $this->_tpl_vars['comment']->getId()), $this);?>
@@ -322,5 +340,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 </a><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.noComments"), $this);?>
 
 <?php endif; ?>
+</div>
+</div>
 </div>
 

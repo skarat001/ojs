@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 06:06:42
+<?php /* Smarty version 2.6.26, created on 2016-06-20 12:35:46
          compiled from sectionEditor/submission/proofread.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/proofread.tpl', 15, false),array('function', 'url', 'sectionEditor/submission/proofread.tpl', 22, false),array('function', 'icon', 'sectionEditor/submission/proofread.tpl', 43, false),array('modifier', 'escape', 'sectionEditor/submission/proofread.tpl', 21, false),array('modifier', 'assign', 'sectionEditor/submission/proofread.tpl', 40, false),array('modifier', 'date_format', 'sectionEditor/submission/proofread.tpl', 48, false),array('modifier', 'default', 'sectionEditor/submission/proofread.tpl', 48, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/proofread.tpl', 15, false),array('function', 'url', 'sectionEditor/submission/proofread.tpl', 32, false),array('function', 'icon', 'sectionEditor/submission/proofread.tpl', 56, false),array('modifier', 'escape', 'sectionEditor/submission/proofread.tpl', 26, false),array('modifier', 'assign', 'sectionEditor/submission/proofread.tpl', 53, false),array('modifier', 'date_format', 'sectionEditor/submission/proofread.tpl', 61, false),array('modifier', 'default', 'sectionEditor/submission/proofread.tpl', 61, false),)), $this); ?>
 <?php $this->assign('proofSignoff', $this->_tpl_vars['submission']->getSignoff('SIGNOFF_PROOFREADING_PROOFREADER')); ?>
 <?php $this->assign('proofreader', $this->_tpl_vars['submission']->getUserBySignoffType('SIGNOFF_PROOFREADING_PROOFREADER')); ?>
 
@@ -10,31 +10,44 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 </h3>
 
 <?php if ($this->_tpl_vars['useProofreaders']): ?>
-<table class="data" width="100%">
-	<tr>
-		<td width="20%" class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.proofreader"), $this);?>
-</td>
-		<?php if ($this->_tpl_vars['proofSignoff']->getUserId()): ?><td class="value" width="20%"><?php echo ((is_array($_tmp=$this->_tpl_vars['proofreader']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
-</td><?php endif; ?>
-		<td class="value"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'selectProofreader','path' => $this->_tpl_vars['submission']->getId()), $this);?>
+<div id="layoutEditors">
+<div class="row">
+<div class="col-md-3">
+<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.proofreader"), $this);?>
+
+</div>
+		<div class="col-md-4" >
+		<?php if ($this->_tpl_vars['proofSignoff']->getUserId()): ?>
+
+		<?php echo ((is_array($_tmp=$this->_tpl_vars['proofreader']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+
+
+		<?php endif; ?>
+		</div>
+		<div class="col-md-3" >
+
+		<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'selectProofreader','path' => $this->_tpl_vars['submission']->getId()), $this);?>
 " class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.selectProofreader"), $this);?>
-</a></td>
-	</tr>
-</table>
+</a>
+		</div>
+		</div>
 <?php endif; ?>
 
-<table width="100%" class="info">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr>
-		<td width="28%" colspan="2">&nbsp;</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
-</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.underway"), $this);?>
-</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.complete"), $this);?>
-</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.acknowledge"), $this);?>
-</td>
+		<th width="28%" colspan="2">&nbsp;</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
+</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.underway"), $this);?>
+</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.complete"), $this);?>
+</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.acknowledge"), $this);?>
+</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td width="2%">1.</td>
 		<td width="26%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.author"), $this);?>
@@ -226,13 +239,16 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php endif; ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+
+	</tbody>
 </table>
 
+<div class="row">
+<div class="col-md-3"> 
 <?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.proofread.corrections"), $this);?>
 
+</div>
+<div class="col-md-6" 
 <?php if ($this->_tpl_vars['submission']->getMostRecentProofreadComment()): ?>
 	<?php $this->assign('comment', $this->_tpl_vars['submission']->getMostRecentProofreadComment()); ?>
 	<a href="javascript:openComments('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'viewProofreadComments','path' => $this->_tpl_vars['submission']->getId(),'anchor' => $this->_tpl_vars['comment']->getId()), $this);?>
@@ -249,8 +265,10 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 <?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('proofInstructions')): ?>
 &nbsp;&nbsp;
 <a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'proof'), $this);?>
-')" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.proofread.instructions"), $this);?>
+')" class="btn btn-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.proofread.instructions"), $this);?>
 </a>
 <?php endif; ?>
+</div>
+</div>
 </div>
 

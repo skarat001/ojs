@@ -15,23 +15,36 @@
 <h3>{translate key="submission.proofreading"}</h3>
 
 {if $useProofreaders}
-<table class="data" width="100%">
-	<tr>
-		<td width="20%" class="label">{translate key="user.role.proofreader"}</td>
-		{if $proofSignoff->getUserId()}<td class="value" width="20%">{$proofreader->getFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="selectProofreader" path=$submission->getId()}" class="action">{translate key="editor.article.selectProofreader"}</a></td>
-	</tr>
-</table>
+<div id="layoutEditors">
+<div class="row">
+<div class="col-md-3">
+{translate key="user.role.proofreader"}
+</div>
+		<div class="col-md-4" >
+		{if $proofSignoff->getUserId()}
+
+		{$proofreader->getFullName()|escape}
+
+		{/if}
+		</div>
+		<div class="col-md-3" >
+
+		<a href="{url op="selectProofreader" path=$submission->getId()}" class="action">{translate key="editor.article.selectProofreader"}</a>
+		</div>
+		</div>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr>
-		<td width="28%" colspan="2">&nbsp;</td>
-		<td width="18%" class="heading">{translate key="submission.request"}</td>
-		<td width="18%" class="heading">{translate key="submission.underway"}</td>
-		<td width="18%" class="heading">{translate key="submission.complete"}</td>
-		<td width="18%" class="heading">{translate key="submission.acknowledge"}</td>
+		<th width="28%" colspan="2">&nbsp;</th>
+		<th width="18%" class="heading">{translate key="submission.request"}</th>
+		<th width="18%" class="heading">{translate key="submission.underway"}</th>
+		<th width="18%" class="heading">{translate key="submission.complete"}</th>
+		<th width="18%" class="heading">{translate key="submission.acknowledge"}</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td width="2%">1.</td>
 		<td width="26%">{translate key="user.role.author"}</td>
@@ -172,12 +185,15 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+
+	</tbody>
 </table>
 
+<div class="row">
+<div class="col-md-3"> 
 {translate key="submission.proofread.corrections"}
+</div>
+<div class="col-md-6" 
 {if $submission->getMostRecentProofreadComment()}
 	{assign var="comment" value=$submission->getMostRecentProofreadComment()}
 	<a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
@@ -187,7 +203,9 @@
 
 {if $currentJournal->getLocalizedSetting('proofInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="proof"}')" class="action">{translate key="submission.proofread.instructions"}</a>
+<a href="javascript:openHelp('{url op="instructions" path="proof"}')" class="btn btn-link">{translate key="submission.proofread.instructions"}</a>
 {/if}
+</div>
+</div>
 </div>
 

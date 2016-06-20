@@ -8,11 +8,13 @@
  * Subtemplate defining the copyediting table.
  *
  *}
+
+
 <div id="copyedit">
-<h3>{translate key="submission.copyediting"} <a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="btn btn-info btn-circle"> <i class="fa fa-question "/></a></h3>
+<p><h3><button onclick="openHelp('{url op="instructions" path="copy"}')" class="btn btn-info btn-circle btn-sm"> <i class="fa fa-question "></i> </button> {translate key="submission.copyediting"}  </h3></p>
 
 {if $currentJournal->getLocalizedSetting('copyeditInstructions')}
-<p><a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action">{translate key="submission.copyedit.instructions"}</a></p>
+<!-- <p><a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action">{translate key="submission.copyedit.instructions"}</a></p> -->
 {/if}
 
 {if $useCopyeditors}
@@ -27,14 +29,17 @@
 		<a href="{url op="selectCopyeditor" path=$submission->getId()}" class="action">{translate key="editor.article.selectCopyeditor"}</a>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr>
-		<td width="28%" colspan="2"><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.reviewMetadata"}</a></td>
-		<td width="18%" class="heading">{translate key="submission.request"}</td>
-		<td width="18%" class="heading">{translate key="submission.underway"}</td>
-		<td width="18%" class="heading">{translate key="submission.complete"}</td>
-		<td width="18%" class="heading">{translate key="submission.acknowledge"}</td>
+		<th width="28%" colspan="2"><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.reviewMetadata"}</a></th>
+		<th width="18%" class="heading">{translate key="submission.request"}</th>
+		<th width="18%" class="heading">{translate key="submission.underway"}</th>
+		<th width="18%" class="heading">{translate key="submission.complete"}</th>
+		<th width="18%" class="heading">{translate key="submission.acknowledge"}</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td width="2%">1.</td>
 		{assign var="initialCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_INITIAL')}
@@ -100,9 +105,7 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+
 	<tr>
 		<td>2.</td>
 		{assign var="authorCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_AUTHOR')}
@@ -146,9 +149,7 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+
 	<tr>
 		<td>3.</td>
 		{assign var="finalCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_FINAL')}
@@ -208,9 +209,7 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+	</tbody>
 </table>
 
 {if $authorCopyeditSignoff->getDateCompleted()}
@@ -220,22 +219,43 @@
 {elseif !$initialCopyeditSignoff->getDateCompleted()}
 {assign var="canUploadCopyedit" value="1"}
 {/if}
-<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data">
+<div class="row">
+<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data" class="form-inline">
 	<input type="hidden" name="articleId" value="{$submission->getId()}" />
+	<div class="col-md-3">
+<strong>
 	{translate key="submission.uploadFileTo"}
-	<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" checked="checked" /><label for="copyeditStageInitial">{translate key="navigation.stepNumber" step=1}</label>,
-	<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author"{if $canUploadCopyedit == 1} disabled="disabled"{else} checked="checked"{/if} /><label for="copyeditStageAuthor"{if $canUploadCopyedit == 1} class="disabled"{/if}>{translate key="navigation.stepNumber" step=2}</label>, {translate key="common.or"}
-	<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final"{if $canUploadCopyedit != 3} disabled="disabled"{else} checked="checked"{/if} /><label for="copyeditStageFinal"{if $canUploadCopyedit != 3} class="disabled"{/if}>{translate key="navigation.stepNumber" step=3}</label>
-	<input type="file" name="upload" size="10" class="uploadField"{if !$canUploadCopyedit} disabled="disabled"{/if} />
-	<input type="submit" value="{translate key="common.upload"}" class="button"{if !$canUploadCopyedit} disabled="disabled"{/if} />
+	</strong>
+	</div>
+	<div class="col-md-6">
+	<div class=" form-group">
+	<input type="radio" name="copyeditStage" id="copyeditStageInitial" value="initial" checked="checked" class="form-control" /><label for="copyeditStageInitial">{translate key="navigation.stepNumber" step=1}</label>,
+	<input type="radio" name="copyeditStage" id="copyeditStageAuthor" value="author"{if $canUploadCopyedit == 1} disabled="disabled"{else} checked="checked"{/if} class="form-control"/><label for="copyeditStageAuthor"{if $canUploadCopyedit == 1} class="disabled"{/if}>{translate key="navigation.stepNumber" step=2}</label>, {translate key="common.or"}
+	<input type="radio" name="copyeditStage" id="copyeditStageFinal" value="final"{if $canUploadCopyedit != 3} disabled="disabled"{else} checked="checked"{/if}class="form-control" /><label for="copyeditStageFinal"{if $canUploadCopyedit != 3} class="disabled"{/if}>{translate key="navigation.stepNumber" step=3}</label>
+	</div>
+	<br/>
+	<div class="form-group">
+	<input type="file" name="upload" size="10" class="form-control"{if !$canUploadCopyedit} disabled="disabled"{/if} />
+	<input type="submit" value="{translate key="common.upload"}" class="btn btn-primary"{if !$canUploadCopyedit} disabled="disabled"{/if} />
+	</div>
+	</div>
 </form>
+</div>
 
+<div class="row">
+<div class="col-md-3" >
+<strong>
 {translate key="submission.copyedit.copyeditComments"}
+</strong>
+</div>
+<div class="col-md-5"> 
 {if $submission->getMostRecentCopyeditComment()}
 	{assign var="comment" value=$submission->getMostRecentCopyeditComment()}
 	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
 {else}
 	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
+</div>
+</div>
 </div>
 

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-19 15:31:37
+<?php /* Smarty version 2.6.26, created on 2016-06-20 11:08:57
          compiled from sectionEditor/submissionHistory.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submissionHistory.tpl', 13, false),array('function', 'url', 'sectionEditor/submissionHistory.tpl', 50, false),array('function', 'icon', 'sectionEditor/submissionHistory.tpl', 83, false),array('modifier', 'assign', 'sectionEditor/submissionHistory.tpl', 13, false),array('modifier', 'date_format', 'sectionEditor/submissionHistory.tpl', 79, false),array('modifier', 'concat', 'sectionEditor/submissionHistory.tpl', 81, false),array('modifier', 'to_array', 'sectionEditor/submissionHistory.tpl', 82, false),array('modifier', 'translate', 'sectionEditor/submissionHistory.tpl', 82, false),array('modifier', 'escape', 'sectionEditor/submissionHistory.tpl', 83, false),array('modifier', 'strip_tags', 'sectionEditor/submissionHistory.tpl', 88, false),array('modifier', 'truncate', 'sectionEditor/submissionHistory.tpl', 88, false),array('modifier', 'strip_unsafe_html', 'sectionEditor/submissionHistory.tpl', 173, false),array('modifier', 'nl2br', 'sectionEditor/submissionHistory.tpl', 173, false),array('block', 'iterate', 'sectionEditor/submissionHistory.tpl', 77, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submissionHistory.tpl', 13, false),array('function', 'url', 'sectionEditor/submissionHistory.tpl', 50, false),array('function', 'icon', 'sectionEditor/submissionHistory.tpl', 84, false),array('modifier', 'assign', 'sectionEditor/submissionHistory.tpl', 13, false),array('modifier', 'date_format', 'sectionEditor/submissionHistory.tpl', 80, false),array('modifier', 'concat', 'sectionEditor/submissionHistory.tpl', 82, false),array('modifier', 'to_array', 'sectionEditor/submissionHistory.tpl', 83, false),array('modifier', 'translate', 'sectionEditor/submissionHistory.tpl', 83, false),array('modifier', 'escape', 'sectionEditor/submissionHistory.tpl', 84, false),array('modifier', 'strip_tags', 'sectionEditor/submissionHistory.tpl', 89, false),array('modifier', 'truncate', 'sectionEditor/submissionHistory.tpl', 89, false),array('modifier', 'strip_unsafe_html', 'sectionEditor/submissionHistory.tpl', 174, false),array('modifier', 'nl2br', 'sectionEditor/submissionHistory.tpl', 174, false),array('block', 'iterate', 'sectionEditor/submissionHistory.tpl', 78, false),)), $this); ?>
 <?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.page.history",'id' => $this->_tpl_vars['submission']->getId()), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageTitleTranslated'));?><?php echo ''; ?><?php $this->assign('pageCrumbTitle', "submission.history"); ?><?php echo ''; ?><?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "common/header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -42,7 +42,7 @@ unset($_smarty_tpl_vars);
 
 
 <ul class="nav nav-pills">
-	<li class="nav-item "><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submissions','path' => $this->_tpl_vars['submission']->getId()), $this);?>
+	<li class="nav-item "><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submission','path' => $this->_tpl_vars['submission']->getId()), $this);?>
 " class="nav-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.summary"), $this);?>
 </a></li>
 	<?php if ($this->_tpl_vars['canReview']): ?><li class="nav-item "><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submissionReview','path' => $this->_tpl_vars['submission']->getId()), $this);?>
@@ -58,6 +58,7 @@ unset($_smarty_tpl_vars);
 " class="nav-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.citations"), $this);?>
 </a></li>
 </ul>
+<hr>
 
 <ul class="menu">
 	<li><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submissionEventLog','path' => $this->_tpl_vars['submission']->getId()), $this);?>

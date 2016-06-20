@@ -130,3 +130,9 @@ flex-direction:row;
  white-space:nowrap;
  overflow:hidden;
 }
+
+.btn-info.btn-circle{
+  -webkit-box-shadow: 0px 0px 3px 1px #28a4c9;
+  -moz-box-shadow:    0px 0px 3px 1px #28a4c9;
+  box-shadow:         0px 0px 3px 1px #28a4c9;
+}

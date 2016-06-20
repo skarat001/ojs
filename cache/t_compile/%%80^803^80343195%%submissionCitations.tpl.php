@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-19 15:31:39
+<?php /* Smarty version 2.6.26, created on 2016-06-20 11:09:02
          compiled from sectionEditor/submissionCitations.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submissionCitations.tpl', 11, false),array('function', 'url', 'sectionEditor/submissionCitations.tpl', 17, false),array('modifier', 'assign', 'sectionEditor/submissionCitations.tpl', 11, false),)), $this); ?>
@@ -10,7 +10,7 @@ unset($_smarty_tpl_vars);
 
 
 <ul class="nav nav-pills">
-	<li class="nav-item "><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submissions','path' => $this->_tpl_vars['submission']->getId()), $this);?>
+	<li class="nav-item "><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submission','path' => $this->_tpl_vars['submission']->getId()), $this);?>
 " class="nav-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.summary"), $this);?>
 </a></li>
 	<?php if ($this->_tpl_vars['canReview']): ?><li class="nav-item "><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'submissionReview','path' => $this->_tpl_vars['submission']->getId()), $this);?>
@@ -26,7 +26,7 @@ unset($_smarty_tpl_vars);
 " class="nav-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.citations"), $this);?>
 </a></li>
 </ul>
-
+<hr>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "citation/citationEditor.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;

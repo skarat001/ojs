@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 06:06:42
+<?php /* Smarty version 2.6.26, created on 2016-06-20 12:32:52
          compiled from sectionEditor/submission/layout.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/layout.tpl', 16, false),array('function', 'url', 'sectionEditor/submission/layout.tpl', 24, false),array('function', 'icon', 'sectionEditor/submission/layout.tpl', 48, false),array('modifier', 'escape', 'sectionEditor/submission/layout.tpl', 23, false),array('modifier', 'assign', 'sectionEditor/submission/layout.tpl', 45, false),array('modifier', 'date_format', 'sectionEditor/submission/layout.tpl', 55, false),array('modifier', 'default', 'sectionEditor/submission/layout.tpl', 55, false),array('modifier', 'to_array', 'sectionEditor/submission/layout.tpl', 92, false),array('modifier', 'truncate', 'sectionEditor/submission/layout.tpl', 113, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/layout.tpl', 16, false),array('function', 'url', 'sectionEditor/submission/layout.tpl', 28, false),array('function', 'icon', 'sectionEditor/submission/layout.tpl', 55, false),array('modifier', 'escape', 'sectionEditor/submission/layout.tpl', 25, false),array('modifier', 'assign', 'sectionEditor/submission/layout.tpl', 52, false),array('modifier', 'date_format', 'sectionEditor/submission/layout.tpl', 62, false),array('modifier', 'default', 'sectionEditor/submission/layout.tpl', 62, false),array('modifier', 'to_array', 'sectionEditor/submission/layout.tpl', 99, false),array('modifier', 'truncate', 'sectionEditor/submission/layout.tpl', 118, false),)), $this); ?>
 <?php $this->assign('layoutSignoff', $this->_tpl_vars['submission']->getSignoff('SIGNOFF_LAYOUT')); ?>
 <?php $this->assign('layoutFile', $this->_tpl_vars['submission']->getFileBySignoffType('SIGNOFF_LAYOUT')); ?>
 <?php $this->assign('layoutEditor', $this->_tpl_vars['submission']->getUserBySignoffType('SIGNOFF_LAYOUT')); ?>
@@ -12,32 +12,39 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 
 <?php if ($this->_tpl_vars['useLayoutEditors']): ?>
 <div id="layoutEditors">
-<table class="data" width="100%">
-	<tr>
-		<td width="20%" class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.layoutEditor"), $this);?>
-</td>
+<div class="row">
+<div class="col-md-3">
+		<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.layoutEditor"), $this);?>
+
+		</div>
+		<div class="col-md-4" >
 		<?php if ($this->_tpl_vars['layoutSignoff']->getUserId()): ?><td width="20%" class="value"><?php echo ((is_array($_tmp=$this->_tpl_vars['layoutEditor']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </td><?php endif; ?>
-		<td class="value"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'assignLayoutEditor','path' => $this->_tpl_vars['submission']->getId()), $this);?>
-" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.assignLayoutEditor"), $this);?>
-</a></td>
-	</tr>
-</table>
+		</div>
+		<div class="col-md-3">
+		<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'assignLayoutEditor','path' => $this->_tpl_vars['submission']->getId()), $this);?>
+" class="btn btn-default"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.assignLayoutEditor"), $this);?>
+</a>
+		</div>
+		</div>
 </div>
 <?php endif; ?>
 
-<table width="100%" class="info">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr>
-		<td width="28%" colspan="2">&nbsp;</td>
-		<td width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
-</td>
-		<td width="16%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.underway"), $this);?>
-</td>
-		<td width="16%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.complete"), $this);?>
-</td>
-		<td width="22%" colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.acknowledge"), $this);?>
-</td>
+		<th width="28%" colspan="2">&nbsp;</th>
+		<th width="18%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
+</th>
+		<th width="16%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.underway"), $this);?>
+</th>
+		<th width="16%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.complete"), $this);?>
+</th>
+		<th width="22%" colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.acknowledge"), $this);?>
+</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td colspan="2">
 			<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.layoutVersion"), $this);?>
@@ -120,21 +127,19 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php endif; ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
+
 
 	<tr>
-		<td colspan="2"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.galleyFormat"), $this);?>
-</td>
-		<td colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.file"), $this);?>
-</td>
-		<td class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.order"), $this);?>
-</td>
-		<td class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
-</td>
-		<td class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.views"), $this);?>
-</td>
+		<th colspan="2"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.galleyFormat"), $this);?>
+</th>
+		<th colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.file"), $this);?>
+</th>
+		<th class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.order"), $this);?>
+</th>
+		<th class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
+</th>
+		<th class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.views"), $this);?>
+</th>
 	</tr>
 	<?php $_from = $this->_tpl_vars['submission']->getGalleys(); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['galleys'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['galleys']['total'] > 0):
@@ -159,10 +164,10 @@ if ($this->_foreach['galleys']['total'] > 0):
 " class="plain">&darr;</a></td>
 		<td>
 			<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'editGalley','path' => ((is_array($_tmp=$this->_tpl_vars['submission']->getId())) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['galley']->getId()) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['galley']->getId()))), $this);?>
-" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.edit"), $this);?>
+" class="btn btn-warning"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.edit"), $this);?>
 </a>&nbsp;|&nbsp;<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'deleteGalley','path' => ((is_array($_tmp=$this->_tpl_vars['submission']->getId())) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['galley']->getId()) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['galley']->getId()))), $this);?>
 " onclick="return confirm('<?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.confirmDeleteGalley"), $this))) ? $this->_run_mod_handler('escape', true, $_tmp, 'jsparam') : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp, 'jsparam'));?>
-')" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.delete"), $this);?>
+')" class="btn btn-danger"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.delete"), $this);?>
 </a>
 		</td>
 		<td><?php echo ((is_array($_tmp=$this->_tpl_vars['galley']->getViews())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
@@ -174,18 +179,16 @@ if ($this->_foreach['galleys']['total'] > 0):
 </td>
 	</tr>
 	<?php endif; unset($_from); ?>
+
 	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
-	<tr>
-		<td width="28%" colspan="2"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.supplementaryFiles"), $this);?>
-</td>
-		<td width="34%" colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.file"), $this);?>
-</td>
-		<td width="16%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.order"), $this);?>
-</td>
-		<td width="16%" colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
-</td>
+		<th width="28%" colspan="2"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.supplementaryFiles"), $this);?>
+</th>
+		<th width="34%" colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.file"), $this);?>
+</th>
+		<th width="16%" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.order"), $this);?>
+</th>
+		<th width="16%" colspan="2" class="heading"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
+</th>
 	</tr>
 	<?php $_from = $this->_tpl_vars['submission']->getSuppFiles(); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['suppFiles'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['suppFiles']['total'] > 0):
@@ -208,10 +211,10 @@ if ($this->_foreach['suppFiles']['total'] > 0):
 " class="plain">&darr;</a></td>
 		<td colspan="2">
 			<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'editSuppFile','from' => 'submissionEditing','path' => ((is_array($_tmp=$this->_tpl_vars['submission']->getId())) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['suppFile']->getId()) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['suppFile']->getId()))), $this);?>
-" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.edit"), $this);?>
+" class="btn btn-warning btn-sm"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.edit"), $this);?>
 </a>&nbsp;|&nbsp;<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'deleteSuppFile','from' => 'submissionEditing','path' => ((is_array($_tmp=$this->_tpl_vars['submission']->getId())) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['suppFile']->getId()) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['suppFile']->getId()))), $this);?>
 " onclick="return confirm('<?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.confirmDeleteSupplementaryFile"), $this))) ? $this->_run_mod_handler('escape', true, $_tmp, 'jsparam') : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp, 'jsparam'));?>
-')" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.delete"), $this);?>
+')" class="btn btn-danger btn-sm"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.delete"), $this);?>
 </a>
 		</td>
 	</tr>
@@ -221,36 +224,51 @@ if ($this->_foreach['suppFiles']['total'] > 0):
 </td>
 	</tr>
 	<?php endif; unset($_from); ?>
-	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
-</table>
 
+	</tbody>
+</table>
+<div class="row">
+<div class="col-md-3">
+	<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.uploadFileTo"), $this);?>
+ 
+</div>
+<div class="col-md-9">
 <form method="post" action="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'uploadLayoutFile'), $this);?>
-"  enctype="multipart/form-data">
+"  enctype="multipart/form-data" class="form-inline">
 	<input type="hidden" name="from" value="submissionEditing" />
 	<input type="hidden" name="articleId" value="<?php echo $this->_tpl_vars['submission']->getId(); ?>
 " />
-	<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.uploadFileTo"), $this);?>
- <input type="radio" name="layoutFileType" id="layoutFileTypeSubmission" value="submission" checked="checked" /><label for="layoutFileTypeSubmission"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.layoutVersion"), $this);?>
+	<div class="form-group">
+
+	<input type="radio" name="layoutFileType" id="layoutFileTypeSubmission" value="submission" checked="checked" /><label for="layoutFileTypeSubmission"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.layoutVersion"), $this);?>
 </label>, <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.galley"), $this);?>
 </label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "article.suppFilesAbbrev"), $this);?>
 </label>
-	<input type="file" name="layoutFile" size="10" class="uploadField" />
+</div>
+<div class="form-group">
+	<input type="file" name="layoutFile" size="10" class="form-control" />
 	<input type="submit" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.upload"), $this);?>
-" class="button" />
+" class="btn btn-primary" />
 	<br />
-	<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.createRemote"), $this);?>
+	</div>
+	<div class="form-group">
  <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.galley"), $this);?>
 </label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "article.suppFilesAbbrev"), $this);?>
 </label>
 	<input type="submit" name="createRemote" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.create"), $this);?>
-" class="button" />
+" class="btn btn-default" />
+	</div>
 </form>
-
+</div>
+</div>
 <div id="layoutComments">
+<div class="row">
+<div class="col-md-3">
+
 <?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.layoutComments"), $this);?>
 
+</div>
+<div class="col-md-5"> 
 <?php if ($this->_tpl_vars['submission']->getMostRecentLayoutComment()): ?>
 	<?php $this->assign('comment', $this->_tpl_vars['submission']->getMostRecentLayoutComment()); ?>
 	<a href="javascript:openComments('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'viewLayoutComments','path' => $this->_tpl_vars['submission']->getId(),'anchor' => $this->_tpl_vars['comment']->getId()), $this);?>
@@ -267,13 +285,13 @@ if ($this->_foreach['suppFiles']['total'] > 0):
 <?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('layoutInstructions')): ?>
 &nbsp;&nbsp;
 <a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'layout'), $this);?>
-')" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.instructions"), $this);?>
+')" class="btn btn-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.instructions"), $this);?>
 </a>
 <?php endif; ?>
 <?php if ($this->_tpl_vars['currentJournal']->getSetting('provideRefLinkInstructions')): ?>
 &nbsp;&nbsp;
 <a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'referenceLinking'), $this);?>
-')" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.referenceLinking"), $this);?>
+')" class="btn btn-link"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.layout.referenceLinking"), $this);?>
 </a>
 <?php endif; ?>
 <?php $_from = $this->_tpl_vars['templates']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['templates'] = array('total' => count($_from), 'iteration' => 0);
@@ -282,9 +300,11 @@ if ($this->_foreach['templates']['total'] > 0):
         $this->_foreach['templates']['iteration']++;
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'downloadLayoutTemplate','path' => ((is_array($_tmp=$this->_tpl_vars['submission']->getId())) ? $this->_run_mod_handler('to_array', true, $_tmp, $this->_tpl_vars['templateId']) : $this->_plugins['modifier']['to_array'][0][0]->smartyToArray($_tmp, $this->_tpl_vars['templateId']))), $this);?>
-" class="action"><?php echo ((is_array($_tmp=$this->_tpl_vars['template']['title'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+" class="btn btn-link"><?php echo ((is_array($_tmp=$this->_tpl_vars['template']['title'])) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
 </a>
 <?php endforeach; endif; unset($_from); ?>
+</div>
+</div>
 </div>
 </div>
 

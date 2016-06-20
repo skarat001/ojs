@@ -17,24 +17,31 @@
 
 {if $useLayoutEditors}
 <div id="layoutEditors">
-<table class="data" width="100%">
-	<tr>
-		<td width="20%" class="label">{translate key="user.role.layoutEditor"}</td>
+<div class="row">
+<div class="col-md-3">
+		{translate key="user.role.layoutEditor"}
+		</div>
+		<div class="col-md-4" >
 		{if $layoutSignoff->getUserId()}<td width="20%" class="value">{$layoutEditor->getFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="assignLayoutEditor" path=$submission->getId()}" class="action">{translate key="submission.layout.assignLayoutEditor"}</a></td>
-	</tr>
-</table>
+		</div>
+		<div class="col-md-3">
+		<a href="{url op="assignLayoutEditor" path=$submission->getId()}" class="btn btn-default">{translate key="submission.layout.assignLayoutEditor"}</a>
+		</div>
+		</div>
 </div>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr>
-		<td width="28%" colspan="2">&nbsp;</td>
-		<td width="18%" class="heading">{translate key="submission.request"}</td>
-		<td width="16%" class="heading">{translate key="submission.underway"}</td>
-		<td width="16%" class="heading">{translate key="submission.complete"}</td>
-		<td width="22%" colspan="2" class="heading">{translate key="submission.acknowledge"}</td>
+		<th width="28%" colspan="2">&nbsp;</th>
+		<th width="18%" class="heading">{translate key="submission.request"}</th>
+		<th width="16%" class="heading">{translate key="submission.underway"}</th>
+		<th width="16%" class="heading">{translate key="submission.complete"}</th>
+		<th width="22%" colspan="2" class="heading">{translate key="submission.acknowledge"}</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td colspan="2">
 			{translate key="submission.layout.layoutVersion"}
@@ -95,16 +102,14 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
+
 
 	<tr>
-		<td colspan="2">{translate key="submission.layout.galleyFormat"}</td>
-		<td colspan="2" class="heading">{translate key="common.file"}</td>
-		<td class="heading">{translate key="common.order"}</td>
-		<td class="heading">{translate key="common.action"}</td>
-		<td class="heading">{translate key="submission.views"}</td>
+		<th colspan="2">{translate key="submission.layout.galleyFormat"}</th>
+		<th colspan="2" class="heading">{translate key="common.file"}</th>
+		<th class="heading">{translate key="common.order"}</th>
+		<th class="heading">{translate key="common.action"}</th>
+		<th class="heading">{translate key="submission.views"}</th>
 	</tr>
 	{foreach name=galleys from=$submission->getGalleys() item=galley}
 	<tr>
@@ -113,7 +118,7 @@
 		<td colspan="2">{if $galley->getFileId() > 0}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$galley->getFileId()}" class="file">{$galley->getFileName()|escape}</a>&nbsp;&nbsp;{$galley->getDateModified()|date_format:$dateFormatShort}{elseif $galley->getRemoteURL() != ''}<a href="{$galley->getRemoteURL()|escape}" target="_blank">{$galley->getRemoteURL()|truncate:20:"..."|escape}</a>{/if}</td>
 		<td><a href="{url op="orderGalley" d=u articleId=$submission->getId() galleyId=$galley->getId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d articleId=$submission->getId() galleyId=$galley->getId()}" class="plain">&darr;</a></td>
 		<td>
-			<a href="{url op="editGalley" path=$submission->getId()|to_array:$galley->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getId()|to_array:$galley->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
+			<a href="{url op="editGalley" path=$submission->getId()|to_array:$galley->getId()}" class="btn btn-warning">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getId()|to_array:$galley->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="btn btn-danger">{translate key="common.delete"}</a>
 		</td>
 		<td>{$galley->getViews()|escape}</td>
 	</tr>
@@ -122,14 +127,12 @@
 		<td colspan="7" class="nodata">{translate key="common.none"}</td>
 	</tr>
 	{/foreach}
+
 	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
-	<tr>
-		<td width="28%" colspan="2">{translate key="submission.supplementaryFiles"}</td>
-		<td width="34%" colspan="2" class="heading">{translate key="common.file"}</td>
-		<td width="16%" class="heading">{translate key="common.order"}</td>
-		<td width="16%" colspan="2" class="heading">{translate key="common.action"}</td>
+		<th width="28%" colspan="2">{translate key="submission.supplementaryFiles"}</th>
+		<th width="34%" colspan="2" class="heading">{translate key="common.file"}</th>
+		<th width="16%" class="heading">{translate key="common.order"}</th>
+		<th width="16%" colspan="2" class="heading">{translate key="common.action"}</th>
 	</tr>
 	{foreach name=suppFiles from=$submission->getSuppFiles() item=suppFile}
 	<tr>
@@ -138,7 +141,7 @@
 		<td colspan="2">{if $suppFile->getFileId() > 0}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}{elseif $suppFile->getRemoteURL() != ''}<a href="{$suppFile->getRemoteURL()|escape}" target="_blank">{$suppFile->getRemoteURL()|truncate:20:"..."|escape}</a>{/if}</td>
 		<td><a href="{url op="orderSuppFile" d=u articleId=$submission->getId() suppFileId=$suppFile->getId()}" class="plain">&uarr;</a> <a href="{url op="orderSuppFile" d=d articleId=$submission->getId() suppFileId=$suppFile->getId()}" class="plain">&darr;</a></td>
 		<td colspan="2">
-			<a href="{url op="editSuppFile" from="submissionEditing" path=$submission->getId()|to_array:$suppFile->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSuppFile" from="submissionEditing" path=$submission->getId()|to_array:$suppFile->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteSupplementaryFile"}')" class="action">{translate key="common.delete"}</a>
+			<a href="{url op="editSuppFile" from="submissionEditing" path=$submission->getId()|to_array:$suppFile->getId()}" class="btn btn-warning btn-sm">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSuppFile" from="submissionEditing" path=$submission->getId()|to_array:$suppFile->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteSupplementaryFile"}')" class="btn btn-danger btn-sm">{translate key="common.delete"}</a>
 		</td>
 	</tr>
 	{foreachelse}
@@ -146,24 +149,40 @@
 		<td colspan="7" class="nodata">{translate key="common.none"}</td>
 	</tr>
 	{/foreach}
-	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
-</table>
 
-<form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
+	</tbody>
+</table>
+<div class="row">
+<div class="col-md-3">
+	{translate key="submission.uploadFileTo"} 
+</div>
+<div class="col-md-9">
+<form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data" class="form-inline">
 	<input type="hidden" name="from" value="submissionEditing" />
 	<input type="hidden" name="articleId" value="{$submission->getId()}" />
-	{translate key="submission.uploadFileTo"} <input type="radio" name="layoutFileType" id="layoutFileTypeSubmission" value="submission" checked="checked" /><label for="layoutFileTypeSubmission">{translate key="submission.layout.layoutVersion"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp">{translate key="article.suppFilesAbbrev"}</label>
-	<input type="file" name="layoutFile" size="10" class="uploadField" />
-	<input type="submit" value="{translate key="common.upload"}" class="button" />
-	<br />
-	{translate key="submission.createRemote"} <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp">{translate key="article.suppFilesAbbrev"}</label>
-	<input type="submit" name="createRemote" value="{translate key="common.create"}" class="button" />
-</form>
+	<div class="form-group">
 
+	<input type="radio" name="layoutFileType" id="layoutFileTypeSubmission" value="submission" checked="checked" /><label for="layoutFileTypeSubmission">{translate key="submission.layout.layoutVersion"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp">{translate key="article.suppFilesAbbrev"}</label>
+</div>
+<div class="form-group">
+	<input type="file" name="layoutFile" size="10" class="form-control" />
+	<input type="submit" value="{translate key="common.upload"}" class="btn btn-primary" />
+	<br />
+	</div>
+	<div class="form-group">
+ <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp">{translate key="article.suppFilesAbbrev"}</label>
+	<input type="submit" name="createRemote" value="{translate key="common.create"}" class="btn btn-default" />
+	</div>
+</form>
+</div>
+</div>
 <div id="layoutComments">
+<div class="row">
+<div class="col-md-3">
+
 {translate key="submission.layout.layoutComments"}
+</div>
+<div class="col-md-5"> 
 {if $submission->getMostRecentLayoutComment()}
 	{assign var="comment" value=$submission->getMostRecentLayoutComment()}
 	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
@@ -173,15 +192,17 @@
 
 {if $currentJournal->getLocalizedSetting('layoutInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action">{translate key="submission.layout.instructions"}</a>
+<a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="btn btn-link">{translate key="submission.layout.instructions"}</a>
 {/if}
 {if $currentJournal->getSetting('provideRefLinkInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="referenceLinking"}')" class="action">{translate key="submission.layout.referenceLinking"}</a>
+<a href="javascript:openHelp('{url op="instructions" path="referenceLinking"}')" class="btn btn-link">{translate key="submission.layout.referenceLinking"}</a>
 {/if}
 {foreach name=templates from=$templates key=templateId item=template}
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="downloadLayoutTemplate" path=$submission->getId()|to_array:$templateId}" class="action">{$template.title|escape}</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="downloadLayoutTemplate" path=$submission->getId()|to_array:$templateId}" class="btn btn-link">{$template.title|escape}</a>
 {/foreach}
+</div>
+</div>
 </div>
 </div>
 
