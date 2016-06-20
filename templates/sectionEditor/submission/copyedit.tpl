@@ -9,20 +9,22 @@
  *
  *}
 <div id="copyedit">
-<h3>{translate key="submission.copyediting"}</h3>
+<h3>{translate key="submission.copyediting"} <a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="btn btn-info btn-circle"> <i class="fa fa-question "/></a></h3>
 
 {if $currentJournal->getLocalizedSetting('copyeditInstructions')}
 <p><a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action">{translate key="submission.copyedit.instructions"}</a></p>
 {/if}
 
 {if $useCopyeditors}
-<table width="100%" class="data">
-	<tr>
-		<td width="20%" class="label">{translate key="user.role.copyeditor"}</td>
-		{if $submission->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL')}<td width="20%" class="value">{$copyeditor->getFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="selectCopyeditor" path=$submission->getId()}" class="action">{translate key="editor.article.selectCopyeditor"}</a></td>
-	</tr>
-</table>
+
+{translate key="user.role.copyeditor"}
+
+		{if $submission->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL')}
+
+		{$copyeditor->getFullName()|escape}
+
+		{/if}
+		<a href="{url op="selectCopyeditor" path=$submission->getId()}" class="action">{translate key="editor.article.selectCopyeditor"}</a>
 {/if}
 
 <table width="100%" class="info">

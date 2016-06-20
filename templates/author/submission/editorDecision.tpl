@@ -14,23 +14,40 @@
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentRound())}
 {assign var=editorFiles value=$submission->getEditorFileRevisions($submission->getCurrentRound())}
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td class="label">{translate key="editor.article.decision"}</td>
-		<td>
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
+{translate key="editor.article.decision"}
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			{if $lastEditorDecision}
 				{assign var="decision" value=$lastEditorDecision.decision}
 				{translate key=$editorDecisionOptions.$decision}{if $lastEditorDecision.dateDecided != 0} {$lastEditorDecision.dateDecided|date_format:$dateFormatShort}{/if}
 			{else}
 				&mdash;
 			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+	</h5>
+			</div>
+</div>
+
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
 			{translate key="submission.notifyEditor"}
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" articleId=$submission->getId()}
 			{icon name="mail" url=$notifyAuthorUrl}
 			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,45 +58,73 @@
 			{else}
 				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+
+	</h5>
+			</div>
+</div>
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
 			{translate key="submission.editorVersion"}
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			{foreach from=$editorFiles item=editorFile key=key}
 				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$editorFile->getDateModified()|date_format:$dateFormatShort}<br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+	</h5>
+			</div>
+</div>
+
+			<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
 			{translate key="submission.authorVersion"}
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			{foreach from=$authorFiles item=authorFile key=key}
 				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="{url op="deleteArticleFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="action">{translate key="common.delete"}</a><br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+	</h5>
+			</div>
+</div>
+
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
+
 			{translate key="author.article.uploadAuthorVersion"}
-		</td>
-		<td class="value" width="80%">
-			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+	
+			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data" class="form-horizontal">
 				<input type="hidden" name="articleId" value="{$submission->getId()}" />
 				<input type="file" name="upload" class="uploadField" />
-				<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+				<input type="submit" name="submit" class="btn btn-default" value="{translate key="common.upload"}" class="button" />
 			</form>
+	</h5>
+			</div>
+</div>
 
-		</td>
-	</tr>
-</table>
 </div>

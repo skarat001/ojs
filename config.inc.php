@@ -123,7 +123,7 @@ driver = mysql
 host = localhost
 username = root
 password = 
-name = ojs2
+name = ojs
 
 ; Enable persistent connections
 persistent = Off
@@ -204,7 +204,7 @@ charset_normalization = Off
 ; Complete path to directory to store uploaded files
 ; (This directory should not be directly web-accessible)
 ; Windows users should use forward slashes
-files_dir = "C:/xampp/htdocs/ojs2/upload"
+files_dir = "upload"
 
 ; Path to the directory to store public uploaded files
 ; (This directory should be web-accessible and the specified path

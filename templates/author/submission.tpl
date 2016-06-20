@@ -32,7 +32,7 @@
 
 <div class="separator"></div>
 
-{include file="author/submission/status.tpl"}
+{include file="author/submission/sta<!-- t -->us.tpl"}
 
 <div class="separator"></div>
 

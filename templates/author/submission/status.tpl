@@ -20,8 +20,8 @@
 				<h5>
 
 		{translate key="common.status"}
-		</h5>
-			</div>
+			</h5>
+				</div>
 			<div class="col-md-6" >
 				<h5>
 					<strong>

@@ -8,33 +8,31 @@
  * Show editor's submissions in review.
  *}
 <div id="submissions">
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="8" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="5%">{sort_search key="common.id" sort="id"}</td>
-		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_search key="submissions.submitted" sort="submitDate"}</td>
-		<td width="5%">{sort_search key="submissions.sec" sort="section"}</td>
-		<td width="15%">{sort_search key="article.authors" sort="authors"}</td>
-		<td width="30%">{sort_search key="article.title" sort="title"}</td>
-		<td width="30%">
+		<th width="5%" rowspan="2">{sort_search key="common.id" sort="id"}</th>
+		<th width="5%" rowspan="2"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_search key="submissions.submitted" sort="submithate"}</th>
+		<th width="5%" rowspan="2">{sort_search key="submissions.sec" sort="section"}</th>
+		<th width="15%" rowspan="2">{sort_search key="article.authors" sort="authors"}</th>
+		<th width="30%" rowspan="2">{sort_search key="article.title" sort="title"}</th>
+		<th width="50px" rowspan="2">
 			{translate key="submission.peerReview"}
+
 			<table width="100%" class="nested">
 				<tr valign="top">
-					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.ask"}</td>
+					<td width="20px" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.ask"}</td>
 					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.due"}</td>
 					<td width="34%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.done"}</td>
 				</tr>
 			</table>
 		</td>
-		<td width="5%">{translate key="submissions.ruling"}</td>
-		<td width="5%">{translate key="article.sectionEditor"}</td>
+		<th width="5%">{translate key="submissions.ruling"}</th>
+		<th width="5%">{translate key="article.sectionEditor"}</th>
 	</tr>
-	<tr>
-		<td colspan="8" class="headseparator">&nbsp;</td>
-	</tr>
-	
+	</thead>
+
+<tbody>
 	{iterate from=submissions item=submission}
 	{assign var="highlightClass" value=$submission->getHighlightClass()}
 	{assign var="fastTracked" value=$submission->getFastTracked()}
@@ -45,7 +43,7 @@
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$submission->getId()}" class="action">{$submission->getLocalizedTitle()|strip_tags|truncate:40:"..."}</a></td>
 		<td>
-			<table width="100%">
+			<table width="100%" class="table">
 			{foreach from=$submission->getReviewAssignments() item=reviewAssignments}
 				{foreach from=$reviewAssignments item=assignment name=assignmentList}
 					{if not $assignment->getCancelled() and not $assignment->getDeclined()}
@@ -106,6 +104,7 @@
 		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 

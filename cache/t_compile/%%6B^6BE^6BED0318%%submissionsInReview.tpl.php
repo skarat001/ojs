@@ -1,30 +1,29 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 08:22:46
+<?php /* Smarty version 2.6.26, created on 2016-06-19 09:26:31
          compiled from editor/submissionsInReview.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'sort_search', 'editor/submissionsInReview.tpl', 16, false),array('function', 'translate', 'editor/submissionsInReview.tpl', 17, false),array('function', 'url', 'editor/submissionsInReview.tpl', 46, false),array('function', 'page_info', 'editor/submissionsInReview.tpl', 105, false),array('function', 'page_links', 'editor/submissionsInReview.tpl', 106, false),array('block', 'iterate', 'editor/submissionsInReview.tpl', 38, false),array('modifier', 'escape', 'editor/submissionsInReview.tpl', 41, false),array('modifier', 'date_format', 'editor/submissionsInReview.tpl', 43, false),array('modifier', 'truncate', 'editor/submissionsInReview.tpl', 45, false),array('modifier', 'strip_tags', 'editor/submissionsInReview.tpl', 46, false),array('modifier', 'default', 'editor/submissionsInReview.tpl', 54, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'sort_search', 'editor/submissionsInReview.tpl', 14, false),array('function', 'translate', 'editor/submissionsInReview.tpl', 15, false),array('function', 'url', 'editor/submissionsInReview.tpl', 44, false),array('function', 'page_info', 'editor/submissionsInReview.tpl', 103, false),array('function', 'page_links', 'editor/submissionsInReview.tpl', 104, false),array('block', 'iterate', 'editor/submissionsInReview.tpl', 36, false),array('modifier', 'escape', 'editor/submissionsInReview.tpl', 39, false),array('modifier', 'date_format', 'editor/submissionsInReview.tpl', 41, false),array('modifier', 'truncate', 'editor/submissionsInReview.tpl', 43, false),array('modifier', 'strip_tags', 'editor/submissionsInReview.tpl', 44, false),array('modifier', 'default', 'editor/submissionsInReview.tpl', 52, false),)), $this); ?>
 <div id="submissions">
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="8" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="5%"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "common.id",'sort' => 'id'), $this);?>
-</td>
-		<td width="5%"><span class="disabled"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.date.mmdd"), $this);?>
-</span><br /><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "submissions.submitted",'sort' => 'submitDate'), $this);?>
-</td>
-		<td width="5%"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "submissions.sec",'sort' => 'section'), $this);?>
-</td>
-		<td width="15%"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "article.authors",'sort' => 'authors'), $this);?>
-</td>
-		<td width="30%"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "article.title",'sort' => 'title'), $this);?>
-</td>
-		<td width="30%">
+		<th width="5%" rowspan="2"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "common.id",'sort' => 'id'), $this);?>
+</th>
+		<th width="5%" rowspan="2"><span class="disabled"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.date.mmdd"), $this);?>
+</span><br /><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "submissions.submitted",'sort' => 'submithate'), $this);?>
+</th>
+		<th width="5%" rowspan="2"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "submissions.sec",'sort' => 'section'), $this);?>
+</th>
+		<th width="15%" rowspan="2"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "article.authors",'sort' => 'authors'), $this);?>
+</th>
+		<th width="30%" rowspan="2"><?php echo $this->_plugins['function']['sort_search'][0][0]->smartySortSearch(array('key' => "article.title",'sort' => 'title'), $this);?>
+</th>
+		<th width="50px" rowspan="2">
 			<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.peerReview"), $this);?>
+
 
 			<table width="100%" class="nested">
 				<tr valign="top">
-					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.ask"), $this);?>
+					<td width="20px" style="padding: 0 4px 0 0; font-size: 1.0em"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.ask"), $this);?>
 </td>
 					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.due"), $this);?>
 </td>
@@ -33,15 +32,14 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'sort_search
 				</tr>
 			</table>
 		</td>
-		<td width="5%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submissions.ruling"), $this);?>
-</td>
-		<td width="5%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "article.sectionEditor"), $this);?>
-</td>
+		<th width="5%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submissions.ruling"), $this);?>
+</th>
+		<th width="5%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "article.sectionEditor"), $this);?>
+</th>
 	</tr>
-	<tr>
-		<td colspan="8" class="headseparator">&nbsp;</td>
-	</tr>
-	
+	</thead>
+
+<tbody>
 	<?php $this->_tag_stack[] = array('iterate', array('from' => 'submissions','item' => 'submission')); $_block_repeat=true;$this->_plugins['block']['iterate'][0][0]->smartyIterate($this->_tag_stack[count($this->_tag_stack)-1][1], null, $this, $_block_repeat);while ($_block_repeat) { ob_start(); ?>
 	<?php $this->assign('highlightClass', $this->_tpl_vars['submission']->getHighlightClass()); ?>
 	<?php $this->assign('fastTracked', $this->_tpl_vars['submission']->getFastTracked()); ?>
@@ -59,7 +57,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'sort_search
 " class="action"><?php echo ((is_array($_tmp=((is_array($_tmp=$this->_tpl_vars['submission']->getLocalizedTitle())) ? $this->_run_mod_handler('strip_tags', true, $_tmp) : smarty_modifier_strip_tags($_tmp)))) ? $this->_run_mod_handler('truncate', true, $_tmp, 40, "...") : $this->_plugins['modifier']['truncate'][0][0]->smartyTruncate($_tmp, 40, "...")); ?>
 </a></td>
 		<td>
-			<table width="100%">
+			<table width="100%" class="table">
 			<?php $_from = $this->_tpl_vars['submission']->getReviewAssignments(); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['reviewAssignments']):
 ?>
@@ -142,6 +140,7 @@ if ($this->_foreach['decisionList']['total'] > 0):
 </td>
 	</tr>
 <?php endif; ?>
+</tbody>
 </table>
 </div>
 

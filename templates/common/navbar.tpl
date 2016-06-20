@@ -19,47 +19,47 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">UI Journal</a>
+      <span class="navbar-brand"  class="btn btn-link">UI Journal</span>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
     
-   <li id="home"><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
-		<li id="about"><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
+   <li id="home"><a href="{url page="index"}"  class="btn btn-link">{translate key="navigation.home"}</a></li>
+		<li id="about"><a href="{url page="about"}" class="btn btn-link">{translate key="navigation.about"}</a></li>
 
 		{if $isUserLoggedIn}
-			<li id="userHome"><a href="{url journal="index" page="user"}">{translate key="navigation.userHome"}</a></li>
+			<li id="userHome"><a href="{url journal="index" page="user"}" class="btn btn-link">{translate key="navigation.userHome"}</a></li>
 		{else}
-			<li id="login"><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
+			<li id="login"><a href="{url page="login"} class="btn btn-link"">{translate key="navigation.login"}</a></li>
 			{if !$hideRegisterLink}
-				<li id="register"><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
+				<li id="register"><a href="{url page="user" op="register"}" class="btn btn-link">{translate key="navigation.register"}</a></li>
 			{/if}
 		{/if}{* $isUserLoggedIn *}
 
 		{if $siteCategoriesEnabled}
-			<li id="categories"><a href="{url journal="index" page="search" op="categories"}">{translate key="navigation.categories"}</a></li>
+			<li id="categories"><a href="{url journal="index" page="search" op="categories"}" class="btn btn-link">{translate key="navigation.categories"}</a></li>
 		{/if}{* $categoriesEnabled *}
 
 		{if !$currentJournal || $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
-			<li id="search"><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
+			<li id="search"><a href="{url page="search"}" class="btn btn-link">{translate key="navigation.search"}</a></li>
 		{/if}
 
 		{if $currentJournal && $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
-			<li id="current"><a href="{url page="issue" op="current"}">{translate key="navigation.current"}</a></li>
-			<li id="archives"><a href="{url page="issue" op="archive"}">{translate key="navigation.archives"}</a></li>
+			<li id="current"><a href="{url page="issue" op="current"}" class="btn btn-link">{translate key="navigation.current"}</a></li>
+			<li id="archives"><a href="{url page="issue" op="archive"}" class="btn btn-link">{translate key="navigation.archives"}</a></li>
 		{/if}
 
 		{if $enableAnnouncements}
-			<li id="announcements"><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
+			<li id="announcements"><a href="{url page="announcement"}" class="btn btn-link">{translate key="announcement.announcements"}</a></li>
 		{/if}{* enableAnnouncements *}
 
 		{call_hook name="Templates::Common::Header::Navbar::CurrentJournal"}
 
 		{foreach from=$navMenuItems item=navItem key=navItemKey}
 			{if $navItem.url != '' && $navItem.name != ''}
-				<li class="navItem" id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
+				<li class="navItem" id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}" class="btn btn-link">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
 			{/if}
 		{/foreach}
       </ul>

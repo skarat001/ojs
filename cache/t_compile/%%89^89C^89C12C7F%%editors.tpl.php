@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 06:06:50
+<?php /* Smarty version 2.6.26, created on 2016-06-19 16:07:07
          compiled from sectionEditor/submission/editors.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/editors.tpl', 12, false),array('function', 'url', 'sectionEditor/submission/editors.tpl', 13, false),array('function', 'icon', 'sectionEditor/submission/editors.tpl', 34, false),array('modifier', 'concat', 'sectionEditor/submission/editors.tpl', 32, false),array('modifier', 'to_array', 'sectionEditor/submission/editors.tpl', 33, false),array('modifier', 'strip_tags', 'sectionEditor/submission/editors.tpl', 33, false),array('modifier', 'assign', 'sectionEditor/submission/editors.tpl', 33, false),array('modifier', 'escape', 'sectionEditor/submission/editors.tpl', 34, false),array('modifier', 'date_format', 'sectionEditor/submission/editors.tpl', 62, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/editors.tpl', 12, false),array('function', 'url', 'sectionEditor/submission/editors.tpl', 13, false),array('function', 'icon', 'sectionEditor/submission/editors.tpl', 37, false),array('modifier', 'concat', 'sectionEditor/submission/editors.tpl', 35, false),array('modifier', 'to_array', 'sectionEditor/submission/editors.tpl', 36, false),array('modifier', 'strip_tags', 'sectionEditor/submission/editors.tpl', 36, false),array('modifier', 'assign', 'sectionEditor/submission/editors.tpl', 36, false),array('modifier', 'escape', 'sectionEditor/submission/editors.tpl', 37, false),array('modifier', 'date_format', 'sectionEditor/submission/editors.tpl', 65, false),)), $this); ?>
 <div id="editors">
 <h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.editors"), $this);?>
 </h3>
@@ -9,19 +9,21 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 " method="post">
 <input type="hidden" name="articleId" value="<?php echo $this->_tpl_vars['submission']->getId(); ?>
 "/>
-<table width="100%" class="listing">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="<?php if ($this->_tpl_vars['isEditor']): ?>20%<?php else: ?>25%<?php endif; ?>">&nbsp;</td>
-		<td width="30%">&nbsp;</td>
-		<td width="10%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.review"), $this);?>
-</td>
-		<td width="10%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.editing"), $this);?>
-</td>
-		<td width="<?php if ($this->_tpl_vars['isEditor']): ?>20%<?php else: ?>25%<?php endif; ?>"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
-</td>
-		<?php if ($this->_tpl_vars['isEditor']): ?><td width="10%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
-</td><?php endif; ?>
+		<th width="<?php if ($this->_tpl_vars['isEditor']): ?>20%<?php else: ?>25%<?php endif; ?>">&nbsp;</th>
+		<th width="30%">&nbsp;</th>
+		<th width="10%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.review"), $this);?>
+</th>
+		<th width="10%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.editing"), $this);?>
+</th>
+		<th width="<?php if ($this->_tpl_vars['isEditor']): ?>20%<?php else: ?>25%<?php endif; ?>"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.request"), $this);?>
+</th>
+		<?php if ($this->_tpl_vars['isEditor']): ?><th width="10%"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.action"), $this);?>
+</th><?php endif; ?>
 	</tr>
+	</thead>
 	<?php $this->assign('editAssignments', $this->_tpl_vars['submission']->getEditAssignments()); ?>
 	<?php $_from = $this->_tpl_vars['editAssignments']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['editAssignments'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['editAssignments']['total'] > 0):
@@ -31,6 +33,7 @@ if ($this->_foreach['editAssignments']['total'] > 0):
 	<?php if ($this->_tpl_vars['editAssignment']->getEditorId() == $this->_tpl_vars['userId']): ?>
 		<?php $this->assign('selfAssigned', 1); ?>
 	<?php endif; ?>
+	<tbody>
 		<tr valign="top">
 			<td><?php if ($this->_tpl_vars['editAssignment']->getIsEditor()): ?><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.editor"), $this);?>
 <?php else: ?><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.sectionEditor"), $this);?>
@@ -75,7 +78,7 @@ if ($this->_foreach['editAssignments']['total'] > 0):
 <?php else: ?>&mdash;<?php endif; ?></td>
 			<?php if ($this->_tpl_vars['isEditor']): ?>
 				<td><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'editor','op' => 'deleteEditAssignment','path' => $this->_tpl_vars['editAssignment']->getEditId()), $this);?>
-" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.delete"), $this);?>
+" class="btn btn-danger btn-xs"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.delete"), $this);?>
 </a></td>
 			<?php endif; ?>
 		</tr>
@@ -83,19 +86,24 @@ if ($this->_foreach['editAssignments']['total'] > 0):
 		<tr><td colspan="<?php if ($this->_tpl_vars['isEditor']): ?>6<?php else: ?>5<?php endif; ?>" class="nodata"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.noneAssigned"), $this);?>
 </td></tr>
 	<?php endif; unset($_from); ?>
+	</tbody>
 </table>
 <?php if ($this->_tpl_vars['isEditor']): ?>
-	<input type="submit" class="button defaultButton" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.record"), $this);?>
+
+	<input type="submit" class="btn btn-primary" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.record"), $this);?>
 "/>&nbsp;&nbsp;
+	<div class="col-md-6 pull-right">
 	<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'editor','op' => 'assignEditor','path' => 'sectionEditor','articleId' => $this->_tpl_vars['submission']->getId()), $this);?>
-" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.assignSectionEditor"), $this);?>
+" class="btn btn-info"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.assignSectionEditor"), $this);?>
 </a>
 	|&nbsp;<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'editor','op' => 'assignEditor','path' => 'editor','articleId' => $this->_tpl_vars['submission']->getId()), $this);?>
-" class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.assignEditor"), $this);?>
+" class="btn btn-success"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.assignEditor"), $this);?>
 </a>
 	<?php if (! $this->_tpl_vars['selfAssigned']): ?>|&nbsp;<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'editor','op' => 'assignEditor','path' => 'editor','editorId' => $this->_tpl_vars['userId'],'articleId' => $this->_tpl_vars['submission']->getId()), $this);?>
 " class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.addSelf"), $this);?>
-</a><?php endif; ?>
+</a>
+</div>
+	<?php endif; ?>
 <?php endif; ?>
 </form>
 </div>

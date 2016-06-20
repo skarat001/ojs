@@ -27,6 +27,7 @@
 		{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/flat_ui/css/flat-ui.css"> -->
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/app.css">
@@ -193,9 +194,9 @@
 <div class="row">
 							<h3 style="display:inline;"><small>{translate key="navigation.browse"}</small></h3>
 							<ul class="list-inline " style="display:inline;">
-								<li><a href="{url page="issue" op="archive"}" class="btn browse">{translate key="navigation.browseByIssue"}</a></li>
-								<li><a href="{url page="search" op="authors"}" class="btn browse">{translate key="navigation.browseByAuthor"}</a></li>
-								<li><a href="{url page="search" op="titles"}" class="btn browse">{translate key="navigation.browseByTitle"}</a></li>
+								<li><a href="{url page="issue" op="archive"}" class="btn browse"><small>{translate key="navigation.browseByIssue"}</small></a></li>
+								<li><a href="{url page="search" op="authors"}" class="btn browse"><small>{translate key="navigation.browseByAuthor"}</small></a></li>
+								<li><a href="{url page="search" op="titles"}" class="btn browse"><small>{translate key="navigation.browseByTitle"}</small></a></li>
 								{call_hook name="Plugins::Blocks::Navigation::BrowseBy"}
 								
 							</ul>

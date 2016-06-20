@@ -115,3 +115,18 @@ flex-direction:row;
     line-height: 1.428571429;
     border-radius: 15px;
 }
+
+.table > thead > tr > th {
+     vertical-align: middle;
+}
+
+.mgn{
+
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.inline{
+ white-space:nowrap;
+ overflow:hidden;
+}

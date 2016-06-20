@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 09:24:39
+<?php /* Smarty version 2.6.26, created on 2016-06-20 08:58:39
          compiled from announcement/list.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'counter', 'announcement/list.tpl', 17, false),array('function', 'translate', 'announcement/list.tpl', 31, false),array('function', 'url', 'announcement/list.tpl', 34, false),array('block', 'iterate', 'announcement/list.tpl', 18, false),array('modifier', 'escape', 'announcement/list.tpl', 22, false),array('modifier', 'nl2br', 'announcement/list.tpl', 29, false),)), $this); ?>
@@ -25,7 +25,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'counter', '
 	
 		
 			<p><?php echo ((is_array($_tmp=$this->_tpl_vars['announcement']->getLocalizedDescriptionShort())) ? $this->_run_mod_handler('nl2br', true, $_tmp) : smarty_modifier_nl2br($_tmp)); ?>
-</p>
+</p>	
 	
 			<em><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "announcement.posted"), $this);?>
 : <?php echo $this->_tpl_vars['announcement']->getDatePosted(); ?>

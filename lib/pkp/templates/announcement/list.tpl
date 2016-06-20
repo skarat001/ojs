@@ -26,7 +26,7 @@
 			
 	
 		
-			<p>{$announcement->getLocalizedDescriptionShort()|nl2br}</p>
+			<p>{$announcement->getLocalizedDescriptionShort()|nl2br}</p>	
 	
 			<em>{translate key="announcement.posted"}: {$announcement->getDatePosted()}</em>
 			{if $announcement->getLocalizedDescription() != null}

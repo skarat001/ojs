@@ -1,0 +1,4 @@
+http://localhost/ojs2/ojs2
+[2016-06-18 20:22:16] [##common.notice##] ##admin.scheduledTask.startTime##
+[2016-06-18 20:22:20] [##common.notice##] ##admin.fileLoader.fileProcessed##
+[2016-06-18 20:22:20] [##common.notice##] ##admin.scheduledTask.stopTime##

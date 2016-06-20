@@ -9,25 +9,22 @@
  *
  *}
 <div id="submissions">
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="9" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="5%">{sort_search key="common.id" sort="id"}</td>
-		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="submissions.submit" sort="submitDate"}</td>
-		<td width="5%">{sort_search key="submissions.sec" sort="section"}</td>
-		<td width="15%">{sort_search key="article.authors" sort="authors"}</td>
-		<td width="25%">{sort_search key="article.title" sort="title"}</td>
-		<td width="10%">{sort_search key="submission.copyedit" sort="subCopyedit"}</td>
-		<td width="10%">{sort_search key="submission.layout" sort="subLayout"}</td>
-		<td width="10%">{sort_search key="submissions.proof" sort="subProof"}</td>
-		<td width="5%">{translate key="article.sectionEditor"}</td>
+		<th width="5%">{sort_search key="common.id" sort="id"}</th>
+		<th width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="submissions.submit" sort="submithate"}</th>
+		<th width="5%">{sort_search key="submissions.sec" sort="section"}</th>
+		<th width="15%">{sort_search key="article.authors" sort="authors"}</th>
+		<th width="25%">{sort_search key="article.title" sort="title"}</th>
+		<th width="10%">{sort_search key="submission.copyedit" sort="subCopyedit"}</th>
+		<th width="10%">{sort_search key="submission.layout" sort="subLayout"}</th>
+		<th width="10%">{sort_search key="submissions.proof" sort="subProof"}</th>
+		<th width="5%">{translate key="article.sectionEditor"}</th>
 	</tr>
-	<tr>
-		<td colspan="9" class="headseparator">&nbsp;</td>
-	</tr>
+	</thead>
 	
+	<tbody>
 	{iterate from=submissions item=submission}
 	{assign var="layoutSignoff" value=$submission->getSignoff('SIGNOFF_LAYOUT')}
 	{assign var="layoutEditorProofSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_LAYOUT')}
@@ -48,23 +45,20 @@
 			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getEditorInitials()|escape} {/foreach}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="9" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
 		<td colspan="9" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
-	<tr>
-		<td colspan="9" class="endseparator">&nbsp;</td>
-	</tr>
+
 {else}
 	<tr>
 		<td colspan="5" align="left">{page_info iterator=$submissions}</td>
 		<td colspan="4" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 06:05:49
+<?php /* Smarty version 2.6.26, created on 2016-06-19 06:24:51
          compiled from author/submission/editorDecision.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'author/submission/editorDecision.tpl', 12, false),array('function', 'url', 'author/submission/editorDecision.tpl', 34, false),array('function', 'icon', 'author/submission/editorDecision.tpl', 35, false),array('modifier', 'date_format', 'author/submission/editorDecision.tpl', 23, false),array('modifier', 'assign', 'author/submission/editorDecision.tpl', 34, false),array('modifier', 'to_array', 'author/submission/editorDecision.tpl', 52, false),array('modifier', 'escape', 'author/submission/editorDecision.tpl', 52, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'author/submission/editorDecision.tpl', 12, false),array('function', 'url', 'author/submission/editorDecision.tpl', 51, false),array('function', 'icon', 'author/submission/editorDecision.tpl', 52, false),array('modifier', 'date_format', 'author/submission/editorDecision.tpl', 31, false),array('modifier', 'assign', 'author/submission/editorDecision.tpl', 51, false),array('modifier', 'to_array', 'author/submission/editorDecision.tpl', 78, false),array('modifier', 'escape', 'author/submission/editorDecision.tpl', 78, false),)), $this); ?>
 <div id="editorDecision">
 <h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.editorDecision"), $this);?>
 </h3>
@@ -9,11 +9,19 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 <?php $this->assign('authorFiles', $this->_tpl_vars['submission']->getAuthorFileRevisions($this->_tpl_vars['submission']->getCurrentRound())); ?>
 <?php $this->assign('editorFiles', $this->_tpl_vars['submission']->getEditorFileRevisions($this->_tpl_vars['submission']->getCurrentRound())); ?>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.decision"), $this);?>
-</td>
-		<td>
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
+<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.decision"), $this);?>
+
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			<?php if ($this->_tpl_vars['lastEditorDecision']): ?>
 				<?php $this->assign('decision', $this->_tpl_vars['lastEditorDecision']['decision']); ?>
 				<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['editorDecisionOptions'][$this->_tpl_vars['decision']]), $this);?>
@@ -22,14 +30,23 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 			<?php else: ?>
 				&mdash;
 			<?php endif; ?>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+	</h5>
+			</div>
+</div>
+
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
 			<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.notifyEditor"), $this);?>
 
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			<?php echo ((is_array($_tmp=$this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'emailEditorDecisionComment','articleId' => $this->_tpl_vars['submission']->getId()), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'notifyAuthorUrl') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'notifyAuthorUrl'));?>
 
 			<?php echo $this->_plugins['function']['icon'][0][0]->smartyIcon(array('name' => 'mail','url' => $this->_tpl_vars['notifyAuthorUrl']), $this);?>
@@ -49,14 +66,23 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 </a><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.noComments"), $this);?>
 
 			<?php endif; ?>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+
+	</h5>
+			</div>
+</div>
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
 			<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.editorVersion"), $this);?>
 
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			<?php $_from = $this->_tpl_vars['editorFiles']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['key'] => $this->_tpl_vars['editorFile']):
 ?>
@@ -68,14 +94,23 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 				<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.none"), $this);?>
 
 			<?php endif; unset($_from); ?>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+	</h5>
+			</div>
+</div>
+
+			<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
 			<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.authorVersion"), $this);?>
 
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+
 			<?php $_from = $this->_tpl_vars['authorFiles']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['key'] => $this->_tpl_vars['authorFile']):
 ?>
@@ -90,24 +125,34 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 				<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.none"), $this);?>
 
 			<?php endif; unset($_from); ?>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
+	</h5>
+			</div>
+</div>
+
+		<div class="row">
+			<div class="col-md-3 ">
+				<h5>
+					<strong>		
+
+
 			<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "author.article.uploadAuthorVersion"), $this);?>
 
-		</td>
-		<td class="value" width="80%">
+				</strong>
+				</h5>
+			</div>
+			<div class="col-md-6" >
+				<h5>
+	
 			<form method="post" action="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'uploadRevisedVersion'), $this);?>
-" enctype="multipart/form-data">
+" enctype="multipart/form-data" class="form-horizontal">
 				<input type="hidden" name="articleId" value="<?php echo $this->_tpl_vars['submission']->getId(); ?>
 " />
 				<input type="file" name="upload" class="uploadField" />
-				<input type="submit" name="submit" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.upload"), $this);?>
+				<input type="submit" name="submit" class="btn btn-default" value="<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.upload"), $this);?>
 " class="button" />
 			</form>
+	</h5>
+			</div>
+</div>
 
-		</td>
-	</tr>
-</table>
 </div>

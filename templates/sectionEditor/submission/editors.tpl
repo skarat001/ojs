@@ -12,20 +12,23 @@
 <h3>{translate key="user.role.editors"}</h3>
 <form action="{url page="editor" op="setEditorFlags"}" method="post">
 <input type="hidden" name="articleId" value="{$submission->getId()}"/>
-<table width="100%" class="listing">
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="{if $isEditor}20%{else}25%{/if}">&nbsp;</td>
-		<td width="30%">&nbsp;</td>
-		<td width="10%">{translate key="submission.review"}</td>
-		<td width="10%">{translate key="submission.editing"}</td>
-		<td width="{if $isEditor}20%{else}25%{/if}">{translate key="submission.request"}</td>
-		{if $isEditor}<td width="10%">{translate key="common.action"}</td>{/if}
+		<th width="{if $isEditor}20%{else}25%{/if}">&nbsp;</th>
+		<th width="30%">&nbsp;</th>
+		<th width="10%">{translate key="submission.review"}</th>
+		<th width="10%">{translate key="submission.editing"}</th>
+		<th width="{if $isEditor}20%{else}25%{/if}">{translate key="submission.request"}</th>
+		{if $isEditor}<th width="10%">{translate key="common.action"}</th>{/if}
 	</tr>
+	</thead>
 	{assign var=editAssignments value=$submission->getEditAssignments()}
 	{foreach from=$editAssignments item=editAssignment name=editAssignments}
 	{if $editAssignment->getEditorId() == $userId}
 		{assign var=selfAssigned value=1}
 	{/if}
+	<tbody>
 		<tr valign="top">
 			<td>{if $editAssignment->getIsEditor()}{translate key="user.role.editor"}{else}{translate key="user.role.sectionEditor"}{/if}</td>
 			<td>
@@ -61,18 +64,23 @@
 			</td>
 			<td>{if $editAssignment->getDateNotified()}{$editAssignment->getDateNotified()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
 			{if $isEditor}
-				<td><a href="{url page="editor" op="deleteEditAssignment" path=$editAssignment->getEditId()}" class="action">{translate key="common.delete"}</a></td>
+				<td><a href="{url page="editor" op="deleteEditAssignment" path=$editAssignment->getEditId()}" class="btn btn-danger btn-xs">{translate key="common.delete"}</a></td>
 			{/if}
 		</tr>
 	{foreachelse}
 		<tr><td colspan="{if $isEditor}6{else}5{/if}" class="nodata">{translate key="common.noneAssigned"}</td></tr>
 	{/foreach}
+	</tbody>
 </table>
 {if $isEditor}
-	<input type="submit" class="button defaultButton" value="{translate key="common.record"}"/>&nbsp;&nbsp;
-	<a href="{url page="editor" op="assignEditor" path="sectionEditor" articleId=$submission->getId()}" class="action">{translate key="editor.article.assignSectionEditor"}</a>
-	|&nbsp;<a href="{url page="editor" op="assignEditor" path="editor" articleId=$submission->getId()}" class="action">{translate key="editor.article.assignEditor"}</a>
-	{if !$selfAssigned}|&nbsp;<a href="{url page="editor" op="assignEditor" path="editor" editorId=$userId articleId=$submission->getId()}" class="action">{translate key="common.addSelf"}</a>{/if}
+
+	<input type="submit" class="btn btn-primary" value="{translate key="common.record"}"/>&nbsp;&nbsp;
+	<div class="col-md-6 pull-right">
+	<a href="{url page="editor" op="assignEditor" path="sectionEditor" articleId=$submission->getId()}" class="btn btn-info">{translate key="editor.article.assignSectionEditor"}</a>
+	|&nbsp;<a href="{url page="editor" op="assignEditor" path="editor" articleId=$submission->getId()}" class="btn btn-success">{translate key="editor.article.assignEditor"}</a>
+	{if !$selfAssigned}|&nbsp;<a href="{url page="editor" op="assignEditor" path="editor" editorId=$userId articleId=$submission->getId()}" class="action">{translate key="common.addSelf"}</a>
+</div>
+	{/if}
 {/if}
 </form>
 </div>

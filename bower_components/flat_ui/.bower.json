@@ -1,0 +1,14 @@
+{
+  "name": "flat_ui",
+  "homepage": "https://github.com/stanley-gu/Flat-UI",
+  "_release": "09314bc572",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "09314bc57221a1184398cf93d56f0c03ac53f6f5"
+  },
+  "_source": "https://github.com/stanley-gu/Flat-UI.git",
+  "_target": "*",
+  "_originalSource": "flat_ui",
+  "_direct": true
+}

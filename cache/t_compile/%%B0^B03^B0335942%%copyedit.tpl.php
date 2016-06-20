@@ -1,10 +1,11 @@
-<?php /* Smarty version 2.6.26, created on 2016-06-16 06:06:42
+<?php /* Smarty version 2.6.26, created on 2016-06-20 06:49:00
          compiled from sectionEditor/submission/copyedit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/copyedit.tpl', 12, false),array('function', 'url', 'sectionEditor/submission/copyedit.tpl', 15, false),array('function', 'icon', 'sectionEditor/submission/copyedit.tpl', 46, false),array('modifier', 'escape', 'sectionEditor/submission/copyedit.tpl', 22, false),array('modifier', 'assign', 'sectionEditor/submission/copyedit.tpl', 43, false),array('modifier', 'date_format', 'sectionEditor/submission/copyedit.tpl', 58, false),array('modifier', 'default', 'sectionEditor/submission/copyedit.tpl', 58, false),array('modifier', 'to_array', 'sectionEditor/submission/copyedit.tpl', 95, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'sectionEditor/submission/copyedit.tpl', 12, false),array('function', 'url', 'sectionEditor/submission/copyedit.tpl', 12, false),array('function', 'icon', 'sectionEditor/submission/copyedit.tpl', 48, false),array('modifier', 'escape', 'sectionEditor/submission/copyedit.tpl', 24, false),array('modifier', 'assign', 'sectionEditor/submission/copyedit.tpl', 45, false),array('modifier', 'date_format', 'sectionEditor/submission/copyedit.tpl', 60, false),array('modifier', 'default', 'sectionEditor/submission/copyedit.tpl', 60, false),array('modifier', 'to_array', 'sectionEditor/submission/copyedit.tpl', 97, false),)), $this); ?>
 <div id="copyedit">
 <h3><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "submission.copyediting"), $this);?>
-</h3>
+ <a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'copy'), $this);?>
+')" class="btn btn-info btn-circle"> <i class="fa fa-question "/></a></h3>
 
 <?php if ($this->_tpl_vars['currentJournal']->getLocalizedSetting('copyeditInstructions')): ?>
 <p><a href="javascript:openHelp('<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'instructions','path' => 'copy'), $this);?>
@@ -13,17 +14,19 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'translate',
 <?php endif; ?>
 
 <?php if ($this->_tpl_vars['useCopyeditors']): ?>
-<table width="100%" class="data">
-	<tr>
-		<td width="20%" class="label"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.copyeditor"), $this);?>
-</td>
-		<?php if ($this->_tpl_vars['submission']->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL')): ?><td width="20%" class="value"><?php echo ((is_array($_tmp=$this->_tpl_vars['copyeditor']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
-</td><?php endif; ?>
-		<td class="value"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'selectCopyeditor','path' => $this->_tpl_vars['submission']->getId()), $this);?>
+
+<?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "user.role.copyeditor"), $this);?>
+
+
+		<?php if ($this->_tpl_vars['submission']->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL')): ?>
+
+		<?php echo ((is_array($_tmp=$this->_tpl_vars['copyeditor']->getFullName())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+
+
+		<?php endif; ?>
+		<a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('op' => 'selectCopyeditor','path' => $this->_tpl_vars['submission']->getId()), $this);?>
 " class="action"><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "editor.article.selectCopyeditor"), $this);?>
-</a></td>
-	</tr>
-</table>
+</a>
 <?php endif; ?>
 
 <table width="100%" class="info">
