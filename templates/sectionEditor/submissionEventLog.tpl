@@ -14,19 +14,14 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
-	{if $canReview}<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>{/if}
-	{if $canEdit}<li><a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a></li>{/if}
-	<li><a href="{url op="submissionHistory" path=$submission->getId()}">{translate key="submission.history"}</a></li>
-	<li><a href="{url op="submissionCitations" path=$submission->getId()}">{translate key="submission.citations"}</a></li>
+<ul class="nav nav-pills">
+	<li class="nav-item "><a href="{url op="submission" path=$submission->getId()}" class="nav-link">{translate key="submission.summary"}</a></li>
+	{if $canReview}<li class="nav-item "><a href="{url op="submissionReview" path=$submission->getId()}" class="nav-link">{translate key="submission.review"}</a></li>{/if}
+	{if $canEdit}<li class="nav-item "><a href="{url op="submissionEditing" path=$submission->getId()}" class="nav-link">{translate key="submission.editing"}</a></li>{/if}
+	<li class="nav-item active"><a href="{url op="submissionHistory" path=$submission->getId()}" class="nav-link">{translate key="submission.history"}</a></li>
+	<li class="nav-item"><a href="{url op="submissionCitations" path=$submission->getId()}" class="nav-link">{translate key="submission.citations"}</a></li>
 </ul>
-
-<ul class="menu">
-	<li class="current"><a href="{url op="submissionEventLog" path=$submission->getId()}">{translate key="submission.history.submissionEventLog"}</a></li>
-	<li><a href="{url op="submissionEmailLog" path=$submission->getId()}">{translate key="submission.history.submissionEmailLog"}</a></li>
-	<li><a href="{url op="submissionNotes" path=$submission->getId()}">{translate key="submission.history.submissionNotes"}</a></li>
-</ul>
+<hr>
 
 {include file="sectionEditor/submission/summary.tpl"}
 
@@ -34,15 +29,18 @@
 
 <div id="eventLogEntries">
 <h3>{translate key="submission.history.submissionEventLog"}</h3>
-<table width="100%" class="listing">
-	<tr><td class="headseparator" colspan="4">&nbsp;</td></tr>
+<table width="100%" class="table table-striped">
+<thead>
+	
 	<tr valign="top" class="heading">
-		<td width="7%">{translate key="common.date"}</td>
-		<td width="25%">{translate key="common.user"}</td>
-		<td>{translate key="common.event"}</td>
-		<td width="56" align="right">{translate key="common.action"}</td>
+		<th width="15%	%">{translate key="common.date"}</th>
+		<th width="15%">{translate key="common.user"}</th>
+		<th>{translate key="common.event"}</th>
+		<th width="15%" align="right">{translate key="common.action"}</th>
 	</tr>
-	<tr><td class="headseparator" colspan="4">&nbsp;</td></tr>
+	</thead>
+	
+	<tbody>
 {iterate from=eventLogEntries item=logEntry}
 	<tr valign="top">
 		<td>{$logEntry->getDateLogged()|date_format:$dateFormatShort}</td>
@@ -56,29 +54,27 @@
 			<br />
 			{$logEntry->getTranslatedMessage()|strip_tags|truncate:60:"..."|escape}
 		</td>
-		<td align="right"><a href="{url op="submissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')" class="icon">{translate key="common.delete"}</a>{/if}</td>
+		<td><a href="{url op="submissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="btn btn-info btn-xs">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="btn btn-danger btn-xs" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="4" class="{if $eventLogEntries->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+	
 {/iterate}
 {if $eventLogEntries->wasEmpty()}
 	<tr valign="top">
 		<td colspan="4" class="nodata">{translate key="submission.history.noLogEntries"}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="4" class="endseparator">&nbsp;</td>
-	</tr>
+	
+
 {else}
 	<tr>
 		<td colspan="2" align="left">{page_info iterator=$eventLogEntries}</td>
 		<td colspan="2" align="right">{page_links anchor="eventLogEntries" name="eventLogEntries" iterator=$eventLogEntries}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 
 {if $isEditor}
-<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>
+<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()}" class="btn btn-danger" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>
 {/if}
 </div>
 {include file="common/footer.tpl"}

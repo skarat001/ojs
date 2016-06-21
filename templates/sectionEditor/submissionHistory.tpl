@@ -55,26 +55,24 @@
 </ul>
 <hr>
 
-<ul class="menu">
-	<li><a href="{url op="submissionEventLog" path=$submission->getId()}">{translate key="submission.history.submissionEventLog"}</a></li>
-	<li><a href="{url op="submissionEmailLog" path=$submission->getId()}">{translate key="submission.history.submissionEmailLog"}</a></li>
-	<li><a href="{url op="submissionNotes" path=$submission->getId()}">{translate key="submission.history.submissionNotes"}</a></li>
-</ul>
+
 
 {include file="sectionEditor/submission/summary.tpl"}
 
 <div class="separator"></div>
 <div id="submissionEventLog">
 <h3>{translate key="submission.history.submissionEventLog"} - {translate key="submission.history.recentLogEntries"}</h3>
-<table width="100%" class="listing">
-	<tr><td class="headseparator" colspan="4">&nbsp;</td></tr>
-	<tr class="heading" valign="bottom">
-		<td width="7%">{translate key="common.date"}</td>
-		<td width="25%">{translate key="common.user"}</td>
-		<td>{translate key="common.event"}</td>
-		<td width="56" align="right">{translate key="common.action"}</td>
+<table width="100%" class="table table-striped">
+<thead>
+	<tr  valign="bottom">
+
+		<th width="15%">{translate key="common.date"}</th>
+		<th width="15%">{translate key="common.user"}</th>
+		<th>{translate key="common.event"}</th>
+		<th width="15%" align="right">{translate key="common.action"}</th>
 	</tr>
-	<tr><td class="headseparator" colspan="4">&nbsp;</td></tr>
+	</thead>
+<tbody>
 {iterate from=eventLogEntries item=logEntry}
 	<tr valign="top">
 		<td>{$logEntry->getDateLogged()|date_format:$dateFormatShort}</td>
@@ -88,24 +86,21 @@
 			<br />
 			{$logEntry->getTranslatedMessage()|strip_tags|truncate:60:"..."}
 		</td>
-		<td align="right"><a href="{url op="submissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
+		<td><a href="{url op="submissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="btn btn-info btn-xs">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="btn btn-danger btn-xs" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="4" class="{if $eventLogEntries->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
 {/iterate}
 {if $eventLogEntries->wasEmpty()}
 	<tr valign="top">
 		<td colspan="4" class="nodata">{translate key="submission.history.noLogEntries"}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="4" class="endseparator">&nbsp;</td>
-	</tr>
+
 {/if}
+</tbody>
 </table>
 
-<a href="{url op="submissionEventLog" path=$submission->getId()}" class="action">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
-<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
+<a href="{url op="submissionEventLog" path=$submission->getId()}" class="btn btn-info">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
+<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()}" class="btn btn-info" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
 </div>
 <br /><br />
 
@@ -113,40 +108,38 @@
 <div id="submissionEmailLog">
 <h3>{translate key="submission.history.submissionEmailLog"} - {translate key="submission.history.recentLogEntries"}</h3>
 
-<table width="100%" class="listing">
-	<tr><td class="headseparator" colspan="5">&nbsp;</td></tr>
+<table width="100%" class="table table-striped">
+	<thead>
 	<tr class="heading" valign="bottom">
-		<td width="7%">{translate key="common.date"}</td>
-		<td width="25%">{translate key="email.sender"}</td>
-		<td width="20%">{translate key="email.recipients"}</td>
-		<td>{translate key="common.subject"}</td>
-		<td width="60" align="right">{translate key="common.action"}</td>
+		<th width="7%">{translate key="common.date"}</th>
+		<th width="25%">{translate key="email.sender"}</th>
+		<th width="20%">{translate key="email.recipients"}</th>
+		<th>{translate key="common.subject"}</th>
+		<th width="15%" align="right">{translate key="common.action"}</th>
 	</tr>
-	<tr><td class="headseparator" colspan="6">&nbsp;</td></tr>
+	</thead>
+	<tbody>
 {iterate from=emailLogEntries item=logEntry}
 	<tr valign="top">
 		<td>{$logEntry->getDateSent()|date_format:$dateFormatShort}</td>
 		<td>{$logEntry->getFrom()|truncate:40:"..."|escape}</td>
 		<td>{$logEntry->getRecipients()|truncate:40:"..."|escape}</td>
 		<td>{$logEntry->getSubject()|truncate:60:"..."|escape}</td>
-		<td><a href="{url op="submissionEmailLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEmailLog" path=$submission->getId()|to_array:$logEntry->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
+		<td><a href="{url op="submissionEmailLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="btn btn-info btn-xs">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEmailLog" path=$submission->getId()|to_array:$logEntry->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmDeleteLogEntry"}')" class="btn btn-danger btn-xs">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="5" class="{if $emailLogEntries->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+	
 {/iterate}
 {if $emailLogEntries->wasEmpty()}
 	<tr valign="top">
 		<td colspan="5" class="nodata">{translate key="submission.history.noLogEntries"}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="5" class="endseparator">&nbsp;</td>
-	</tr>
+	
 {/if}
+</tbody>
 </table>
 
-<a class="action" href="{url op="submissionEmailLog" path=$submission->getId()}">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
-<a class="action" href="{url page="editor" op="clearsubmissionEmailLog" path=$submission->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
+<a class="btn btn-info" href="{url op="submissionEmailLog" path=$submission->getId()}">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
+<a class="btn btn-danger" href="{url page="editor" op="clearsubmissionEmailLog" path=$submission->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
 </div>
 <br /><br />
 
@@ -154,15 +147,14 @@
 <div id="submissionNotes">
 <h3>{translate key="submission.notes"}</h3>
 
-<table width="100%" class="listing">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+<table width="100%" class="table table-striped">
+	<thead>
 	<tr class="heading" valign="bottom">
-		<td width="7%">{translate key="common.date"}</td>
-		<td width="60%">{translate key="common.title"}</td>
-		<td width="25%">{translate key="submission.notes.attachedFile"}</td>
-		<td width="10%" align="right">{translate key="common.action"}</td>
-	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+		<th width="7%">{translate key="common.date"}</th>
+		<th width="53">{translate key="common.title"}</th>
+		<th width="25%">{translate key="submission.notes.attachedFile"}</th>
+		<th width="15%" align="right">{translate key="common.action"}</th>
+
 {iterate from=submissionNotes item=note}
 	<script type="text/javascript">
 		<!--
@@ -171,28 +163,26 @@
 	</script>
 	<tr valign="top">
 		<td>{$note->getDateCreated()|date_format:$dateFormatShort}</td>
-		<td><a class="action" href="javascript:toggleNote({$note->getId()})">{$note->getTitle()|escape}</a><div style="display: none" id="{$note->getId()}" name="{$note->getId()}">{$note->getNote()|strip_unsafe_html|nl2br}</div></td>
-		<td>{if $note->getFileId()}<a class="action" href="{url op="downloadFile" path=$submission->getId()|to_array:$note->getFileId()}">{$note->getOriginalFileName()|escape}</a>{else}&mdash;{/if}</td>
-		<td align="right"><a href="{url op="submissionNotes" path=$submission->getId()|to_array:"edit":$note->getId()}" class="action">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="removeSubmissionNote" articleId=$submission->getId() noteId=$note->getId() fileId=$note->getFileId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a class="btn btn-info btn-xs" href="javascript:toggleNote({$note->getId()})">{$note->getTitle()|escape}</a><div style="display: none" id="{$note->getId()}" name="{$note->getId()}">{$note->getNote()|strip_unsafe_html|nl2br}</div></td>
+		<td>{if $note->getFileId()}<a class="btn btn-info btn-xs" href="{url op="downloadFile" path=$submission->getId()|to_array:$note->getFileId()}">{$note->getOriginalFileName()|escape}</a>{else}&mdash;{/if}</td>
+		<td align="right"><a href="{url op="submissionNotes" path=$submission->getId()|to_array:"edit":$note->getId()}" class="btn btn-danger btn-xs">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="removeSubmissionNote" articleId=$submission->getId() noteId=$note->getId() fileId=$note->getFileId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
-	<tr valign="top">
-		<td colspan="6" class="{if $submissionNotes->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+	
+	</thead>
 {/iterate}
 {if $submissionNotes->wasEmpty()}
 	<tr valign="top">
 		<td colspan="6" class="nodata">{translate key="submission.notes.noSubmissionNotes"}</td>
 	</tr>
-	<tr valign="top">
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
+
 {/if}
+</tbody>
 </table>
 
-<a class="action" href="{url op="submissionNotes" path=$submission->getId()}">{translate key="submission.notes.viewNotes"}</a> |
-<div style="display:inline" id="expandNotes"><a class="action" href="javascript:toggleNoteAll()">{translate key="submission.notes.expandNotes"}</a></div><div style="display: none" id="collapseNotes"><a class="action" href="javascript:toggleNoteAll()">{translate key="submission.notes.collapseNotes"}</a></div> |
-<a class="action" href="{url op="submissionNotes" path=$submission->getId()|to_array:"add"}">{translate key="submission.notes.addNewNote"}</a> |
-<a class="action" href="{url op="clearAllSubmissionNotes" articleId=$submission->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDeleteAll"}')">{translate key="submission.notes.clearAllNotes"}</a>
+<a class="btn  btn-info" href="{url op="submissionNotes" path=$submission->getId()}">{translate key="submission.notes.viewNotes"}</a> |
+<div style="display:inline" id="expandNotes"><a class="btn btn-primary" href="javascript:toggleNoteAll()">{translate key="submission.notes.expandNotes"}</a></div><div style="display: none" id="collapseNotes"><a class="btn btn-primary" href="javascript:toggleNoteAll()">{translate key="submission.notes.collapseNotes"}</a></div> |
+<a class="btn btn-success" href="{url op="submissionNotes" path=$submission->getId()|to_array:"add"}">{translate key="submission.notes.addNewNote"}</a> |
+<a class="btn btn-danger" href="{url op="clearAllSubmissionNotes" articleId=$submission->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDeleteAll"}')">{translate key="submission.notes.clearAllNotes"}</a>
 </div>
 {include file="common/footer.tpl"}
 
