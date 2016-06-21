@@ -22,27 +22,34 @@
 	</tr>
 {/if}
 {iterate from=announcements item=announcement}
+
 	<tr class="title">
 	{if $announcement->getTypeId()}
-		<td class="title"><h4 class="text-capitalize">{$announcement->getAnnouncementTypeName()|escape}: {$announcement->getLocalizedTitle()|escape}</h4></td>
+		<th class="title"><h4 class="text-capitalize">{$announcement->getAnnouncementTypeName()|escape}: {$announcement->getLocalizedTitle()|escape}</h4></th>
 	{else}
-		<td class="title"><h4>{$announcement->getLocalizedTitle()|escape}</h4></td>
+		<th class="title"><h4>{$announcement->getLocalizedTitle()|escape}</h4></th>
 	{/if}
-		<td class="more">&nbsp;</td>
+		<th class="more">&nbsp;</th>
 	</tr>
 	<tr class="description">
-		<td class="description">{$announcement->getLocalizedDescriptionShort()|nl2br}</td>
+		<td class="description">15{$announcement->getLocalizedDescriptionShort()|nl2br}</td>
 		<td class="more">&nbsp;</td>
 	</tr>
 	<tr class="details">
-		<td class="posted">{translate key="announcement.posted"}: {$announcement->getDatePosted()}</td>
+
+		<td class="posted"><small>{translate key="announcement.posted"}: {$announcement->getDatePosted()}</small></td>
 		{if $announcement->getLocalizedDescription() != null}
-			<td class="more"><a href="{url op="view" path=$announcement->getId()}">{translate key="announcement.viewLink"}</a></td>
+			<td class="more" width="15%"><a href="{url op="view" path=$announcement->getId()}" class="btn btn-info btn-xs">{translate key="announcement.viewLink"}</a>
+
+			</td>
+
 		{/if}
+
 	</tr>
 	<tr>
-		<td colspan="2" class="{if $announcements->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="2" class="{if $announcements->eof()}end{/if}separator"><hr></td>
 	</tr>
+	
 {/iterate}
 {if $announcements->wasEmpty()}
 	<tr>
@@ -56,6 +63,7 @@
 		<td align="left">{page_info iterator=$announcements}</td>
 		<td align="right">{page_links anchor="announcements" name="announcements" iterator=$announcements}</td>
 	</tr>
+
 {/if}
 </table>
 </div>

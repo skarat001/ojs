@@ -17,48 +17,89 @@
 <div id="authors">
 <h3>{translate key="article.authors"}</h3>
 	
-<table width="100%" class="data">
+
 	{foreach name=authors from=$authors key=authorIndex item=author}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="user.name"}</td>
-		<td width="80%" class="value">
+<div class="row">
+<div class="col-md-3">
+<strong>
+{translate key="user.name"}
+</strong>
+</div>
+<div class="col-md-6">
 			{assign var=emailString value=$author.firstName|concat:" ":$author.middleName:" ":$author.lastName:" <":$author.email:">"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl articleId=$articleId}
 			{$author.firstName|escape} {$author.middleName|escape} {$author.lastName|escape} {icon name="mail" url=$url}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="user.url"}</td>
-		<td class="value">{$author.url|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$author.affiliation.$formLocale|escape|nl2br|default:"&mdash;"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="common.country"}</td>
-		<td class="value">{$author.countryLocalized|escape|default:"&mdash;"}</td>
-	</tr>
+	</div>
+	</div>
+
+<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="user.url"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$author.url|escape|default:"&mdash;"}
+</div>
+	</div>
+
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="user.affiliation"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$author.affiliation.$formLocale|escape|nl2br|default:"&mdash;"}
+
+</div>
+	</div>
+
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="common.country"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$author.countryLocalized|escape|default:"&mdash;"}
+</div>
+	</div>
+
 	{if $currentJournal->getSetting('requireAuthorCompetingInterests')}
-	<tr valign="top">
-		<td class="label">
+	
+<div class="row">
+<div class="col-md-3">
+<strong>
 			{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
 			{translate key="author.competingInterests" competingInterestGuidelinesUrl=$competingInterestGuidelinesUrl}
-		</td>
-		<td class="value">{$author.competingInterests.$formLocale|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
+		</strong>
+</div>
+<div class="col-md-6">
+
+		{$author.competingInterests.$formLocale|strip_unsafe_html|nl2br|default:"&mdash;"}<
+</div>
+	</div>
+
 	{/if}
-	<tr valign="top">
-		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$author.biography.$formLocale|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
+	
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="user.biography"}
+	</strong>
+</div>
+<div class="col-md-6">
+	{$author.biography.$formLocale|strip_unsafe_html|nl2br|default:"&mdash;"}
+</div>
+	</div>
 	{if !$smarty.foreach.authors.last}
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+	
+
 	{/if}
 	{/foreach}
-</table>
+
+
 </div>
 
 <div class="separator"></div>
@@ -66,113 +107,153 @@
 
 <div id="titleAndAbstract">
 <h3>{translate key="submission.titleAndAbstract"}</h3>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.title"}</td>
-		<td width="80%" class="value">{$title[$formLocale]|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
-
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="article.abstract"}</td>
-		<td class="value">{$abstract[$formLocale]|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
-</table>
+<div class="row">
+<div class="col-md-3">
+<strong>
+{translate key="article.title"}
+</strong>
+</div>
+<div class="col-md-6">
+{$title[$formLocale]|strip_unsafe_html|default:"&mdash;"}
+</div>
+	</div>
+<div class="row">
+<div class="col-md-3">
+<strong>
+{translate key="article.abstract"}
+</strong>
+</div>
+<div class="col-md-6">
+{$abstract[$formLocale]|strip_unsafe_html|nl2br|default:"&mdash;"}
+</div>
+	</div>
 </div>
 <div class="separator"></div>
 <div id="cover">
 <h3>{translate key="editor.article.cover"}</h3>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="coverPage" key="editor.article.coverPage"}</td>
-		<td width="80%" class="value">{if $fileName[$formLocale]}<a href="javascript:openWindow('{$publicFilesDir}/{$fileName[$formLocale]|escape:"url"}');" class="file">{$originalFileName[$formLocale]}</a>{else}&mdash;{/if}</td>
-	</tr>
-
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="coverPageAltText" key="common.altText"}</td>
-		<td class="value">{$coverPageAltText[$formLocale]|escape}</td>
-	</tr>
-</table>
+<div class="row">
+<div class="col-md-3">
+<strong>
+{fieldLabel name="coverPage" key="editor.article.coverPage"}
+</strong>
+</div>
+<div class="col-md-6">
+{if $fileName[$formLocale]}<a href="javascript:openWindow('{$publicFilesDir}/{$fileName[$formLocale]|escape:"url"}');" class="file">{$originalFileName[$formLocale]}</a>{else}&mdash;{/if}
+</div>
+	</div>
+<div class="row">
+<div class="col-md-3">
+<strong>
+{fieldLabel name="coverPageAltText" key="common.altText"}
+</strong>
+</div>
+<div class="col-md-6">
+{$coverPageAltText[$formLocale]|escape}
+</div>
+	</div>
 </div>
 <div class="separator"></div>
 <div id="indexing">
 <h3>{translate key="submission.indexing"}</h3>
 	
-<table width="100%" class="data">
+
 	{if $currentJournal->getSetting('metaDiscipline')}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.discipline"}</td>
-		<td width="80%" class="value">{$discipline[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.discipline"}
+	</strong>
+</div>
+<div class="col-md-6">
+	{$discipline[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
+
 	{/if}
 	{if $currentJournal->getSetting('metaSubjectClass')}
-	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%"class="label">{translate key="article.subjectClassification"}</td>
-		<td width="80%" class="value">{$subjectClass[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+	
+	<a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a>
+
+<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.subjectClassification"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$subjectClass[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
 	{/if}
 	{if $currentJournal->getSetting('metaSubject')}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.subject"}</td>
-		<td width="80%" class="value">{$subject[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.subject"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$subject[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
 	{/if}
 	{if $currentJournal->getSetting('metaCoverage')}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.coverageGeo"}</td>
-		<td width="80%" class="value">{$coverageGeo[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="article.coverageChron"}</td>
-		<td class="value">{$coverageChron[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="article.coverageSample"}</td>
-		<td class="value">{$coverageSample[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.coverageGeo"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$coverageGeo[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
+
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.coverageChron"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$coverageChron[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
+
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.coverageSample"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$coverageSample[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
 	{/if}
 	{if $currentJournal->getSetting('metaType')}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.type"}</td>
-		<td width="80%" class="value">{$type[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.type"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$type[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
 	{/if}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.language"}</td>
-		<td width="80%" class="value">{$language|escape|default:"&mdash;"}</td>
-	</tr>
-</table>
+	<div class="row">
+<div class="col-md-3">
+<strong>
+	{translate key="article.language"}
+</strong>
+</div>
+<div class="col-md-6">
+	{$language|escape|default:"&mdash;"}
+</div>
+	</div>
 </div>
 
 <div class="separator"></div>
@@ -180,12 +261,17 @@
 <div id="supportingAgencies">
 <h3>{translate key="submission.supportingAgencies"}</h3>
 	
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="submission.agencies"}</td>
-		<td width="80%" class="value">{$sponsor[$formLocale]|escape|default:"&mdash;"}</td>
-	</tr>
-</table>
+<div class="row">
+<div class="col-md-3">
+<strong>
+	
+	{translate key="submission.agencies"}
+	</strong>
+</div>
+<div class="col-md-6">
+	{$sponsor[$formLocale]|escape|default:"&mdash;"}
+</div>
+	</div>
 </div>
 
 {include file="common/footer.tpl"}

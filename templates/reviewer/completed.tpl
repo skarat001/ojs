@@ -9,17 +9,18 @@
  *
  *}
 <div id="submissions">
-<table class="listing" width="100%">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+<table class="table table-striped" width="100%">
+<thead>
 	<tr class="heading" valign="bottom">
 		<td width="5%">{sort_heading key="common.id" sort="id"}</td>
 		<td width="10%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="common.assigned" sort="assignDate"}</td>
 		<td width="10%">{sort_heading key="submissions.sec" sort="section"}</td>
-		<td width="35%">{sort_heading key="article.title" sort="title"}</td>
+		<td width="25%">{sort_heading key="article.title" sort="title"}</td>
 		<td width="20%">{sort_heading key="submission.review" sort="review"}</td>
-		<td width="20%">{sort_heading key="submission.editorDecision" sort="decision"}</td>
+		<td width="30%">{sort_heading key="submission.editorDecision" sort="decision"}</td>
 	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+	</thead>
+	<tbody>
 {iterate from=submissions item=submission}
 	{assign var="articleId" value=$submission->getId()}
 	{assign var="reviewId" value=$submission->getReviewId()}
@@ -65,23 +66,21 @@
 		</td>
 	</tr>
 
-	<tr>
-		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
+
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
 		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
+
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
 		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 

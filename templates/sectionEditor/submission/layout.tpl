@@ -20,8 +20,8 @@
 <div class="row">
 <div class="col-md-3">
 		{translate key="user.role.layoutEditor"}
-		</div>
-		<div class="col-md-4" >
+			</div>
+			<div class="col-md-4" >
 		{if $layoutSignoff->getUserId()}<td width="20%" class="value">{$layoutEditor->getFullName()|escape}</td>{/if}
 		</div>
 		<div class="col-md-3">
