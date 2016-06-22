@@ -364,7 +364,7 @@
 				<form method="post" action="{url op="uploadReviewerVersion"}" enctype="multipart/form-data" class="form-inline">
 					<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
 					<div class="form-group">
-					<input type="file" name="upload" class="form-controled"  {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} />
+					<input type="file" name="upload" class="form-control"  {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} />
 					<input type="submit" name="submit" value="{translate key="common.upload"}" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="btn btn-primary" />
 					</div>
 				</form>
@@ -412,7 +412,6 @@
 </div>
 
 
-<br/>
 
 
 

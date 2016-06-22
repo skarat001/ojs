@@ -13,234 +13,271 @@
 	{include file="common/header.tpl"}
 	{/strip}	
 	<hr>
-	{if $isSiteAdmin}
-	{assign var="hasRole" value=1}
-	<a href="{url journal="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
-	{call_hook name="Templates::User::Index::Site"}
-	{/if}
+
 
 	
-		<!-- {if !$currentJournal}<h3>{translate key="user.myJournals"}</h3> {/if}-->
+	<!-- {if !$currentJournal}<h3>{translate key="user.myJournals"}</h3> {/if}-->
 
-		{foreach from=$userJournals item=journal}
+	{foreach from=$userJournals item=journal}
 
 
-			{assign var="hasRole" value=1}
-			{if !$currentJournal}
+	{assign var="hasRole" value=1}
 	<div class="col-md-12">
-			<div class="panel panel-primary ">
-				<div class="panel-heading">
-			<h4 class="panel-title"><a href="#	">{$journal->getLocalizedTitle()|escape}</a></h4>
-			{else}<h3>{$journal->getLocalizedTitle()|escape}</h3>{/if}
-			{assign var="journalId" value=$journal->getId()}
-			{assign var="journalPath" value=$journal->getPath()}
-</div>
+		<div class="panel panel-primary ">
+			<div class="panel-heading">
+				{if !$currentJournal}
+
+				<h4 class="panel-title"><a href="#	">{$journal->getLocalizedTitle()|escape}</a></h4>
+				{else}<h4>{$journal->getLocalizedTitle()|escape}</h4>{/if}
+				{assign var="journalId" value=$journal->getId()}
+				{assign var="journalPath" value=$journal->getPath()}
+			</div>
+
+			<div class="panel-body">
+				{if $isValid.JournalManager.$journalId}
 				
-			{if $isValid.JournalManager.$journalId}
-				<div class="panel-body">
-					<a href="{url journal=$journalPath page="manager"}">{translate key="user.role.manager"}
+				<div class="col-md-4">
+					<a href="{url journal=$journalPath page="manager"}" class="btn btn-warning btn-lg btn-block"><i class="fa fa-cogs"></i> {translate key="user.role.manager"}
 					</a>
-			
-					<br>
-					{if $setupIncomplete.$journalId}[<a href="{url journal=$journalPath page="manager" op="setup" path="1"}">{translate key="manager.setup"}</a>]{/if}
-			</div>
-				
-			{/if}
-			</div>
-			</div>
-			
-			{if $isValid.SubscriptionManager.$journalId}
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<a href="{url journal=$journalPath page="subscriptionManager"}">{translate key="user.role.subscriptionManager"}</a>
-					</div>
-				<div class="panel-body fixed-panel">
+
+
+
 				</div>
+				{if $setupIncomplete.$journalId}
+
+				<div class="col-md-4">
+					<a href="{url journal=$journalPath page="manager" op="setup" path="1"}" class="btn btn-warning btn-lg btn-block"><i class="fa fa-cog"></i> {translate key="manager.setup"}</a>
+				</div>
+
+				{/if}
+
+
+				{if $isSiteAdmin}
+				{assign var="hasRole" value=1}
+
+				<div class="col-md-4">
+					<a href="{url journal="index" page=$isSiteAdmin->getRolePath()}" class="btn btn-warning btn-lg btn-block"><i class="fa fa-bars"></i> {translate key=$isSiteAdmin->getRoleName()}</a>
+				</div>
+
+
+				{call_hook name="Templates::User::Index::Site"}
+				{/if}
+				
+
+				{/if}
 			</div>
-			
-			{/if}
-			{if $isValid.Editor.$journalId || $isValid.SectionEditor.$journalId || $isValid.LayoutEditor.$journalId || $isValid.Copyeditor.$journalId || $isValid.Proofreader.$journalId}
 
-			{/if}
-			{if $isValid.Editor.$journalId}
+		</div>
+	</div>
 
-			{assign var="editorSubmissionsCount" value=$submissionsCount.Editor.$journalId}
-				<div class="col-md-4">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-			<a href="{url journal=$journalPath page="editor"}">{translate key="user.role.editor"}</a>
+	{if $isValid.SubscriptionManager.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<a href="{url journal=$journalPath page="subscriptionManager"}">{translate key="user.role.subscriptionManager"}</a>
 			</div>
-				<div class="panel-body fixed-panel">
-			{if $editorSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsUnassigned"}">{$editorSubmissionsCount[0]} {translate key="common.queue.short.submissionsUnassigned"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsUnassigned"}</span>{/if}
-<br/>
-			{if $editorSubmissionsCount[1]}
-			<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsInReview"}">{$editorSubmissionsCount[1]} {translate key="common.queue.short.submissionsInReview"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
-<br/>
-			{if $editorSubmissionsCount[2]}
-			<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsInEditing"}">{$editorSubmissionsCount[2]} {translate key="common.queue.short.submissionsInEditing"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
-<br/>
-			[<a href="{url journal=$journalPath page="editor" op="createIssue"}">{translate key="editor.issues.createIssue"}</a>] [<a href="{url journal=$journalPath page="editor" op="notifyUsers"}">{translate key="editor.notifyUsers"}</a>]
+			<div class="panel-body fixed-panel">
+			</div>
+		</div>
+	</div>
+	{/if}
+	{if $isValid.Editor.$journalId || $isValid.SectionEditor.$journalId || $isValid.LayoutEditor.$journalId || $isValid.Copyeditor.$journalId || $isValid.Proofreader.$journalId}
+
+	{/if}
+	{if $isValid.Editor.$journalId}
+
+	{assign var="editorSubmissionsCount" value=$submissionsCount.Editor.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<a href="{url journal=$journalPath page="editor"}">{translate key="user.role.editor"}</a>
+			</div>
+			<div class="panel-body fixed-panel">
+				{if $editorSubmissionsCount[0]}
+				<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsUnassigned"}">{$editorSubmissionsCount[0]} {translate key="common.queue.short.submissionsUnassigned"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsUnassigned"}</span>{/if}
+				<br/>
+				{if $editorSubmissionsCount[1]}
+				<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsInReview"}">{$editorSubmissionsCount[1]} {translate key="common.queue.short.submissionsInReview"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
+				<br/>
+				{if $editorSubmissionsCount[2]}
+				<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsInEditing"}">{$editorSubmissionsCount[2]} {translate key="common.queue.short.submissionsInEditing"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
+				<br/>
+				[<a href="{url journal=$journalPath page="editor" op="createIssue"}">{translate key="editor.issues.createIssue"}</a>] [<a href="{url journal=$journalPath page="editor" op="notifyUsers"}">{translate key="editor.notifyUsers"}</a>]
+			</div>
+		</div>
+	</div>
+	{/if}
+
+	{if $isValid.SectionEditor.$journalId}
+	{assign var="sectionEditorSubmissionsCount" value=$submissionsCount.SectionEditor.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info ">
+			<div class="panel-heading">
+				<a href="{url journal=$journalPath page="sectionEditor"}">{translate key="user.role.sectionEditor"}</a>
+			</div>
+			<div class="panel-body fixed-panel">
+
+				{if $sectionEditorSubmissionsCount[0]}
+				<a href="{url journal=$journalPath page="sectionEditor" op="index" path="submissionsInReview"}">{$sectionEditorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInReview"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
+				<br/>
+
+				{if $sectionEditorSubmissionsCount[1]}
+				<a href="{url journal=$journalPath page="sectionEditor" op="index" path="submissionsInEditing"}">{$sectionEditorSubmissionsCount[1]} {translate key="common.queue.short.submissionsInEditing"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
+				<br/>
+			</div>
+		</div>
+	</div>
+				{/if}
+
+
+
+	{if $isValid.LayoutEditor.$journalId}
+	{assign var="layoutEditorSubmissionsCount" value=$submissionsCount.LayoutEditor.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info ">
+			<div class="panel-heading">
+	<a href="{url journal=$journalPath page="layoutEditor"}">{translate key="user.role.layoutEditor"}</a>
+	</div>
+			<div class="panel-body fixed-panel">
+
+
+
+
+	{if $layoutEditorSubmissionsCount[0]}
+	<a href="{url journal=$journalPath page="layoutEditor" op="submissions"}">{$layoutEditorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInEditing"}</a>
+	{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
+		</div>
+		</div>
+	</div>
+
+	{/if}
+
+
+	{if $isValid.Copyeditor.$journalId}
+	{assign var="copyeditorSubmissionsCount" value=$submissionsCount.Copyeditor.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<a href="{url journal=$journalPath page="copyeditor"}">{translate key="user.role.copyeditor"}</a>
+			</div>
+			<div class="panel-body fixed-panel">
+
+
+				{if $copyeditorSubmissionsCount[0]}
+				<a href="{url journal=$journalPath page="copyeditor"}">{$copyeditorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInEditing"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
+
+				<br/>
+				{/if}
+				{if $isValid.Proofreader.$journalId}
+				{assign var="proofreaderSubmissionsCount" value=$submissionsCount.Proofreader.$journalId}
+
+				<a href="{url journal=$journalPath page="proofreader"}">{translate key="user.role.proofreader"}</a>
+
+				<br/><br/><br/>
+
+				{if $proofreaderSubmissionsCount[0]}
+				<a href="{url journal=$journalPath page="proofreader"}">{$proofreaderSubmissionsCount[0]} {translate key="common.queue.short.submissionsInEditing"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
+
+			</div>
+		</div>
+	</div>
+
+	{/if}
+
+	{if $isValid.Author.$journalId || $isValid.Reviewer.$journalId}
+
+
+	{/if}
+	{if $isValid.Author.$journalId}
+	{assign var="authorSubmissionsCount" value=$submissionsCount.Author.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info ">
+			<div class="panel-heading">
+
+				<a href="{url journal=$journalPath page="author"}">{translate key="user.role.author"}</a>
+			</div>
+			<div class="panel-body fixed-panel">
+				{if $authorSubmissionsCount[0]}
+				<a href="{url journal=$journalPath page="author"}">{$authorSubmissionsCount[0]} {translate key="common.queue.short.active"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.active"}</span>{/if}
+				<br/><br/><br/>
+				{* This is for all non-pending items*}
+				{if $authorSubmissionsCount[1]}
+				<a href="{url journal=$journalPath path="completed" page="author"}">{$authorSubmissionsCount[1]} {translate key="common.queue.short.completed"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.completed"}</span>{/if}
+				<br/>
+				[<a href="{url journal=$journalPath page="author" op="submit"}">{translate key="author.submit"}</a>]
+			</div>
+		</div>
+	</div>
+	{/if}
+	{if $isValid.Reviewer.$journalId}
+	{assign var="reviewerSubmissionsCount" value=$submissionsCount.Reviewer.$journalId}
+	<div class="col-md-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<a href="{url journal=$journalPath page="reviewer"}">{translate key="user.role.reviewer"}</a>
+			</div>
+			<div class="panel-body fixed-panel">
+
+
+				{if $reviewerSubmissionsCount[0]}
+				<a href="{url journal=$journalPath page="reviewer"}">{$reviewerSubmissionsCount[0]} {translate key="common.queue.short.active"}</a>
+				{else}<span class="disabled">0 {translate key="common.queue.short.active"}</span>{/if}
+
+			</div>
+		</div>
+	</div>
+	{/if}
+	{* Add a row to the bottom of each table to ensure all have same width*}
+
+	{call_hook name="Templates::User::Index::Journal" journal=$journal}
+
+
+	{/foreach}
 </div>
+
+{if !$hasRole}
+{if $currentJournal}
+<div id="noRolesForJournal">
+	<p>{translate key="user.noRoles.noRolesForJournal"}</p>
+	<ul>
+		<li>
+			{if $allowRegAuthor}
+			{url|assign:"submitUrl" page="author" op="submit"}
+			<a href="{url op="become" path="author" source=$submitUrl}">{translate key="user.noRoles.submitArticle"}</a>
+			{else}{* $allowRegAuthor *}
+			{translate key="user.noRoles.submitArticleRegClosed"}
+			{/if}{* $allowRegAuthor *}
+		</li>
+		<li>
+			{if $allowRegReviewer}
+			{url|assign:"userHomeUrl" page="user" op="index"}
+			<a href="{url op="become" path="reviewer" source=$userHomeUrl}">{translate key="user.noRoles.regReviewer"}</a>
+			{else}{* $allowRegReviewer *}
+			{translate key="user.noRoles.regReviewerClosed"}
+			{/if}{* $allowRegReviewer *}
+		</li>
+	</ul>
 </div>
-</div>
-			{/if}
-			{if $isValid.SectionEditor.$journalId}
-			{assign var="sectionEditorSubmissionsCount" value=$submissionsCount.SectionEditor.$journalId}
-				<div class="col-md-4">
-<div class="panel panel-info ">
-				<div class="panel-heading">
-			<a href="{url journal=$journalPath page="sectionEditor"}">{translate key="user.role.sectionEditor"}</a>
-</div>
-				<div class="panel-body fixed-panel">
-
-			{if $sectionEditorSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="sectionEditor" op="index" path="submissionsInReview"}">{$sectionEditorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInReview"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
-<br/>
-			{if $sectionEditorSubmissionsCount[1]}
-			<a href="{url journal=$journalPath page="sectionEditor" op="index" path="submissionsInEditing"}">{$sectionEditorSubmissionsCount[1]} {translate key="common.queue.short.submissionsInEditing"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
-<br/>
-
-			{/if}
-			{if $isValid.LayoutEditor.$journalId}
-			{assign var="layoutEditorSubmissionsCount" value=$submissionsCount.LayoutEditor.$journalId}
-
-			<a href="{url journal=$journalPath page="layoutEditor"}">{translate key="user.role.layoutEditor"}</a></td>
-<br/>
-
-
-
-			{if $layoutEditorSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="layoutEditor" op="submissions"}">{$layoutEditorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInEditing"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
-
-</div>
-</div>
-</div>
-			{/if}
-			{if $isValid.Copyeditor.$journalId}
-			{assign var="copyeditorSubmissionsCount" value=$submissionsCount.Copyeditor.$journalId}
-				<div class="col-md-4">
-<div class="panel panel-info">
-				<div class="panel-heading">
-			<a href="{url journal=$journalPath page="copyeditor"}">{translate key="user.role.copyeditor"}</a>
-</div>
-				<div class="panel-body fixed-panel">
-
-
-			{if $copyeditorSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="copyeditor"}">{$copyeditorSubmissionsCount[0]} {translate key="common.queue.short.submissionsInEditing"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
-
-<br/>
-			{/if}
-			{if $isValid.Proofreader.$journalId}
-			{assign var="proofreaderSubmissionsCount" value=$submissionsCount.Proofreader.$journalId}
-
-			<a href="{url journal=$journalPath page="proofreader"}">{translate key="user.role.proofreader"}</a>
-
-<br/><br/><br/>
-
-			{if $proofreaderSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="proofreader"}">{$proofreaderSubmissionsCount[0]} {translate key="common.queue.short.submissionsInEditing"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInEditing"}</span>{/if}
-
-</div>
-</div>
-</div>
-			{/if}
-			{if $isValid.Author.$journalId || $isValid.Reviewer.$journalId}
-
-
-			{/if}
-			{if $isValid.Author.$journalId}
-			{assign var="authorSubmissionsCount" value=$submissionsCount.Author.$journalId}
-			<div class="col-md-4">
-<div class="panel panel-info ">
-				<div class="panel-heading">
-
-			<a href="{url journal=$journalPath page="author"}">{translate key="user.role.author"}</a>
-</div>
-				<div class="panel-body fixed-panel">
-			{if $authorSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="author"}">{$authorSubmissionsCount[0]} {translate key="common.queue.short.active"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.active"}</span>{/if}
-<br/><br/><br/>
-			{* This is for all non-pending items*}
-			{if $authorSubmissionsCount[1]}
-			<a href="{url journal=$journalPath path="completed" page="author"}">{$authorSubmissionsCount[1]} {translate key="common.queue.short.completed"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.completed"}</span>{/if}
-<br/>
-			[<a href="{url journal=$journalPath page="author" op="submit"}">{translate key="author.submit"}</a>]
-</div>
-</div>
-</div>
-			{/if}
-			{if $isValid.Reviewer.$journalId}
-			{assign var="reviewerSubmissionsCount" value=$submissionsCount.Reviewer.$journalId}
-				<div class="col-md-4">
-<div class="panel panel-info">
-				<div class="panel-heading">
-			<a href="{url journal=$journalPath page="reviewer"}">{translate key="user.role.reviewer"}</a>
-</div>
-				<div class="panel-body fixed-panel">
-
-
-			{if $reviewerSubmissionsCount[0]}
-			<a href="{url journal=$journalPath page="reviewer"}">{$reviewerSubmissionsCount[0]} {translate key="common.queue.short.active"}</a>
-			{else}<span class="disabled">0 {translate key="common.queue.short.active"}</span>{/if}
-
-</div>
-</div>
-</div>
-			{/if}
-			{* Add a row to the bottom of each table to ensure all have same width*}
-
-			{call_hook name="Templates::User::Index::Journal" journal=$journal}
-		
-		
+{else}{* $currentJournal *}
+<div id="currentJournal">
+	<p>{translate key="user.noRoles.chooseJournal"}</p>
+	<ul>
+		{foreach from=$allJournals item=thisJournal}
+		<li><a href="{url journal=$thisJournal->getPath() page="user" op="index"}">{$thisJournal->getLocalizedTitle()|escape}</a></li>
 		{/foreach}
-	</div>
-
-	{if !$hasRole}
-	{if $currentJournal}
-	<div id="noRolesForJournal">
-		<p>{translate key="user.noRoles.noRolesForJournal"}</p>
-		<ul>
-			<li>
-				{if $allowRegAuthor}
-				{url|assign:"submitUrl" page="author" op="submit"}
-				<a href="{url op="become" path="author" source=$submitUrl}">{translate key="user.noRoles.submitArticle"}</a>
-				{else}{* $allowRegAuthor *}
-				{translate key="user.noRoles.submitArticleRegClosed"}
-				{/if}{* $allowRegAuthor *}
-			</li>
-			<li>
-				{if $allowRegReviewer}
-				{url|assign:"userHomeUrl" page="user" op="index"}
-				<a href="{url op="become" path="reviewer" source=$userHomeUrl}">{translate key="user.noRoles.regReviewer"}</a>
-				{else}{* $allowRegReviewer *}
-				{translate key="user.noRoles.regReviewerClosed"}
-				{/if}{* $allowRegReviewer *}
-			</li>
-		</ul>
-	</div>
-	{else}{* $currentJournal *}
-	<div id="currentJournal">
-		<p>{translate key="user.noRoles.chooseJournal"}</p>
-		<ul>
-			{foreach from=$allJournals item=thisJournal}
-			<li><a href="{url journal=$thisJournal->getPath() page="user" op="index"}">{$thisJournal->getLocalizedTitle()|escape}</a></li>
-			{/foreach}
-		</ul>
-	</div>
-	{/if}{* $currentJournal *}
-	{/if}{* !$hasRole *}
+	</ul>
+</div>
+{/if}{* $currentJournal *}
+{/if}{* !$hasRole *}
 
 <!-- <div id="myAccount">
 <h3>{translate key="user.myAccount"}</h3>
