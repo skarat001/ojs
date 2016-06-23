@@ -220,7 +220,7 @@
 <div class="row">
 
 			{if $leftSidebarCode || $rightSidebarCode}
-			<div id="sidebar">
+			<div id="sidebar col-md-2">
 				
 				{if $rightSidebarCode}
 				<div class="col-md-3">

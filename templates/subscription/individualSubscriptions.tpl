@@ -25,7 +25,7 @@
 
 <form action="#">
 <ul class="filter">
-	<li>{translate key="manager.subscriptions.withStatus"}: <select name="filterStatus" onchange="location.href='{url|escape:"javascript" path="individual" searchField=$searchField searchMatch=$searchMatch search=$search dateSearchField=$dateSearchField dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterStatus="STATUS_ID" escape=false}'.replace('STATUS_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options_translate options=$statusOptions selected=$filterStatus}</select></li>
+	<li>{translate key="manager.subscriptions.withStatus"}: <select name="filterStatus" onchange="location.href='{url|escape:"javascript" path="individual" searchField=$searchField searchMatch=$searchMatch search=$search dateSearchField=$dateSearchField dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterStatus="STATUS_ID" escape=false}'.replace('STATUS_ID', this.options[this.selectedIndex].value)" size="1" class="form-control">{html_options_translate options=$statusOptions selected=$filterStatus}</select></li>
 </ul>
 </form>
 
@@ -37,18 +37,18 @@
 {assign var="dateTo" value="--"}
 {/if}
 
-<form method="post" id="submit" action="{url op="subscriptions" path="individual"}">
-	<select name="searchField" size="1" class="selectMenu">
+<form method="post" id="submit" action="{url op="subscriptions" path="individual"} class="form-inline" ">
+	<select name="searchField" size="1" class="form-control">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
+	<select name="searchMatch" size="1" class="form-control">
 		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
 		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
 		<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 	</select>
 	<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
 	<br/>
-	<select name="dateSearchField" size="1" class="selectMenu">
+	<select name="dateSearchField" size="1" class="form-control">
 		{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
 	</select>
 	{translate key="common.between"}

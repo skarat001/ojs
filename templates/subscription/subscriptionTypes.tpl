@@ -19,32 +19,33 @@ $(document).ready(function() { setupTableDND("#subscriptionTypesTable", "moveSub
 {/literal}
 </script>
 
-<ul class="menu">
-	<li><a href="{url op="subscriptionsSummary"}">{translate key="manager.subscriptions.summary"}</a></li>
-	<li><a href="{url op="subscriptions" path="individual"}">{translate key="manager.individualSubscriptions"}</a></li>
-	<li><a href="{url op="subscriptions" path="institutional"}">{translate key="manager.institutionalSubscriptions"}</a></li>
-	<li class="current"><a href="{url op="subscriptionTypes"}">{translate key="manager.subscriptionTypes"}</a></li>
-	<li><a href="{url op="subscriptionPolicies"}">{translate key="manager.subscriptionPolicies"}</a></li>
-	<li><a href="{url op="payments"}">{translate key="manager.payments"}</a></li>
-</ul>
-
-<br />
+	<ul class="nav nav-pills navsubs">
+		<li class="nav-item "><a href="{url op="subscriptionsSummary"}" class="nav-link">{translate key="manager.subscriptions.summary"}</a></li>
+		<li class="nav-item "><a href="{url op="subscriptions" path="individual"}" class="nav-link">{translate key="manager.individualSubscriptions"}</a></li>
+		<li class="nav-item"><a href="{url op="subscriptions" path="institutional"}" class="nav-link">{translate key="manager.institutionalSubscriptions"}</a></li>
+		<li class="nav-item active"><a href="{url op="subscriptionTypes" }" class="nav-link">{translate key="manager.subscriptionTypes"}</a></li>
+		<li class="nav-item"><a href="{url op="subscriptionPolicies" }" class="nav-link">{translate key="manager.subscriptionPolicies"}</a></li>
+		<li class="nav-item"><a href="{url op="payments" }" class="nav-link">{translate key="manager.payments"}</a></li>
+	</ul>
+	<hr>
 
 <div id="subscriptionTypes">
-<table width="100%" class="listing" id="subscriptionTypesTable">
-	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
-	</tr>
+
+<a href="{url op="createSubscriptionType"}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> {translate key="manager.subscriptionTypes.create"}</a>
+</div>
+<br/>
+<table width="100%" class="table table-striped" id="subscriptionTypesTable">
+<thead>
+
 	<tr class="heading" valign="bottom">
-		<td width="40%">{translate key="manager.subscriptionTypes.name"}</td>
-		<td width="10%">{translate key="manager.subscriptionTypes.subscriptions"}</td>
-		<td width="20%">{translate key="manager.subscriptionTypes.duration"}</td>
-		<td width="15%">{translate key="manager.subscriptionTypes.cost"}</td>
-		<td width="15%">{translate key="common.action"}</td>
+		<th width="40%">{translate key="manager.subscriptionTypes.name"}</th>
+		<th width="10%">{translate key="manager.subscriptionTypes.subscriptions"}</th>
+		<th width="20%">{translate key="manager.subscriptionTypes.duration"}</th>
+		<th width="15%">{translate key="manager.subscriptionTypes.cost"}</th>
+		<th width="15%">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
-	</tr>
+	</thead>
+<tbody>
 {iterate from=subscriptionTypes item=subscriptionType}
 	<tr valign="top" id="subtype-{$subscriptionType->getTypeId()}" class="data">
 		<td class="drag">{$subscriptionType->getSubscriptionTypeName()|escape}</td>
@@ -54,26 +55,23 @@ $(document).ready(function() { setupTableDND("#subscriptionTypesTable", "moveSub
 		<td><a href="{url op="moveSubscriptionType" id=$subscriptionType->getTypeId() dir=u}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveSubscriptionType" id=$subscriptionType->getTypeId() dir=d}" class="action">&darr;</a>&nbsp;|&nbsp;<a href="{url op="editSubscriptionType" path=$subscriptionType->getTypeId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubscriptionType" path=$subscriptionType->getTypeId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.subscriptionTypes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
   {if $subscriptionTypes->eof()}
-  <tr><td colspan="5" class="endseparator">&nbsp;</td></tr>
+  
   {/if}
 {/iterate}
 {if $subscriptionTypes->wasEmpty()}
 	<tr>
 		<td colspan="5" class="nodata">{translate key="manager.subscriptionTypes.noneCreated"}</td>
 	</tr>
-	<tr>
-		<td colspan="5" class="endseparator">&nbsp;</td>
-	</tr>
+	
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$subscriptionTypes}</td>
 		<td colspan="2" align="right">{page_links anchor="subscriptionTypes" name="subscriptionTypes" iterator=$subscriptionTypes}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 
-<a href="{url op="createSubscriptionType"}" class="action">{translate key="manager.subscriptionTypes.create"}</a>
-</div>
 
 {include file="common/footer.tpl"}
 
