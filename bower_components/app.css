@@ -147,3 +147,22 @@ flex-direction:row;
 .navsubs li{
   width:16%; 
 }
+
+.nobullet{
+ list-style-type:none;
+}
+
+.configpill li {
+ 
+     border-radius: 1px;
+}
+
+.configpill a:hover {
+    color: #560000;
+    border-radius: 1px;
+}
+
+.configpill .active a:hover {
+    color: #560000;
+    border-radius: 1px;
+}

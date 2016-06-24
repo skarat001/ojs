@@ -13,28 +13,26 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li><a href="{url op="payments"}">{translate key="manager.payment.options"}</a></li>
-	<li><a href="{url op="payMethodSettings"}">{translate key="manager.payment.paymentMethods"}</a></li>
-	<li class="current"><a href="{url op="viewPayments"}">{translate key="manager.payment.records"}</a></li>
-</ul>
+		<ul class="menu">
+			<ul class="nav nav-pills ">
+				<li class="nav-item "><a href="{url op="payments"}" class="nav-link">{translate key="manager.payment.options"}</a></li>
+				<li class="nav-item "><a href="{url op="payMethodSettings"}" class="nav-link">{translate key="manager.payment.paymentMethods"}</a></li>
+				<li class="nav-item active"><a href="{url op="viewPayments"}" class="nav-link">{translate key="manager.payment.records"}</a></li>
 
+			</ul>
+			<hr>
 <br />
 
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="4" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="25%">{translate key="common.user"}</td>
-		<td width="25%">{translate key="manager.payment.paymentType"}</td>
-		<td width="25%">{translate key="manager.payment.timestamp"}</td>
-		<td width="25%">{translate key="manager.payment.action"}</td>
+		<th width="25%">{translate key="common.user"}</th>
+		<th width="25%">{translate key="manager.payment.paymentType"}</th>
+		<th width="25%">{translate key="manager.payment.timestamp"}</th>
+		<th width="25%">{translate key="manager.payment.action"}</th>
 	</tr>
-	<tr>
-		<td colspan="4" class="headseparator">&nbsp;</td>
-	</tr>
-
+</thead>
+<tbody>
 	{iterate from=payments item=payment}
 	{assign var=isSubscription value=$payment->isSubscription()}
 	{if $isSubscription}
@@ -77,23 +75,20 @@
 			<a href="{url op="viewPayment" path=$payment->getPaymentId()}" class="action">{translate key="manager.payment.details"}</a>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="4" class="{if $payments->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+	
 	{/iterate}
 {if $payments->wasEmpty()}
 	<tr>
 		<td colspan="4" class="nodata">{translate key="manager.payment.noPayments"}</td>
 	</tr>
-	<tr>
-		<td colspan="4" class="endseparator">&nbsp;</td>
-	</tr>
+
 {else}
 	<tr>
 		<td colspan="3" align="left">{page_info iterator=$payments}</td>
 		<td align="right">{page_links anchor="payments" name="payments" iterator=$payments}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 
 {include file="common/footer.tpl"}

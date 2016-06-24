@@ -63,7 +63,7 @@
 			{foreach name=allStatus from=$individualStatus key=statusIndex 	item=status}
 			<div class="row">
 			<div class="col-md-10">
-	<a href="{url op="subscriptions" path="individual" filterStatus=$status.status}">{translate key=$status.localeKey}</a> 
+	<a href="{url op="subscriptions" path="institutional" filterStatus=$status.status}">{translate key=$status.localeKey}</a> 
 	</div>
 <div class="col-md-2">
 	<strong>{$status.count}</strong>

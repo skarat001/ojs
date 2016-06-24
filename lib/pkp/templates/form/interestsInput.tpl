@@ -44,7 +44,7 @@
 
 <div id="{$FBV_id|escape}">
 	<!-- The container which will be processed by tag-it.js as the interests widget -->
-	<ul class="interests">
+	<ul class="interests nobullet" >
 		{if $FBV_interestsKeywords}{foreach from=$FBV_interestsKeywords item=interest}<li class="hidden">{$interest|escape}</li>{/foreach}{/if}
 	</ul>
 	{if $FBV_label_content}<span>{$FBV_label_content}</span>{/if}

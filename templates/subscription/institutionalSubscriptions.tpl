@@ -14,19 +14,24 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li><a href="{url op="subscriptionsSummary"}">{translate key="manager.subscriptions.summary"}</a></li>
-	<li><a href="{url op="subscriptions" path="individual"}">{translate key="manager.individualSubscriptions"}</a></li>
-	<li class="current"><a href="{url op="subscriptions" path="institutional"}">{translate key="manager.institutionalSubscriptions"}</a></li>
-	<li><a href="{url op="subscriptionTypes"}">{translate key="manager.subscriptionTypes"}</a></li>
-	<li><a href="{url op="subscriptionPolicies"}">{translate key="manager.subscriptionPolicies"}</a></li>
-	<li><a href="{url op="payments"}">{translate key="manager.payments"}</a></li>
-</ul>
+	<ul class="nav nav-pills navsubs">
+		<li class="nav-item "><a href="{url op="subscriptionsSummary"}" class="nav-link">{translate key="manager.subscriptions.summary"}</a></li>
+		<li class="nav-item "><a href="{url op="subscriptions" path="individual"}" class="nav-link">{translate key="manager.individualSubscriptions"}</a></li>
+		<li class="nav-item active"><a href="{url op="subscriptions" path="institutional"}" class="nav-link">{translate key="manager.institutionalSubscriptions"}</a></li>
+		<li class="nav-item"><a href="{url op="subscriptionTypes" }" class="nav-link">{translate key="manager.subscriptionTypes"}</a></li>
+		<li class="nav-item"><a href="{url op="subscriptionPolicies" }" class="nav-link">{translate key="manager.subscriptionPolicies"}</a></li>
+		<li class="nav-item"><a href="{url op="payments" }" class="nav-link">{translate key="manager.payments"}</a></li>
+	</ul>
+	<hr>
 
-<form action="#">
-<ul class="filter">
-	<li>{translate key="manager.subscriptions.withStatus"}: <select name="filterStatus" onchange="location.href='{url|escape:"javascript" path="institutional" searchField=$searchField searchMatch=$searchMatch search=$search dateSearchField=$dateSearchField dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterStatus="STATUS_ID" escape=false}'.replace('STATUS_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options_translate options=$statusOptions selected=$filterStatus}</select></li>
-</ul>
+	<form action="#" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-md-3 control-label pull-left">
+				{translate key="manager.subscriptions.withStatus"}
+			</div>
+			<div class="col-md-3"><select name="filterStatus" onchange="location.href='{url|escape:"javascript" path="institutional" searchField=$searchField searchMatch=$searchMatch search=$search dateSearchField=$dateSearchField dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterStatus="STATUS_ID" escape=false}'.replace('STATUS_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options_translate options=$statusOptions selected=$filterStatus}</select>
+			</div>
+			</div>
 </form>
 
 {if !$dateFrom}
@@ -37,49 +42,78 @@
 {assign var="dateTo" value="--"}
 {/if}
 
-<form method="post" id="submit" action="{url op="subscriptions" path="institutional"}">
-	<select name="searchField" size="1" class="selectMenu">
-		{html_options_translate options=$fieldOptions selected=$searchField}
-	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
-		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
-		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
-		<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
-	</select>
-	<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
-	<br/>
-	<select name="dateSearchField" size="1" class="selectMenu">
-		{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
-	</select>
-	{translate key="common.between"}
-	{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+5"}
-	{translate key="common.and"}
-	{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+5"}
-	<input type="hidden" name="dateToHour" value="23" />
-	<input type="hidden" name="dateToMinute" value="59" />
-	<input type="hidden" name="dateToSecond" value="59" />
-	<br/>
-	<input type="submit" value="{translate key="common.search"}" class="button" />
+<form method="post" id="submit" action="{url op="subscriptions" path="institutional"}" class="form-horiontal">
+<div class="form-group">
+			<div class="col-md-3">
+				<select name="searchField" size="1" class="form-control">
+					{html_options_translate options=$fieldOptions selected=$searchField}
+				</select>
+			</div>
+			<div class="col-md-3">
+				<select name="searchMatch" size="1" class="form-control">
+					<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+					<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+					<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<input type="text" size="15" name="search" class="form-control" value="{$search|escape}" />
+			</div>
+		</div>
+<br/>
+		<div class="form-group">
+			<div class="col-md-3">
+				<select name="dateSearchField" size="1" class="form-control">
+					{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
+				</select>
+			</div>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-12">
+					<div class="col-md-2">
+						{translate key="common.between"}
+						</div>
+						{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+5"}
+
+					</div>
+					<br/>
+					<div class="col-md-12">
+					<div class="col-md-2">
+						{translate key="common.and"}
+						</div>
+						{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+5"}
+					</div>
+				</div>
+				<input type="hidden" name="dateToHour" value="23" />
+				<input type="hidden" name="dateToMinute" value="59" />
+				<input type="hidden" name="dateToSecond" value="59" />
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+		<div class="col-md-6 col-md-offset-1">
+		<input type="submit" value="{translate key="common.search"}" class="btn btn-primary" />
+
+		</div>
+		</div>
 </form>
 
 <br />
 
 <div id="subscriptions">
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
-	</tr>
+		<a href="{url op="s	electSubscriber" path="individual"}" class="btn btn-success pull-right">{translate key="manager.subscriptions.create"}</a>
+<table width="100%" class="table table-striped">
+	<thead>
 	<tr class="heading" valign="bottom">
-		<td width="30%">{translate key="manager.subscriptions.institutionName"}</td>
-		<td width="25%">{translate key="manager.subscriptions.subscriptionType"}</td>
-		<td width="10%">{translate key="subscriptions.status"}</td>
-		<td width="10%">{translate key="manager.subscriptions.dateStart"}</td>
-		<td width="10%">{translate key="manager.subscriptions.dateEnd"}</td>
-		<td width="15%">{translate key="common.action"}</td>
+		<th width="30%">{translate key="manager.subscriptions.institutionName"}</th>
+		<th width="25%">{translate key="manager.subscriptions.subscriptionType"}</th>
+		<th width="10%">{translate key="subscriptions.status"}</th>
+		<th width="10%">{translate key="manager.subscriptions.dateStart"}</th>
+		<th width="10%">{translate key="manager.subscriptions.dateEnd"}</th>
+		<th width="15%">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
-	</tr>
+</thead>
+<tbody>
 {iterate from=subscriptions item=subscription}
 	{assign var=isNonExpiring value=$subscription->isNonExpiring()}
 	<tr valign="top">
@@ -95,25 +129,22 @@
 		<td>{if $isNonExpiring}{translate key="subscriptionTypes.nonExpiring"}{else}{if $subscription->isExpired()}<span class="disabled">{$subscription->getDateEnd()|date_format:$dateFormatShort}</span>{else}{$subscription->getDateEnd()|date_format:$dateFormatShort}{/if}{/if}</td>
 		<td><a href="{url op="editSubscription" path="institutional"|to_array:$subscription->getId()}" class="action">{translate key="common.edit"}</a>{if !$isNonExpiring}&nbsp;|&nbsp;<a href="{url op="renewSubscription" path="institutional"|to_array:$subscription->getId()}" class="action">{translate key="manager.subscriptions.renew"}</a>{/if}&nbsp;|&nbsp;<a href="{url op="deleteSubscription" path="institutional"|to_array:$subscription->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.subscriptions.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
-	<tr>
-		<td colspan="6" class="{if $subscriptions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
 {/iterate}
 {if $subscriptions->wasEmpty()}
 	<tr>
 		<td colspan="6" class="nodata">{translate key="manager.subscriptions.noneCreated"}</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
+
 {else}
 	<tr>
 		<td colspan="2" align="left">{page_info iterator=$subscriptions}</td>
 		<td colspan="4" align="right">{page_links anchor="subscriptions" name="subscriptions" iterator=$subscriptions searchField=$searchField searchMatch=$searchMatch search=$search dateSearchField=$dateSearchField dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterStatus=$filterStatus}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
-<a href="{url op="selectSubscriber" path="institutional"}" class="action">{translate key="manager.subscriptions.create"}</a>
+c
 </div>
 
 {include file="common/footer.tpl"}
