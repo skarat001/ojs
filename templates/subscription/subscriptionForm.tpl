@@ -61,66 +61,95 @@ function chooseEndDate() {
 {/literal}
 // -->
 </script>
-
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="status" required="true" key="manager.subscriptions.form.status"}</td>
-	<td width="80%" class="value"><select name="status" id="status" class="selectMenu">
+<div class="form-group">
+<div class="col-md-3 control-label">
+{fieldLabel name="status" required="true" key="manager.subscriptions.form.status"}
+</div>
+<div class="col-md-6">
+<select name="status" id="status" class="form-control">
 	{html_options_translate options=$validStatus selected=$status}
-	</select></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="typeId" required="true" key="manager.subscriptions.form.typeId"}</td>
-	<td class="value"><select name="typeId" id="typeId" class="selectMenu" onchange="chooseEndDate()">
+	</select>
+	</div>
+		</div>
+		<div class="form-group">
+<div class="col-md-3 control-label">
+	{fieldLabel name="typeId" required="true" key="manager.subscriptions.form.typeId"}
+</div>
+<div class="col-md-6">
+	<select name="typeId" id="typeId" class="form-control" onchange="chooseEndDate()">
 		{foreach from=$subscriptionTypes item=subscriptionType}
 			<option value="{$subscriptionType->getTypeId()}"{if $typeId == $subscriptionType->getTypeId()} selected="selected"{/if}>{$subscriptionType->getSummaryString()|escape}</option>
 		{/foreach}
-	</select></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="dateStart" key="manager.subscriptions.form.dateStart"}</td>
-	<td class="value" id="dateStart">{html_select_date prefix="dateStart" all_extra="class=\"selectMenu\" onchange=\"chooseEndDate()\"" start_year="$yearOffsetPast" end_year="$yearOffsetFuture" time="$dateStart"}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="dateEnd" key="manager.subscriptions.form.dateEnd"}</td>
-	<td class="value" id="dateEnd">
+		</select>
+		</div>
+		</div>
+<div class="form-group">
+<div class="col-md-3 control-label">
+	{fieldLabel name="dateStart" key="manager.subscriptions.form.dateStart"}
+</div>
+<div class="col-md-6">
+	{html_select_date prefix="dateStart" all_extra="class=\"selectMenu\" onchange=\"chooseEndDate()\"" start_year="$yearOffsetPast" end_year="$yearOffsetFuture" time="$dateStart"}
+	</div>
+		</div>
+
+		<div class="form-group">
+<div class="col-md-3 control-label">
+	{fieldLabel name="dateEnd" key="manager.subscriptions.form.dateEnd"}
+</div>
+<div class="col-md-6">
 		{html_select_date prefix="dateEnd" start_year="$yearOffsetPast" all_extra="class=\"selectMenu\"" end_year="$yearOffsetFuture" time="$dateEnd"}
 		<input type="hidden" name="dateEndHour" value="23" />
 		<input type="hidden" name="dateEndMinute" value="59" />
 		<input type="hidden" name="dateEndSecond" value="59" />
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="membership" key="manager.subscriptions.form.membership"}</td>
-	<td class="value">
-		<input type="text" name="membership" value="{$membership|escape}" id="membership" size="30" maxlength="40" class="textField" />
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="referenceNumber" key="manager.subscriptions.form.referenceNumber"}</td>
-	<td class="value">
-		<input type="text" name="referenceNumber" value="{$referenceNumber|escape}" id="referenceNumber" size="30" maxlength="40" class="textField" />
-	</td>
-</tr>
+
+	</div>
+		</div>
+
+		<div class="form-group">
+<div class="col-md-3 control-label">
+{fieldLabel name="membership" key="manager.subscriptions.form.membership"}
+</div>
+<div class="col-md-6">
+		<input type="text" name="membership" value="{$membership|escape}" id="membership" size="30" maxlength="40" class="form-control" />
+		</div>
+		</div>
+
+		<div class="form-group">
+<div class="col-md-3 control-label">
+	{fieldLabel name="referenceNumber" key="manager.subscriptions.form.referenceNumber"}
+</div>
+<div class="col-md-6">
+		<input type="text" name="referenceNumber" value="{$referenceNumber|escape}" id="referenceNumber" size="30" maxlength="40" class="form-control" />
+	</div>
+		</div>
+
 {if $subscriptionId}
 	{if is_a($subscription,'InstitutionalSubscription')}
 		{assign var=subscriptionClass value="institutional"}
 	{else}
 		{assign var=subscriptionClass value="individual"}
 	{/if}
-	<tr valign="top">
-		<td class="label">{translate key="manager.subscriptions.form.dateRemindedBefore"}</td>
-		<td class="value">
+	
+	<div class="form-group">
+<div class="col-md-3 control-label">
+	{translate key="manager.subscriptions.form.dateRemindedBefore"}
+</div>
+<div class="col-md-6">
 			{$dateRemindedBefore|date_format:$dateFormatShort|default:"&mdash;"}
 			&nbsp;
-			<a href="{url op="resetDateReminded" type="before" path=$subscriptionClass|to_array:$subscriptionId}" class="action">{translate key="common.reset"}</a>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="manager.subscriptions.form.dateRemindedAfter"}</td>
-		<td class="value">
+			<a href="{url op="resetDateReminded" type="before" path=$subscriptionClass|to_array:$subscriptionId}" class="btn btn-link">{translate key="common.reset"}</a>
+			</div>
+		</div>
+
+		<div class="form-group">
+<div class="col-md-3 control-label">
+		{translate key="manager.subscriptions.form.dateRemindedAfter"}
+</div>
+<div class="col-md-6">
 			{$dateRemindedAfter|date_format:$dateFormatShort|default:"&mdash;"}
 			&nbsp;
-			<a href="{url op="resetDateReminded" type="after" path=$subscriptionClass|to_array:$subscriptionId}" class="action">{translate key="common.reset"}</a>
-		</td>
-	</tr>
+			<a href="{url op="resetDateReminded" type="after" path=$subscriptionClass|to_array:$subscriptionId}" class="btn btn-link">{translate key="common.reset"}</a>
+			</div>
+		</div>
+	
 {/if}

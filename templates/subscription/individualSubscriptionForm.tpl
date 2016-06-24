@@ -23,18 +23,20 @@
 
 <br/>
 
-<form method="post" id="subscriptionForm" action="{url op="updateSubscription" path="individual"}">
+<form method="post" id="subscriptionForm" action="{url op="updateSubscription" path="individual"}" class="form-horizontal">
 {if $subscriptionId}
 <input type="hidden" name="subscriptionId" value="{$subscriptionId|escape}" />
 {/if}
 
 {include file="common/formErrors.tpl"}
 
-<table class="data" width="100%">
+
 {if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
+<div class="form-group">
+<div class="col-md-3 control-label">
+	{fieldLabel name="formLocale" key="form.formLanguage"}
+</div>
+<div class="col-md-6">
 			{if $subscriptionId}
 				{url|assign:"formUrl" op="editSubscription" path="individual"|to_array:$subscriptionId userId=$userId escape=false}
 			{else}
@@ -42,8 +44,8 @@
 			{/if}
 			{form_language_chooser form="subscriptionForm" url=$formUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
+		</div>
+		</div>
 {/if}
 {include file="subscription/subscriptionForm.tpl"}
 
@@ -55,41 +57,46 @@
 	// -->
 	</script>
 {/if}
-</table>
 
 <br />
 <div class="separator"></div>
 <br />
 
-<table class="data" width="100%">
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="userId" required="true" key="manager.subscriptions.form.userId"}</td>
-	<td width="80%" class="value">
+<div class="form-group">
+<div class="col-md-3 control-label">
+{fieldLabel name="userId" required="true" key="manager.subscriptions.form.userId"}
+</div>
+<div class="col-md-6">
+<span>
 		{assign var=emailString value="$userFullName <$userEmail>"}
 		{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl}
 		{$username|escape}&nbsp;&nbsp;{icon name="mail" url=$url}&nbsp;&nbsp;<a href="{if $subscriptionId}{url op="selectSubscriber" path="individual" subscriptionId=$subscriptionId}{else}{url op="selectSubscriber" path="individual"}{/if}" class="action">{translate key="common.select"}</a>
 		<input type="hidden" name="userId" id="userId" value="{$userId|escape}"/>
-	</td>
-</tr>
+		</span>
+		</div>
+		</div>
+
 {include file="subscription/subscriptionFormUser.tpl"}
-</table>
 
-<br />
-<div class="separator"></div>
-<br />
 
-<table class="data" width="100%">
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="notes" key="manager.subscriptions.form.notes"}</td>
-	<td width="80%" class="value"><textarea name="notes" id="notes" cols="40" rows="6" class="textArea">{$notes|escape}</textarea></td>
-</tr>
-</table>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> {if not $subscriptionId}<input type="submit" name="createAnother" value="{translate key="manager.subscriptions.form.saveAndCreateAnother"}" class="button" /> {/if}<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="subscriptions" path="individual" escape=false}'" /></p>
-
+<div class="form-group">
+<div class="col-md-3 control-label">
+{fieldLabel name="notes" key="manager.subscriptions.form.notes"}
+</div>
+<div class="col-md-6">
+<textarea name="notes" id="notes" cols="40" rows="6" class="form-control">{$notes|escape}</textarea>
+	</div>
+		</div>
+<div class="form-group">
+<div class="col-md-8 col-md-offset-3">
+<p><input type="submit" value="{translate key="common.save"}" class="btn btn-primary" /> {if not $subscriptionId}<input type="submit" name="createAnother" value="{translate key="manager.subscriptions.form.saveAndCreateAnother"}" class="btn btn-primary" /> {/if}<input type="button" value="{translate key="common.cancel"}" class="btn btn-warning" onclick="document.location.href='{url op="subscriptions" path="individual" escape=false}'" /></p>
+</div>
+</div>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </form>
 
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+
 
 {include file="common/footer.tpl"}
 
