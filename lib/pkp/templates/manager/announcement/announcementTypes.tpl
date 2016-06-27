@@ -14,50 +14,51 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li><a href="{url op="announcements"}">{translate key="manager.announcements"}</a></li>
-	<li class="current"><a href="{url op="announcementTypes"}">{translate key="manager.announcementTypes"}</a></li>
+<ul class="nav nav-pills">
+	<li class="nav-item "><a href="{url op="announcements"}" class="nav-link">{translate key="manager.announcements"}</a></li>
+	
+	<li class="nav-item active"><a href="{url op="announcementTypes" }" class="nav-link">{translate key="manager.announcementTypes"}</a></li>
+
 </ul>
+<hr>
 
 <br />
 
 <div id="announcementTypes">
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
-	</tr>
+<a href="{url op="createAnnouncementType"}" class="btn btn-success pull-right">{translate key="manager.announcementTypes.create"}</a>
+<table width="100%" class="table table-striped">
+	<thead>
 	<tr class="heading" valign="bottom">
-		<td width="85%">{translate key="manager.announcementTypes.typeName"}</td>
-		<td width="15%">{translate key="common.action"}</td>
+		<td width="75%">{translate key="manager.announcementTypes.typeName"}</td>
+		<td width="25xa%">{translate key="common.action"}</td>
 	</tr>
-	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
-	</tr>
+	</thead>
+	<tbody>
 {iterate from=announcementTypes item=announcementType}
+
 	<tr valign="top">
 		<td>{$announcementType->getLocalizedTypeName()|escape}</td>
-		<td><a href="{url op="editAnnouncementType" path=$announcementType->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteAnnouncementType" path=$announcementType->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.announcementTypes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editAnnouncementType" path=$announcementType->getId()}" class="btn btn-warning btn-xs">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteAnnouncementType" path=$announcementType->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.announcementTypes.confirmDelete"}')" class="btn btn-danger btn-xs">{translate key="common.delete"}</a></td>
 	</tr>
-	<tr>
-		<td colspan="2" class="{if $announcementTypes->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
+
 {/iterate}
 {if $announcementTypes->wasEmpty()}
 	<tr>
 		<td colspan="2" class="nodata">{translate key="manager.announcementTypes.noneCreated"}</td>
 	</tr>
-	<tr>
-		<td colspan="2" class="endseparator">&nbsp;</td>
-	</tr>
+	
+
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$announcementTypes}</td>
 		<td align="right">{page_links anchor="announcementTypes" name="announcementTypes" iterator=$announcementTypes}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 
-<a href="{url op="createAnnouncementType"}" class="action">{translate key="manager.announcementTypes.create"}</a>
+
 </div>
 
 {include file="common/footer.tpl"}

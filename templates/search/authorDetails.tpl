@@ -19,7 +19,7 @@
 	{assign var=issueId value=$article->getIssueId()}
 	{assign var=issue value=$issues[$issueId]}
 	{assign var=issueUnavailable value=$issuesUnavailable.$issueId}
-	{assign var=sectionId value=$article->getSectionId()}
+	{assign var=getSectionId value=$article->getSectionId()}
 	{assign var=journalId value=$article->getJournalId()}
 	{assign var=journal value=$journals[$journalId]}
 	{assign var=section value=$sections[$sectionId]}

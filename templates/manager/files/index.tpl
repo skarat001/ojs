@@ -20,21 +20,18 @@
 <p><a href="{url op="files" path=$parentDir|explode:"/"}" class="action">&lt; {translate key="manager.files.parentDir"}</a></p>
 {/if}
 
-<table width="100%" class="listing">
-	<tr>
-		<td class="headseparator" colspan="6">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td></td>
-		<td width="25%">{translate key="common.fileName"}</td>
-		<td width="25%">{translate key="common.type"}</td>
-		<td width="25%">{translate key="common.dateModified"}</td>
-		<td width="5%">{translate key="common.size"}</td>
-		<td width="20%" align="right">{translate key="common.action"}</td>
+		<th></th>
+		<th width="25%">{translate key="common.fileName"}</th>
+		<th width="25%">{translate key="common.type"}</th>
+		<th width="25%">{translate key="common.dateModified"}</th>
+		<th width="5%">{translate key="common.size"}</th>
+		<th width="20%" align="right">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td class="headseparator" colspan="6">&nbsp;</td>
-	</tr>
+	</thead>
+	<tbody>
 	{foreach from=$files item=file name=files}
 	{if $currentDir}
 		{assign var=filePath value=$currentDir|concat:"/":$file.name}
@@ -52,30 +49,38 @@
 			{if !$file.isDir}
 				<a href="{url op="files" path=$filePath|explode:"/" download=1}" class="action">{translate key="common.download"}</a>&nbsp;|
 			{/if}
-			<a href="{url op="fileDelete" path=$filePath|explode:"/"}" onclick="return confirm('{translate|escape:"jsparam" key="manager.files.confirmDelete"}')" class="action">{translate key="common.delete"}</a>
+			<a href="{url op="fileDelete" path=$filePath|explode:"/"}" onclick="return confirm('{translate|escape:"jsparam" key="manager.files.confirmDelete"}')" class="btn btn-danger btn-xs">{translate key="common.delete"}</a>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="{if $smarty.foreach.files.last}end{/if}separator">&nbsp;</td>
-	</tr>
+
 {foreachelse}
 	<tr>
 		<td colspan="6" class="nodata">{translate key="manager.files.emptyDir"}</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
+
 {/foreach}
+</tbody>
 </table>
 
-<form method="post" action="{url op="fileUpload" path=$currentDir|explode:"/"}" enctype="multipart/form-data">
-	<input type="file" size="20" name="file" class="uploadField" />
-	<input type="submit" value="{translate key="manager.files.uploadFile"}" class="button" />
-</form>
+<form method="post" action="{url op="fileUpload" path=$currentDir|explode:"/"}" enctype="multipart/form-data" class="form-inline">
+<div class="form-group ">
 
-<form method="post" action="{url op="fileMakeDir" path=$currentDir|explode:"/"}" enctype="multipart/form-data">
-	<input type="text" size="20" maxlength="255" name="dirName" class="textField" />
-	<input type="submit" value="{translate key="manager.files.createDir"}" class="button" />
+
+	<input type="file" size="20" name="file" class="form-control" />
+	<input type="submit" value="{translate key="manager.files.uploadFile"}" class="btn btn-primary" />
+
+</div>
+
+</form>
+<br/>
+<form method="post" action="{url op="fileMakeDir" path=$currentDir|explode:"/"}" enctype="multipart/form-data" class="form-inline">
+<div class="row">
+<div class="col-md-5 col-sm-5">
+	<input type="text" size="20" maxlength="255" name="dirName" class="form-control" />
+	</div>
+
+	<input type="submit" value="{translate key="manager.files.createDir"}" class="btn btn-primary" />
+		</div>
 </form>
 
 <p>{translate key="manager.files.note"}</p>

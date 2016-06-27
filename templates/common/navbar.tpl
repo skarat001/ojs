@@ -9,7 +9,7 @@
  *
  *}
       <!-- Static navbar -->
-      <div class="container-fluid">
+      <div class="container-fluid width-def">
      <nav class="navbar navbar-default navbar-inverse container-fluid">
   
     <!-- Brand and toggle get grouped for better mobile display -->

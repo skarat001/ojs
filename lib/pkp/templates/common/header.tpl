@@ -31,12 +31,12 @@
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="{$baseUrl}/bower_components/app.css">
-	
 
-	
-	<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+		<script type="text/javascript" src="{$baseUrl}/bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 <!-- 		<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/pkp.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" /> -->
@@ -136,88 +136,13 @@
 	{include file="common/navbar.tpl"}
 
 
-	<div  class=" header background-color">
-		<div >
-			<div class="container">
-				<div class="row vertical-align"> 
-		
-					<div class="col-md-4" style="padding:15px;">
-
-						{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-						
-						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-						{/if}
-						{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-						
-						<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-						{elseif $displayPageHeaderTitle}
-						{$displayPageHeaderTitle}
-						{elseif $alternatePageHeader}
-						{$alternatePageHeader}
-						{elseif $siteTitle}
-
-						{$siteTitle}
-						{else}
-						{$applicationName}
-						{/if}
-					</div>
-					<div class="col-md-8">
-						<div class="row">
 
 
 
-							<form id="simpleSearchForm"  class="input-group" action="{url page="search" op="search"}">
+	<br>
 
-								<div class="input-group-btn search-panel">
-									{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
-
-									<select id="searchField" name="searchField" class="selectpicker form-search	 form-control">
-										{html_options_translate options=$articleSearchByOptions}
-									</select>
-
-								</div>
-								{if empty($filterInput)}
-								<input type="text" class="form-control form-search" placeholder="Search" id="simpleQuery" name="simpleQuery">
-
-								{else}
-								{$filterInput}
-								{/if}
-								<span class="input-group-btn">
-									<button class="btn btn-default form-search" type="submit">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</span>
-
-							</form>	
-
-</div>
-<div class="row">
-							<h3 style="display:inline;"><small>{translate key="navigation.browse"}</small></h3>
-							<ul class="list-inline " style="display:inline;">
-								<li><a href="{url page="issue" op="archive"}" class="btn browse"><small>{translate key="navigation.browseByIssue"}</small></a></li>
-								<li><a href="{url page="search" op="authors"}" class="btn browse"><small>{translate key="navigation.browseByAuthor"}</small></a></li>
-								<li><a href="{url page="search" op="titles"}" class="btn browse"><small>{translate key="navigation.browseByTitle"}</small></a></li>
-								{call_hook name="Plugins::Blocks::Navigation::BrowseBy"}
-								
-							</ul>
-
-</div>	
-
-
-					</div>	
-					<div class="col-md-4"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-		
-<br>
-
-		<div  class="container">
-<div class="row">
+	<div  class="container width-def" >
+		<div class="row">
 
 			{if $leftSidebarCode || $rightSidebarCode}
 			<div id="sidebar col-md-2">
@@ -237,18 +162,18 @@
 
 			<div   class="col-md-8 ">
 
-<div class="row">
-				{include file="common/breadcrumbs.tpl"}
-</div>
-<div class="row">
+				<div class="row">
+					{include file="common/breadcrumbs.tpl"}
+				</div>
+				<div class="row">
 
-				<h2>{$pageTitleTranslated}</h2>
+					<h2>{$pageTitleTranslated}</h2>
 
-				{if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
-				{if $pageSubtitleTranslated}
-				<h3>{$pageSubtitleTranslated}</h3>
-				{/if}
-</div>
+					{if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
+					{if $pageSubtitleTranslated}
+					<h3>{$pageSubtitleTranslated}</h3>
+					{/if}
+				</div>
 				<div class="row">
 
 
