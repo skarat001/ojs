@@ -9,8 +9,9 @@
  *
  *}
       <!-- Static navbar -->
-     <nav class="navbar navbar-default navbar-inverse">
-  <div class="container-fluid">
+      <div class="container-fluid">
+     <nav class="navbar navbar-default navbar-inverse container-fluid">
+  
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -19,14 +20,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand"  class="btn btn-link">UI Journal</span>
+     
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
     
-   <li id="home"><a href="{url page="index"}"  class="btn btn-link">{translate key="navigation.home"}</a></li>
+   <li id="home"><a href="{url page="index"}"  class="btn btn-link">UI Journal</a></li>
 		<li id="about"><a href="{url page="about"}" class="btn btn-link">{translate key="navigation.about"}</a></li>
 
 		{if $isUserLoggedIn}
@@ -74,8 +75,88 @@
        
       </ul>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+ 
+
 </nav>
+
+	<div  class=" header background-color">
+		<div >
+			<div class="container">
+				<div class="row vertical-align"> 
+
+					<div class="col-md-4" style="padding:15px;">
+
+						{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+						
+						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="80" height="80" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+						{/if}
+						{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+						
+						<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="80" height="80" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+						{elseif $displayPageHeaderTitle}
+						{$displayPageHeaderTitle}
+						{elseif $alternatePageHeader}
+						{$alternatePageHeader}
+						{elseif $siteTitle}
+
+						{$siteTitle}
+						{else}
+						{$applicationName}
+						{/if}
+					</div>
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-10">
+
+
+								<form id="simpleSearchForm"  class="input-group" action="{url page="search" op="search"}">
+
+									<div class="input-group-btn search-panel">
+										{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
+
+										<select id="searchField" name="searchField" class="selectpicker form-search	 form-control">
+											{html_options_translate options=$articleSearchByOptions}
+										</select>
+
+									</div>
+									{if empty($filterInput)}
+									<input type="text" class="form-control form-search" placeholder="Search" id="simpleQuery" name="simpleQuery">
+
+									{else}
+									{$filterInput}
+									{/if}
+									<span class="input-group-btn">
+										<button class="btn btn-default form-search" type="submit">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+
+								</form>	
+							</div>
+
+						</div>
+						<div class="row">
+							<h3 style="display:inline;"><small>{translate key="navigation.browse"}</small></h3>
+							<ul class="list-inline " style="display:inline;">
+								<li><a href="{url page="issue" op="archive"}" class="btn browse"><small>{translate key="navigation.browseByIssue"}</small></a></li>
+								<li><a href="{url page="search" op="authors"}" class="btn browse"><small>{translate key="navigation.browseByAuthor"}</small></a></li>
+								<li><a href="{url page="search" op="titles"}" class="btn browse"><small>{translate key="navigation.browseByTitle"}</small></a></li>
+								{call_hook name="Plugins::Blocks::Navigation::BrowseBy"}
+								
+							</ul>
+
+						</div>	
+
+
+					</div>	
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+ </div><!-- /.container-fluid -->
 <!-- <div id="navbar">
 	<ul class="menu">
 		<li id="home"><a href="{url page="index"}">{translate key="navigation.home"}123</a></li>

@@ -33,7 +33,7 @@
 		{assign var=hasAccess value=0}
 	{/if}
 
-<div class="col-md-6">
+<div class="col-sm-4">
 
 		{if $showCoverPage}
 			<div class="tocCoverImage">
@@ -46,23 +46,31 @@
 
 	{call_hook name="Templates::Issue::Issue::ArticleCoverImage"}
 
+
 <div class="panel panel-default">
-<div class="panel-heading">
+<div class="panel-body">
+<div class="row">
+<center>
+<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="50" height="50" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+</center>
+</div>
 		<div  class="row">
-			{if !$hasAccess || $hasAbstract}
+			<center>{if !$hasAccess || $hasAbstract}
 				<a href="{url page="article" op="view" path=$articlePath}" class="btn btn-link"><h4 class="text-capitalize"><strong>{$article->getLocalizedTitle()|strip_unsafe_html}</strong></h4></a>
 			{else}
 				{$article->getLocalizedTitle()|strip_unsafe_html}
 			{/if}
+			</center>
 		</div>
 		<div class="tocAuthors" class="row">
-			{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
+			<center>{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
 				{foreach from=$article->getAuthors() item=author name=authorList}
 					<p class="text-capitalize">{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}</p>
 				{/foreach}
 			{else}
 				&nbsp;
 			{/if}
+			</center>
 		</div>
 
 
@@ -70,7 +78,7 @@
 		<div class="tocGalleys">
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
 				{foreach from=$article->getGalleys() item=galley name=galleyList}
-				<br>
+				
 				<i class="fa fa-download" ></i>
 					<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
 					{if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}

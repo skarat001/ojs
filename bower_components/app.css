@@ -166,3 +166,23 @@ flex-direction:row;
     color: #560000;
     border-radius: 1px;
 }
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 950px; /* or 950px */
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 950px; /* or 950px */
+}
+
+.tinggigambar{
+
+/*height: auto;
+max-height: 200px;
+  width: auto;*/
+  margin:0 auto;
+}
