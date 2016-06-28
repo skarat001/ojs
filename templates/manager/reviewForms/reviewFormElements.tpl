@@ -37,39 +37,39 @@ function toggleChecked() {
 {/literal}
 </script>
 
-<ul class="menu">
-	<li><a href="{url op="editReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.edit"}</a></li>
-	<li class="current"><a href="{url op="reviewFormElements" path=$reviewFormId}">{translate key="manager.reviewFormElements"}</a></li>
-	<li><a href="{url op="previewReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.preview"}</a></li>
-</ul>
+	<ul class="nav nav-pills">
+		<li class="nav-item "><a href="{url op="editReviewForm" path=$reviewFormId}" class="nav-link">{translate key="manager.reviewForms.edit"}</a></li>
+		<li class="nav-item active"><a href="{url op="reviewFormElements" path=$reviewFormId}" class="nav-link">{translate key="manager.reviewForms.edit"}</a></li>
 
-<br/>
+		<li class="nav-item"><a href="{url op="previewReviewForm" path=$reviewFormId}" class="nav-link">{translate key="manager.reviewForms.preview"}</a></li>
+	</ul>
+	<hr>
 
 <div id="reviewFormElements">
+
+<a class="btn btn-success pul-right" href="{url op="createReviewFormElement" path=$reviewFormId}">{translate key="manager.reviewFormElements.create"}</a>
 <form id="reviewFormElements" action="{url op="copyReviewFormElement"}" method="post">
-<table width="100%" class="listing" id="reviewFormElementsTable">
-	<tr>
-		<td class="headseparator" colspan="3">&nbsp;</td>
-	</tr>
+
+<table width="100%" class="table table-striped" id="reviewFormElementsTable">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="3%">&nbsp;</td>
-		<td width="77%">{translate key="manager.reviewFormElements.question"}</td>
-		<td width="20%">{translate key="common.action"}</td>
+		<th width="3%">&nbsp;</th>
+		<th width="67%">{translate key="manager.reviewFormElements.question"}</th>
+		<th width="30%">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td class="headseparator" colspan="3">&nbsp;</td>
-	</tr>
+	</thead>
+	<tbody>
 {iterate from=reviewFormElements item=reviewFormElement name=reviewFormElements}
 {assign var=reviewFormElementExists value=1}
 	<tr valign="top" id="formelt-{$reviewFormElement->getId()}" class="data">
 		<td><input type="checkbox" name="copy[]" value="{$reviewFormElement->getId()|escape}"/></td>
 		<td class="drag">{$reviewFormElement->getLocalizedQuestion()|truncate:200:"..."}</td>
 		<td class="nowrap">
-			<a href="{url op="editReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewFormElements.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveReviewFormElement" d=u id=$reviewFormElement->getId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewFormElement" d=d id=$reviewFormElement->getId()}" class="action">&darr;</a>
+			<a href="{url op="editReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getId()}" class="btn btn-warning btn-xs">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteReviewFormElement" path=$reviewFormElement->getReviewFormId()|to_array:$reviewFormElement->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewFormElements.confirmDelete"}')" class="btn btn-info btn-xs">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveReviewFormElement" d=u id=$reviewFormElement->getId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewFormElement" d=d id=$reviewFormElement->getId()}" class="action">&darr;</a>
 		</td>
 	</tr>
   {if $reviewFormElements->eof()}
-    <tr><td class="endseparator" colspan="3"></td></tr>
+  
   {/if}
 {/iterate}
 
@@ -77,16 +77,14 @@ function toggleChecked() {
 	<tr>
 		<td colspan="3" class="nodata">{translate key="manager.reviewFormElements.noneCreated"}</td>
 	</tr>
-	<tr>
-		<td colspan="3" class="endseparator">&nbsp;</td>
-	</tr>
+
 {else}
 	<tr>
 		<td colspan="2" align="left">{page_info iterator=$reviewFormElements}</td>
 		<td align="right">{page_links anchor="reviewFormElements" name="reviewFormElements" iterator=$reviewFormElements}</td>
 	</tr>
 {/if}
-
+</tbody>
 </table>
 
 {if $reviewFormElementExists}
@@ -96,7 +94,6 @@ function toggleChecked() {
 
 <br />
 
-<a class="action" href="{url op="createReviewFormElement" path=$reviewFormId}">{translate key="manager.reviewFormElements.create"}</a>
 </div>
 {include file="common/footer.tpl"}
 

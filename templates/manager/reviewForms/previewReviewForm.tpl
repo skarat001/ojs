@@ -22,25 +22,30 @@
 {/if}
 
 {if $canEdit}
-	<ul class="menu">
-		<li><a href="{url op="editReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.edit"}</a></li>
-		<li><a href="{url op="reviewFormElements" path=$reviewFormId}">{translate key="manager.reviewFormElements"}</a></li>
-		<li class="current"><a href="{url op="previewReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.preview"}</a></li>
+	<ul class="nav nav-pills">
+		<li class="nav-item "><a href="{url op="editReviewForm" path=$reviewFormId}" class="nav-link">{translate key="manager.reviewForms.edit"}</a></li>
+		<li class="nav-item"><a href="{url op="reviewFormElements" path=$reviewFormId}" class="nav-link">{translate key="manager.reviewForms.edit"}</a></li>
+
+		<li class="nav-item active"><a href="{url op="previewReviewForm" path=$reviewFormId}" class="nav-link">{translate key="manager.reviewForms.preview"}</a></li>
 	</ul>
+	<hr>
 {/if}
 
 <br/>
 
 <h3>{$reviewForm->getLocalizedTitle()}</h3>
 <p>{$reviewForm->getLocalizedDescription()}</p>
-
+<br/>
 {foreach from=$reviewFormElements name=reviewFormElements item=reviewFormElement}
-	<p>{$reviewFormElement->getLocalizedQuestion()}{if $reviewFormElement->getRequired()}*{/if}</p>
-	<p>
+<div class="row">
+<div class="col-md-3 col-sm-3">
+	{$reviewFormElement->getLocalizedQuestion()}{if $reviewFormElement->getRequired()}*{/if}
+	</div>
+	<div class="col-md-7 col-sm-7">
 		{if $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_SMALL_TEXT_FIELD}
-			<input type="text" size="10" maxlength="40" class="textField" />
+			<input type="text" size="10" maxlength="40" class="form-control" />
 		{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_TEXT_FIELD}
-			<input type="text" size="40" maxlength="120" class="textField" />
+			<input type="text" size="40" maxlength="120" class="form-control" />
 		{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_TEXTAREA}
 			<textarea rows="4" cols="40" class="textArea"></textarea>
 		{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES}
@@ -58,20 +63,21 @@
 				<br/>
 			{/foreach}
 		{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_DROP_DOWN_BOX}
-			<select size="1" class="selectMenu">
+			<select size="1" class="form-control">
 				{assign var=possibleResponses value=$reviewFormElement->getLocalizedPossibleResponses()}
 				{foreach name=responses from=$possibleResponses key=responseId item=responseItem}
 					<option>{$responseItem.content}</option>
 				{/foreach}
 			</select>
 		{/if}
-	</p>
+</div>
+</div>
 {/foreach}
 
 <br/>
 
 <form id="previewReviewForm" method="post" action="{if !$canEdit}{url op="reviewForms"}{else}{url op="editReviewForm" path=$reviewFormId}{/if}">
-	<p><input type="submit" value="{translate key="common.close"}" class="button defaultButton" /></p>
+	<p><input type="submit" value="{translate key="common.close"}" class="btn btn-warning" /></p>
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
