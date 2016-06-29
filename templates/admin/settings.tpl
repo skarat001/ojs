@@ -13,118 +13,171 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="settings" method="post" action="{url op="saveSettings"}" enctype="multipart/form-data">
+<form id="settings" method="post" action="{url op="saveSettings"}" enctype="multipart/form-data" class="form-horizontal">
 {include file="common/formErrors.tpl"}
 
-<table class="data" width="100%">
 {if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td colspan="2" width="80%" class="value">
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+{fieldLabel name="formLocale" key="form.formLanguage"}
+</div>
+<div class="col-md-7 col-sm-7">
 			{url|assign:"settingsUrl" op="settings" escape=false}
 			{form_language_chooser form="settings" url=$settingsUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
+</div>
+</div>
+
 {/if}
-	<tr valign="top">
-		<td {if $pageHeaderTitleType[$formLocale] && $pageHeaderTitleImage[$formLocale]}rowspan="4"{else}rowspan="3"{/if} width="20%" class="label">{fieldLabel name="title" key="admin.settings.siteTitle" required="true"}</td>
-		<td width="15%" class="value">
+	
+	<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="title" key="admin.settings.siteTitle" required="true"}
+</div>
+<div class="col-md-7 col-sm-7">
 			<input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-0" value="0"{if not $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-0" key="manager.setup.useTextTitle"}
-		</td>
-		<td width="65%" class="value">
-			<input type="text" id="title" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="40" maxlength="120" class="textField" />
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
-		<td colspan="2" width="80%" class="value"><input type="file" name="pageHeaderTitleImage" id="pageHeaderTitleImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderTitleImage" value="{translate key="common.upload"}" class="button" /></td>
-	</tr>
-	<tr valign="top">
-		<td colspan="2">
-			{if $pageHeaderTitleType[$formLocale] && $pageHeaderTitleImage[$formLocale]}
-				{translate key="common.fileName"}: {$pageHeaderTitleImage[$formLocale].originalFilename|escape} {$pageHeaderTitleImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImage" value="{translate key="common.delete"}" class="button" />
+
+
+			<input type="text" id="title" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="40" maxlength="120" class="form-control" />
+</div>
+</div>
+
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+<input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}
+</div>
+<div class="col-md-7 col-sm-7">
+<input type="file" name="pageHeaderTitleImage" id="pageHeaderTitleImage" class="form-control" /> 
+	{if $pageHeaderTitleType[$formLocale] && $pageHeaderTitleImage[$formLocale]}
+				{translate key="common.fileName"}: {$pageHeaderTitleImage[$formLocale].originalFilename|escape} {$pageHeaderTitleImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImage" value="{translate key="common.delete"}" class="btn btn-danger" />
 				<br />
 				<img src="{$publicFilesDir}/{$pageHeaderTitleImage[$formLocale].uploadName|escape:"url"}" width="{$pageHeaderTitleImage[$formLocale].width|escape}" height="{$pageHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="admin.settings.homeHeaderImage.altText"}" />
 			{/if}
-		</td>
-	</tr>
+			</div>
+			<div class="col-md-2 col-sm-2">
+
+<input type="submit" name="uploadPageHeaderTitleImage" value="{translate key="common.upload"}" class="btn btn-primary" />
+
+		
+	</div>
+</div>
+
 	{if $pageHeaderTitleType[$formLocale] && $pageHeaderTitleImage[$formLocale]}
-		<tr valign="top">
-			<td class="label">{fieldLabel name="pageHeaderTitleImageAltText" key="common.altText"}</td>
-			<td colspan="2" width="80%" class="value">
-				<input type="text" id="pageHeaderTitleImageAltText" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<td>&nbsp;</td>
-			<td colspan="2" class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
-		</tr>
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+{fieldLabel name="pageHeaderTitleImageAltText" key="common.altText"}
+</div>
+<div class="col-md-7 col-sm-7">
+				<input type="text" id="pageHeaderTitleImageAltText" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="form-control" />
+		
+		<span class="instruct">{translate key="common.altTextInstructions"}</span>
+</div>
+</div>
 	{/if}
-	<tr valign="top">
-		<td class="label">{fieldLabel name="intro" key="admin.settings.introduction"}</td>
-		<td colspan="2" class="value"><textarea name="intro[{$formLocale|escape}]" id="intro" cols="40" rows="10" class="textArea">{$intro[$formLocale]|escape}</textarea></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="redirect" key="admin.settings.journalRedirect"}</td>
-		<td colspan="2" class="value">
-			<select name="redirect" id="redirect" size="1" class="selectMenu">
+	<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="intro" key="admin.settings.introduction"}
+	</div>
+<div class="col-md-7 col-sm-7">
+	<textarea name="intro[{$formLocale|escape}]" id="intro" cols="40" rows="10" class="textArea">{$intro[$formLocale]|escape}</textarea>
+</div>
+</div>
+
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="redirect" key="admin.settings.journalRedirect"}
+</div>
+<div class="col-md-7 col-sm-7">
+			<select name="redirect" id="redirect" size="1" class="form-control">
 				<option value="">{translate key="admin.settings.noJournalRedirect"}</option>
 				{html_options options=$redirectOptions selected=$redirect}
 			</select>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td colspan="2" class="value"><span class="instruct">{translate key="admin.settings.journalRedirectInstructions"}</span></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="aboutField" key="admin.settings.aboutDescription"}</td>
-		<td colspan="2" class="value"><textarea name="about[{$formLocale|escape}]" id="aboutField" cols="40" rows="10" class="textArea">{$about[$formLocale]|escape}</textarea></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="contactName" key="admin.settings.contactName" required="true"}</td>
-		<td colspan="2" class="value"><input type="text" id="contactName" name="contactName[{$formLocale|escape}]" value="{$contactName[$formLocale]|escape}" size="40" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="contactEmail" key="admin.settings.contactEmail" required="true"}</td>
-		<td colspan="2" class="value"><input type="text" id="contactEmail" name="contactEmail[{$formLocale|escape}]" value="{$contactEmail[$formLocale]|escape}" size="40" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="minPasswordLength" key="admin.settings.minPasswordLength" required="true"}</td>
-		<td colspan="2" class="value"><input type="text" id="minPasswordLength" name="minPasswordLength" value="{$minPasswordLength|escape}" size="4" maxlength="2" class="textField" /> {translate key="admin.settings.passwordCharacters"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="oneStepReset" key="admin.settings.oneStepReset"}</td>
-		<td class="value" colspan="2"><input type="checkbox" id="oneStepReset" name="oneStepReset" {if $oneStepReset}checked="checked" {/if}/></td>
-	</tr>
-	<tr>
-		<td class="label"><label for="siteTheme">{translate key="admin.settings.siteTheme"}</label></td>
-		<td colspan="2" class="value">
-			<select name="siteTheme" class="selectMenu" id="siteTheme"{if empty($themes)} disabled="disabled"{/if}>
+	
+	<span class="instruct">{translate key="admin.settings.journalRedirectInstructions"}</span>
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="aboutField" key="admin.settings.aboutDescription"}
+	</div>
+<div class="col-md-7 col-sm-7">
+	<textarea name="about[{$formLocale|escape}]" id="aboutField" cols="40" rows="10" class="textArea">{$about[$formLocale]|escape}</textarea>
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="contactName" key="admin.settings.contactName" required="true"}
+	</div>
+<div class="col-md-7 col-sm-7">
+	<input type="text" id="contactName" name="contactName[{$formLocale|escape}]" value="{$contactName[$formLocale]|escape}" size="40" maxlength="90" class="form-control" />
+</div>
+</div>
+
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="contactEmail" key="admin.settings.contactEmail" required="true"}
+	</div>
+<div class="col-md-7 col-sm-7">
+	<input type="text" id="contactEmail" name="contactEmail[{$formLocale|escape}]" value="{$contactEmail[$formLocale]|escape}" size="40" maxlength="90" class="form-control" />
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	{fieldLabel name="minPasswordLength" key="admin.settings.minPasswordLength" required="true"}
+	</div>
+<div class="col-md-5 col-sm-5">
+	<input type="text" id="minPasswordLength" name="minPasswordLength" value="{$minPasswordLength|escape}" size="4" maxlength="2" class="form-control" /> {fieldLabel name="oneStepReset" key="admin.settings.oneStepReset"}
+</div>
+<div class="col-md-3 col-sm-3">
+	{translate key="admin.settings.passwordCharacters"}<br/>
+
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-3 col-sm-3 checkbox">
+<label for="siteTheme">
+		<input type="checkbox" id="oneStepReset" name="oneStepReset" {if $oneStepReset}checked="checked" {/if}/>
+
+	<b>{translate key="admin.settings.siteTheme"}</b></label></td>
+	</div>
+<div class="col-md-7 col-sm-7">
+
+	
+			<select name="siteTheme" class="form-control" id="siteTheme"{if empty($themes)} disabled="disabled"{/if}>
 				<option value="">{translate key="common.none"}</option>
 				{foreach from=$themes key=path item=themePlugin}
 					<option value="{$path|escape}"{if $path == $siteTheme} selected="selected"{/if}>{$themePlugin->getDisplayName()|escape}</option>
 				{/foreach}
 			</select>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label"><label for="siteStyleSheet">{translate key="admin.settings.siteStyleSheet"}</label></td>
-		<td colspan="2" width="80%" class="value">
-			<input type="file" name="siteStyleSheet" class="uploadField" id="siteStyleSheet" /> <input type="submit" name="uploadSiteStyleSheet" value="{translate key="common.upload"}" class="button" />
-			{if $siteStyleFileExists}
+		</div>
+		</div>
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	<label for="siteStyleSheet">{translate key="admin.settings.siteStyleSheet"}</label>
+</div>
+<div class="col-md-7 cl-sm-7">
+			<input type="file" name="siteStyleSheet" class="form-control" id="siteStyleSheet" />
+{if $siteStyleFileExists}
 				<br />
-				{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$styleFilename}" class="file">{$originalStyleFilename|escape}</a> {$dateStyleFileUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteSiteStyleSheet" value="{translate key="common.delete"}" class="button" />
+				{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$styleFilename}" class="file">{$originalStyleFilename|escape}</a> {$dateStyleFileUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteSiteStyleSheet" value="{translate key="common.delete"}" class="btn btn-danger" />
 			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td rowspan="2" class="label">{translate key="admin.settings.options"}</td>
-		<td class="value" colspan="2">
-			<input type="checkbox" id="useAlphalist" name="useAlphalist" {if $useAlphalist}checked="checked" {/if}/>
-			{fieldLabel name="useAlphalist" key="admin.settings.useAlphalist"}
-	</tr>
+			</div>
+<div class="col-md-2 cl-sm-2">
+			 <input type="submit" name="uploadSiteStyleSheet" value="{translate key="common.upload"}" class="btn btn-primary" />
+			
+	</div>
+</div>
+<div class="form-group">
+<div class="col-md-3 col-sm-3">
+	<label>{translate key="admin.settings.options"}</label>
+	</div>
+<div class="col-md-7 cl-sm-7 checkbox">
+			<label><input type="checkbox" id="useAlphalist" name="useAlphalist" {if $useAlphalist}checked="checked" {/if}/>
+			{translate key="admin.settings.useAlphalist"}
+			</label>
+	</div>
+</div>
+<table>
 	<tr valign="top">
 		<td class="value" colspan="2">
 			<input type="checkbox" id="usePaging" name="usePaging" {if $usePaging}checked="checked" {/if}/>
@@ -132,7 +185,7 @@
 		</td>
 	</tr>
 	<tr valign="top">
-	<td class="label">{translate key="admin.settings.journalsList"}</td>
+	<td >{translate key="admin.settings.journalsList"}</td>
 		<td colspan="2" class="value">
 			{translate key="admin.settings.journalsList.description"}<br />
 			<input type="checkbox" name="showThumbnail" id="showThumbnail" value="1"{if $showThumbnail} checked="checked"{/if} />
@@ -144,10 +197,11 @@
 		</td>
 	</tr>
 	<tr valign="top">
-	<td class="label">{translate key="admin.settings.security"}</td>
-		<td colspan="2" class="value">
+	<td >{translate key="admin.settings.security"}</td>
+		<td colspan="2" class="value checkbox">
+			<label>
 			<input type="checkbox" name="preventManagerPluginManagement" id="preventManagerPluginManagement" value="1"{if $preventManagerPluginManagement} checked="checked"{/if} />
-			{fieldLabel name="preventManagerPluginManagement" key="admin.settings.security.plugins"}<br />
+			{translate key="admin.settings.security.plugins"}</label><br />
 		</td>
 	</tr>
 </table>
@@ -170,7 +224,7 @@
 			<tr valign="top">
 				<td width="20%" class="label">{fieldLabel name="defaultMetricType" key="defaultMetric.availableMetrics"}</td>
 				<td colspan="2" width="80%" class="value">
-					<select name="defaultMetricType" class="selectMenu" id="defaultMetricType">
+					<select name="defaultMetricType" class="form-control" id="defaultMetricType">
 						{foreach from=$availableMetricTypes key=metricType item=displayName}
 							<option value="{$metricType|escape}"{if $metricType == $defaultMetricType} selected="selected"{/if}>{$displayName|escape}</option>
 						{/foreach}
@@ -180,9 +234,9 @@
 		</table>
 	</div>
 {/if}
-
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
-
+<div class="col-md-offet-3 col-sm-offset-3">
+<p><input type="submit" value="{translate key="common.save"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-warning" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
+</div>
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

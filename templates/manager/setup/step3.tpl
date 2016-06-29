@@ -435,6 +435,7 @@
 			// Set the initial state
 			initialCheckboxState = $metaCitationsCheckbox.attr('checked');
 			if (initialCheckboxState) {
+
 				$metaCitationsSetupBox.css('display', 'block');
 			} else {
 				$metaCitationsSetupBox.css('display', 'none');
@@ -497,9 +498,14 @@
 </div>
 
 <div class="separator"></div>
+<br/>
+<div class="form-group">
+<div class="col-md-offset-3 col-sm-offset-3">
+<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-warning" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
-
+</div>
+</div>
+</div>
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 </form>
