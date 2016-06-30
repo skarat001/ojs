@@ -44,7 +44,7 @@
 <p>{foreach from=$alphaList item=letter}<a href="{url path=$roleSymbolic oldUserIds=$oldUserIds searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url path=$roleSymbolic oldUserIds=$oldUserIds}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
 {if not $roleId}
-<ul>
+<!-- <ul>
 	<li><a href="{url path="managers" oldUserIds=$oldUserIds}">{translate key="user.role.managers"}</a></li>
 	<li><a href="{url path="editors" oldUserIds=$oldUserIds}">{translate key="user.role.editors"}</a></li>
 	<li><a href="{url path="sectionEditors" oldUserIds=$oldUserIds}">{translate key="user.role.sectionEditors"}</a></li>
@@ -55,7 +55,7 @@
 	<li><a href="{url path="authors" oldUserIds=$oldUserIds}">{translate key="user.role.authors"}</a></li>
 	<li><a href="{url path="readers" oldUserIds=$oldUserIds}">{translate key="user.role.readers"}</a></li>
 	<li><a href="{url path="subscriptionManagers" oldUserIds=$oldUserIds}">{translate key="user.role.subscriptionManagers"}</a></li>
-</ul>
+</ul> -->
 
 <br />
 {else}
@@ -71,22 +71,19 @@
 	{assign var="numCols" value=5}
        <form method="post" action="{url}">
 {/if}
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="{$numCols}" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped">
+	<thead>
 	<tr class="heading" valign="bottom">
 		{if empty($oldUserIds)}
-			<td width="5%">&nbsp;</td>
+			<th width="5%">&nbsp;</th>
 		{/if}
-		<td>{translate key="user.username"}</td>
-		<td width="29%">{translate key="user.name"}</td>
-		<td width="29%">{translate key="user.email"}</td>
-		<td width="15%" align="right">{translate key="common.action"}</td>
+		<th>{translate key="user.username"}</th>
+		<th width="29%">{translate key="user.name"}</th>
+		<th width="29%">{translate key="user.email"}</th>
+		<th width="15%" align="right">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td colspan="{$numCols}" class="headseparator">&nbsp;</td>
-	</tr>
+</thead>
+<tbody>
 	{iterate from=users item=user}
 	{assign var=userExists value=1}
 	<tr valign="top">
@@ -111,26 +108,25 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="{$numCols}" class="{if $users->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
+
 {/iterate}
 {if $users->wasEmpty()}
 	<tr>
 		<td colspan="{$numCols}" class="nodata">{translate key="admin.mergeUsers.noneEnrolled"}</td>
 	</tr>
-	<tr>
-		<td colspan="{$numCols}" class="endseparator">&nbsp;</td>
-	</tr>
+
+
 {else}
 	<tr>
 		<td colspan="{math equation="floor(numCols / 2)" numCols=$numCols}" align="left">{page_info iterator=$users}</td>
 		<td colspan="{math equation="ceil(numCols / 2)" numCols=$numCols}" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic oldUserIds=$oldUserIds}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 {if empty($oldUserIds)}
-	<input type="submit" class="button defaultButton" value="{translate key="admin.mergeUsers"}" />
+	<input type="submit" class="btn btn-primary" value="{translate key="admin.mergeUsers"}" />
 	</form>
 {/if}
 </div>

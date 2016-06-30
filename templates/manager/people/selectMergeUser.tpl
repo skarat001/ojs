@@ -16,8 +16,8 @@
 <p>{if !empty($oldUserIds)}{translate key="manager.people.mergeUsers.into.description"}{else}{translate key="manager.people.mergeUsers.from.description"}{/if}</p>
 <div id="roles">
 <h3>{translate key=$roleName}</h3>
-<form method="post" action="{url path=$roleSymbolic oldUserIds=$oldUserIds}">
-	<select name="roleSymbolic" class="selectMenu">
+<form method="post" action="{url path=$roleSymbolic oldUserIds=$oldUserIds}" class="form-inline">
+	<select name="roleSymbolic" class="form-control">
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
 		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
@@ -36,21 +36,21 @@
 		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
 		<option {if $roleSymbolic=='subscriptionManagers'}selected="selected" {/if}value="subscriptionManagers">{translate key="user.role.subscriptionManagers"}</option>
 	</select>
-	<select name="searchField" size="1" class="selectMenu">
+	<select name="searchField" size="1" class="form-control">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
+	<select name="searchMatch" size="1" class="form-control">
 		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
 		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
 		<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 	</select>
-	<input type="text" size="10" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
+	<input type="text" size="10" name="search" class="form-control" value="{$search|escape}" /><br/><input type="submit" value="{translate key="common.search"}" class="btn btn-primary" />
 </form>
 
 <p>{foreach from=$alphaList item=letter}<a href="{url path=$roleSymbolic oldUserIds=$oldUserIds searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url path=$roleSymbolic oldUserIds=$oldUserIds}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
 {if not $roleId}
-<ul>
+<!-- <ul>
 	<li><a href="{url path="managers" oldUserIds=$oldUserIds}">{translate key="user.role.managers"}</a></li>
 	<li><a href="{url path="editors" oldUserIds=$oldUserIds}">{translate key="user.role.editors"}</a></li>
 	<li><a href="{url path="sectionEditors" oldUserIds=$oldUserIds}">{translate key="user.role.sectionEditors"}</a></li>
@@ -68,8 +68,8 @@
 	<li><a href="{url path="readers" oldUserIds=$oldUserIds}">{translate key="user.role.readers"}</a></li>
 	<li><a href="{url path="subscriptionManagers" oldUserIds=$oldUserIds}">{translate key="user.role.subscriptionManagers"}</a></li>
 </ul>
+ -->
 
-<br />
 {else}
 <p><a href="{url path="all" oldUserIds=$oldUserIds}" class="action">{translate key="manager.people.allUsers"}</a></p>
 {/if}
@@ -83,22 +83,20 @@
 	{assign var="numCols" value=5}
 	<form method="post" action="{url}">
 {/if}
-<table width="100%" class="listing">
-	<tr>
-		<td colspan="{$numCols}" class="headseparator">&nbsp;</td>
-	</tr>
+<input type="submit" class="button defaultButton" value="{translate key="manager.people.mergeUsers"}" />
+<table width="100%" class="table table-striped">
+	<thead>
 	<tr class="heading" valign="bottom">
 		{if empty($oldUserIds)}
-			<td width="5%">&nbsp;</td>
+			<th width="5%">&nbsp;</th>
 		{/if}
-		<td>{sort_heading key="user.username" sort="username"}</td>
-		<td width="29%">{sort_heading key="user.name" sort="name"}</td>
-		<td width="29%">{sort_heading key="user.email" sort="email"}</td>
-		<td width="15%" align="right">{translate key="common.action"}</td>
+		<th>{sort_heading key="user.username" sort="username"}</th>
+		<th width="29%">{sort_heading key="user.name" sort="name"}</th>
+		<th width="29%">{sort_heading key="user.email" sort="email"}</th>
+		<th width="15%" align="right">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td colspan="{$numCols}" class="headseparator">&nbsp;</td>
-	</tr>
+	</thead>
+	<tbody>
 	{iterate from=users item=user}
 	{assign var=userExists value=1}
 	<tr valign="top">
@@ -123,26 +121,23 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="{$numCols}" class="{if $users->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
+
 {/iterate}
 {if $users->wasEmpty()}
 	<tr>
 		<td colspan="{$numCols}" class="nodata">{translate key="manager.people.noneEnrolled"}</td>
 	</tr>
-	<tr>
-		<td colspan="{$numCols}" class="endseparator">&nbsp;</td>
-	</tr>
+
 {else}
 	<tr>
 		<td colspan="{math equation="floor(numCols / 2)" numCols=$numCols}" align="left">{page_info iterator=$users}</td>
 		<td colspan="{math equation="ceil(numCols / 2)" numCols=$numCols}" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic oldUserIds=$oldUserIds sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 {if empty($oldUserIds)}
-	<input type="submit" class="button defaultButton" value="{translate key="manager.people.mergeUsers"}" />
+	
 	</form>
 {/if}
 </div>

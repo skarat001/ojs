@@ -45,17 +45,17 @@ function toggleChecked() {
 </script>
 
 {if not $omitSearch}
-	<form method="post" id="submit" action="{url op="enrollSearch"}">
+	<form method="post" id="submit" action="{url op="enrollSearch"}" class="form-inline">
 	<input type="hidden" name="roleId" value="{$roleId|escape}"/>
-		<select name="searchField" size="1" class="selectMenu">
+		<select name="searchField" size="1" class="form-control">
 			{html_options_translate options=$fieldOptions selected=$searchField}
 		</select>
-		<select name="searchMatch" size="1" class="selectMenu">
+		<select name="searchMatch" size="1" class="form-control">
 			<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
 			<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
 			<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 		</select>
-		<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
+		<input type="text" size="15" name="search" class="textField" value="{$search|escape}" /><br/><input type="submit" value="{translate key="common.search"}" class="btn btn-primary" />
 	</form>
 
 	<p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" searchInitial=$letter roleId=$roleId}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" roleId=$roleId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
@@ -64,7 +64,11 @@ function toggleChecked() {
 <form id="enroll" onsubmit="return enrollUser(0)" action="{if $roleId}{url op="enroll" path=$roleId}{else}{url op="enroll"}{/if}" method="post">
 {if !$roleId}
 	<p>
-	{translate key="manager.people.enrollUserAs"} <select name="roleId" size="1"  class="selectMenu">
+<div class="col-md-3">
+	{translate key="manager.people.enrollUserAs"} 
+	</div>
+	<div class="col-md-5">
+	<select name="roleId" size="1"  class="form-control">
 		<option value=""></option>
 		<option value="{$smarty.const.ROLE_ID_JOURNAL_MANAGER}">{translate key="user.role.manager"}</option>
 		<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
@@ -84,6 +88,7 @@ function toggleChecked() {
 		<option value="{$smarty.const.ROLE_ID_SUBSCRIPTION_MANAGER}">{translate key="user.role.subscriptionManager"}</option>
 
 	</select>
+	</div>
 	</p>
 	<script type="text/javascript">
 	<!--
@@ -104,16 +109,23 @@ function toggleChecked() {
 {/if}
 
 <div id="users">
-<table width="100%" class="listing">
-<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
+<br/><br/>
+<div class="row">
+<div class="col-md-12">
+<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.selectAll"}" class="button" onclick="toggleChecked()" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
+</div>
+</div>
+<table width="100%" class="table table-striped">
+<thead>
 <tr class="heading" valign="bottom">
-	<td width="5%">&nbsp;</td>
-	<td width="25%">{sort_heading key="user.username" sort="username"}</td>
-	<td width="30%">{sort_heading key="user.name" sort="name"}</td>
-	<td width="10%">{sort_heading key="user.email" sort="email"}</td>
-	<td width="10%" align="right">{translate key="common.action"}</td>
+	<th width="5%">&nbsp;</th>
+	<th width="20%">{sort_heading key="user.username" sort="username"}</th>
+	<th width="30%">{sort_heading key="user.name" sort="name"}</th>
+	<th width="10%">{sort_heading key="user.email" sort="email"}</th>
+	<th width="15%" align="right">{translate key="common.action"}</th>
 </tr>
-<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
+</thead>
+<tbody>
 {iterate from=users item=user}
 {assign var="userid" value=$user->getId()}
 {assign var="stats" value=$statistics[$userid]}
@@ -141,23 +153,24 @@ function toggleChecked() {
 		{/if}
 	</td>
 </tr>
-<tr><td colspan="5" class="{if $users->eof()}end{/if}separator">&nbsp;</td></tr>
+
 {/iterate}
 {if $users->wasEmpty()}
 	<tr>
 	<td colspan="5" class="nodata">{translate key="common.none"}</td>
 	</tr>
-	<tr><td colspan="5" class="endseparator">&nbsp;</td></tr>
+	
 {else}
 	<tr>
 		<td colspan="3" align="left">{page_info iterator=$users}</td>
 		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleId=$roleId sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 
-<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.selectAll"}" class="button" onclick="toggleChecked()" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
+
 
 </form>
 

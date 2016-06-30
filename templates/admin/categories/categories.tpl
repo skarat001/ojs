@@ -26,24 +26,21 @@ $(document).ready(function() { setupTableDND("#dragTable", "moveCategory"); });
 	{translate key="admin.categories.enable.description"}<br/>
 	<input type="radio" id="categoriesEnabledOff" {if !$categoriesEnabled}checked="checked" {/if}name="categoriesEnabled" value="0"/>&nbsp;<label for="categoriesEnabledOff">{translate key="admin.categories.disableCategories"}</label><br/>
 	<input type="radio" id="categoriesEnabledOn" {if $categoriesEnabled}checked="checked" {/if}name="categoriesEnabled" value="1"/>&nbsp;<label for="categoriesEnabledOn">{translate key="admin.categories.enableCategories"}</label><br/>
-	<input type="submit" value="{translate key="common.record"}" class="button defaultButton"/>
+	<input type="submit" value="{translate key="common.record"}" class="btn btn-primary"/>
 </form>
 
 <br />
 
 <div id="categories">
-
-<table width="100%" class="listing" id="dragTable">
-	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
-	</tr>
+<a href="{url op="createCategory"}" class="btn btn-success pull-right">{translate key="admin.categories.create"}</a>
+<table width="100%" class="table table-striped" id="dragTable">
+	<thead>
 	<tr class="heading" valign="bottom">
-		<td width="75%">{translate key="admin.categories.name"}</td>
-		<td width="25%">{translate key="common.action"}</td>
+		<th width="75%">{translate key="admin.categories.name"}</th>
+		<th width="25%">{translate key="common.action"}</th>
 	</tr>
-	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
-	</tr>
+	</thead>
+	<tbody>
 {iterate from=categories item=category key=categoryId}
 	<tr valign="top" id="category-{$categoryId|escape}" class="data">
 		<td class="drag">
@@ -67,9 +64,10 @@ $(document).ready(function() { setupTableDND("#dragTable", "moveCategory"); });
 		<td align="right">{page_links anchor="categories" name="categories" iterator=$categories}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 
-<a href="{url op="createCategory"}" class="action">{translate key="admin.categories.create"}</a>
+
 </div>
 
 {include file="common/footer.tpl"}

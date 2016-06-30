@@ -31,21 +31,18 @@
 </div>
 <div id="versionHistory">
 <h4>{translate key="admin.versionHistory"}</h4>
-<table class="listing" width="100%">
-	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
-	</tr>
+<table class="table table-striped" width="100%">
+	<thead>
 	<tr valign="top" class="heading">
-		<td width="30%">{translate key="admin.version"}</td>
-		<td width="10%">{translate key="admin.versionMajor"}</td>
-		<td width="10%">{translate key="admin.versionMinor"}</td>
-		<td width="10%">{translate key="admin.versionRevision"}</td>
-		<td width="20%">{translate key="admin.versionBuild"}</td>
-		<td width="20%" align="right">{translate key="admin.dateInstalled"}</td>
+		<th width="30%">{translate key="admin.version"}</th>
+		<th width="10%">{translate key="admin.versionMajor"}</th>
+		<th width="10%">{translate key="admin.versionMinor"}</th>
+		<th width="10%">{translate key="admin.versionRevision"}</th>
+		<th width="20%">{translate key="admin.versionBuild"}</th>
+		<th width="20%" align="right">{translate key="admin.dateInstalled"}</th>
 	</tr>
-	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
-	</tr>
+	</thead>
+	<tbody>
 	{foreach name="versions" from=$versionHistory item=version}
 	<tr valign="top">
 		<td>{$version->getVersionString()|escape}</td>
@@ -59,6 +56,7 @@
 		<td colspan="6" class="{if $smarty.foreach.versions.last}end{/if}separator">&nbsp;</td>
 	</tr>
 {/foreach}
+</tbody>
 </table>
 </div>
 </div>
@@ -74,7 +72,7 @@
 <table class="data" width="100%">
 {foreach from=$sectionData key=settingName item=settingValue}
 <tr valign="top">
-	<td width="30%" class="label">{$settingName|escape}</td>
+	<td width="30%" >{$settingName|escape}</td>
 	<td width="70%">{if $settingValue === true}{translate key="common.on"}{elseif $settingValue === false}{translate key="common.off"}{else}{$settingValue|escape}{/if}</td>
 </tr>
 {/foreach}
@@ -91,7 +89,7 @@
 <table class="data" width="100%">
 {foreach from=$serverInfo key=settingName item=settingValue}
 <tr valign="top">
-	<td width="30%" class="label">{translate key=$settingName|escape}</td>
+	<td width="30%" >{translate key=$settingName|escape}</td>
 	<td width="70%" class="value">{$settingValue|escape}</td>
 </tr>
 {/foreach}

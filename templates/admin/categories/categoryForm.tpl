@@ -15,32 +15,43 @@
 {/strip}
 <div id="categoryFormDiv">
 
-<form id="categoryForm" method="post" action="{url op="updateCategory"}">
+<form id="categoryForm" method="post" action="{url op="updateCategory"}" class="form-horizontal">
 {if $category}
 	<input type="hidden" name="categoryId" value="{$category->getId()}"/>
 {/if}
 
 {include file="common/formErrors.tpl"}
-<table class="data" width="100%">
+
+
 {if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
+<div class="form-group">
+<div class="col-md-3 col-sm-3 control-label">
+{fieldLabel name="formLocale" key="form.formLanguage"}
+</div>
+<div class="col-md-7 col-sm-7">
 			{if $category}{url|assign:"categoryFormUrl" op="editCategory" path=$category->getId() escape=false}
 			{else}{url|assign:"categoryFormUrl" op="createCategory" escape=false}
 			{/if}
 			{form_language_chooser form="categoryForm" url=$categoryFormUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-{/if}
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="name" required="true" key="admin.categories.name"}</td>
-	<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="35" maxlength="80" id="name" class="textField" /></td>
-</tr>
-</table>
+			</div>
+	</div>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="categories" escape=false}'" /></p>
+{/if}
+<div class="form-group">
+<div class="col-md-3 col-sm-3 control-label">
+{fieldLabel name="name" required="true" key="admin.categories.name"}
+</div>
+<div class="col-md-7 col-sm-7">
+<input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="35" maxlength="80" id="name" class="form-control" />
+	</div>
+	</div>
+
+<div class="form-group">
+<div class="col-md-offset-3 col-sm-offset-3">
+<p><input type="submit" value="{translate key="common.save"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-warning" onclick="document.location.href='{url op="categories" escape=false}'" /></p>
+</div>
+</div>
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

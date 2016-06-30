@@ -13,51 +13,59 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form method="post" action="{url op="saveLanguageSettings"}">
+<form method="post" action="{url op="saveLanguageSettings"}" class="form-horizontal">
 <div id="languageSettings">
 <h3>{translate key="admin.languages.languageSettings"}</h3>
-
-<table class="form">
-<tr valign="top">
-	<td width="20%" class="label">{translate key="locale.primary"}</td>
-	<td width="80%" class="value">
-		<select name="primaryLocale" id="primaryLocale" size="1" class="selectMenu">
+<div class="form-group">
+<div class="col-md-3 col-sm-3 control-label">
+{translate key="locale.primary"}
+</div>
+<div class="col-md-7 col-sm-7">
+		<select name="primaryLocale" id="primaryLocale" size="1" class="form-control">
 		{foreach from=$installedLocales item=localeKey}
 			<option value="{$localeKey|escape}"{if $localeKey == $primaryLocale} selected="selected"{/if}>{$localeNames.$localeKey|escape}</option>
 		{/foreach}
 		</select>
 		<br />
 		<span class="instruct">{translate key="admin.languages.primaryLocaleInstructions"}</span>
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="locale.supported"}</td>
-	<td>
-		<table width="100%">
+	</div>
+	</div>
+	<div class="form-group">
+<div class="col-md-3 col-sm-3 control-label">
+{translate key="locale.supported"}
+</div>
+<div class="col-md-7 col-sm-7">
 		{foreach from=$installedLocales item=localeKey}
-		<tr valign="top">
-			<td width="5%"><input type="checkbox" name="supportedLocales[]" id="supportedLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $supportedLocales)} checked="checked"{/if} /></td>
-			<td width="95%">
-				<label for="supportedLocales-{$localeKey|escape}">{$localeNames.$localeKey|escape}</label>
+		<div class="form-group">
+		<div class="checkbox">
+		<label for="supportedLocales-{$localeKey|escape}">
+		<input type="checkbox" name="supportedLocales[]" id="supportedLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $supportedLocales)} checked="checked"{/if} />
+
+				{$localeNames.$localeKey|escape}</label>
 				{if !$localesComplete[$localeKey]}
 					<span class="formError">*</span>
 					{assign var=incompleteLocaleFound value=1}
 				{/if}
-			</td>
-		</tr>
+		</div>
+		</div>
+
 		{/foreach}
-		</table>
+	
+
 		<span class="instruct">{translate key="admin.languages.supportedLocalesInstructions"}</span>
 		{if $incompleteLocaleFound}
 			<br/>
 			<span class="formError">*</span>&nbsp;{translate key="admin.locale.maybeIncomplete"}
 		{/if}{* $incompleteLocaleFound *}
-	</td>
-</tr>
-</table>
-</div>
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
 
+	</div>
+	</div>
+</div>
+<div class="form-group">
+<div class="col-md-offset-3 col-sm-offset-3">
+<p><input type="submit" value="{translate key="common.save"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-warning" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
+</div>
+</div>
 </form>
 
 <div class="separator"></div>
@@ -96,7 +104,11 @@
 {/if}{* $incompleteLocaleFound *}
 
 {if not $noLocalesToInstall}
-<p><input type="submit" value="{translate key="admin.languages.installLocales"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
+<div class="form-group">
+<div class="col-md-offset-3 col-sm-offset-3">
+<p><input type="submit" value="{translate key="admin.languages.installLocales"}" class="btn btn-primary" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-warning" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
+</div>
+</div>
 {/if}
 </div>
 </form>
